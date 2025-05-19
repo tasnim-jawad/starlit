@@ -68,9 +68,7 @@
         ]"
       />
 
-      <side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`TestOne`"  :route_name="`AllTestOne`" />
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`TestOneThree`"  :route_name="`AllTestOneThree`" />
-<!-- Management end -->
+      <!-- Management end -->
     </ul>
   </div>
 </template>
