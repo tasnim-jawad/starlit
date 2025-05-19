@@ -46,11 +46,11 @@
       <!-- Management start -->
       <side-bar-drop-down-menus
         :icon="`fa fa-plus`"
-        :menu_title="`Employee Management`"
+        :menu_title="`User Management`"
         :menus="[
           {
             route_name: `AllUser`,
-            title: `Employee`,
+            title: `User`,
             icon: `zmdi zmdi-dot-circle-alt`,
           },
         ]"
@@ -58,145 +58,11 @@
 
       <side-bar-drop-down-menus
         :icon="`fa fa-plus`"
-        :menu_title="`Product Management`"
+        :menu_title="`Blog Management`"
         :menus="[
           {
-            route_name: `AllProductCategory`,
-            title: `Product Category`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllProductSubCategory`,
-            title: `Product SubCategory`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllSuppliyer`,
-            title: `Suppliyer`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllProduct`,
-            title: `Product`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-        ]"
-      />
-
-      <side-bar-drop-down-menus
-        :icon="`fa fa-plus`"
-        :menu_title="`Purchase Order Management`"
-        :menus="[
-          {
-            route_name: `AllPurchaseOrder`,
-            title: `Purchase Order`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllPurchaseOrderCollection`,
-            title: `Purchase Order Providing`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-        ]"
-      />
-
-      <side-bar-drop-down-menus
-        :icon="`fa fa-plus`"
-        :menu_title="`WareHouse Management`"
-        :menus="[
-          {
-            route_name: `AllWareHouse`,
-            title: `WareHouse`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllWareHouseProductStock`,
-            title: `WareHouse Product Stock`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllWarehouseProductOut`,
-            title: `Warehouse Product Out`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllWarehouseSwapProduct`,
-            title: `WarehouseSwapProduct`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-        ]"
-      />
-
-      <side-bar-drop-down-menus
-        :icon="`fa fa-plus`"
-        :menu_title="`Sales Order`"
-        :menus="[
-          {
-            route_name: `AllCustomer`,
-            title: `Customer`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllSalesOrder`,
-            title: `SalesOrder`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllSalesOrderCollectionHistory`,
-            title: `SalesOrderCollection`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-        ]"
-      />
-      <side-bar-drop-down-menus
-        :icon="`fa fa-plus`"
-        :menu_title="`Account Management`"
-        :menus="[
-          {
-            route_name: `AllAccountCategory`,
-            title: `AccountCategory`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllAccountSubCategory`,
-            title: `AccountSubCategory`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllAccountIncome`,
-            title: `AccountIncome`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllAccountExpense`,
-            title: `AccountExpense`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllPendingVoucher`,
-            title: `Pending Voucher`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-        ]"
-      />
-
-      <side-bar-drop-down-menus
-        :icon="`fa fa-plus`"
-        :menu_title="`Report Management`"
-        :menus="[
-          {
-            route_name: `AllIncomeReport`,
-            title: `IncomeReport`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllExpenseReport`,
-            title: `ExpsenseReport`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
-          {
-            route_name: `AllIncomeExpenseReport`,
-            title: `IncomeExpenseReport`,
+            route_name: `AllBlogCategory`,
+            title: `Blog Category`,
             icon: `zmdi zmdi-dot-circle-alt`,
           },
         ]"
