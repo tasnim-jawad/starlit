@@ -18,7 +18,7 @@ return new class extends Migration
             $table->integer('serial_no')->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();
-            $table->string('slug', 150)->nullable();
+            $table->string('slug', 50)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
             $table->softDeletes();

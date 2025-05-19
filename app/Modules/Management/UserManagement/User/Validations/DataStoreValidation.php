@@ -43,27 +43,14 @@ class DataStoreValidation extends FormRequest
     {
         return [
             'name' => 'required | sometimes',
-            'email' => 'required | sometimes | unique:users,email,' . $this->id,
-            'password_in_text' => 'required | sometimes |min:8',
+            'email' => 'required | sometimes',
+            'password' => 'required | sometimes',
             'image' => 'required | sometimes',
             'role_id' => 'required | sometimes',
-            'address' => 'required | sometimes',
-            'phone_number' => 'required | sometimes',
-            'join_date' => 'required | sometimes',
-            'salery' => 'required | sometimes',
-            'can_login' => 'required | sometimes',
-            'present_address' => ' sometimes',
-            'permanent_address' => ' sometimes',
-            'designation' => ' sometimes',
-            'nid' => ' sometimes',
-            'comment' => ' sometimes',
             'status' => ['sometimes', Rule::in(['active', 'inactive'])],
         ];
-    }
-    public function messages(): array
-    {
-        return [
-            'password_in_text.required' => 'The password field is required.',
-        ];
+
+
+        
     }
 }

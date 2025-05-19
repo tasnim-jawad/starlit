@@ -23,7 +23,7 @@ if (!function_exists('FormField')) {
                 $label = Str::of($fieldName[0])->snake()->replace('_', ' ');
                 $content .= "\n\t{\n";
                 $content .= "\t\tname: \"$fieldName[0]\",\n";
-                $content .= "\t\tlabel: \"  $label\",\n";
+                $content .= "\t\tlabel: \"Enter your $label\",\n";
 
                 if (count($fieldName) > 1) {
                     $type = $fieldName[1];

@@ -17,26 +17,20 @@ return new class extends Migration
             $table->string('name', 30)->nullable();
             $table->string('email', 50)->nullable();
             $table->string('password', 100)->nullable();
-            $table->string('phone_number', 50)->nullable();
+            $table->string('phone_number', 15)->nullable();
             $table->string('image', 100)->nullable();
-            $table->string('present_address')->nullable();
-            $table->string('permanent_address')->nullable();
-            $table->string('designation')->nullable();
+            $table->string('address')->nullable();
             $table->string('remember_token')->nullable();
             $table->integer('role_id')->nullable();
-            $table->string('password_in_text', 50)->nullable();
-            $table->string('join_date')->nullable();
-            $table->bigInteger('salery')->nullable();
-            $table->string('can_login')->default(1);
-            $table->string('nid')->nullable();
-            $table->text('comment')->nullable();
+
             $table->bigInteger('creator')->unsigned()->nullable();
-            $table->string('slug', 150)->nullable();
+            $table->string('slug', 50)->nullable();
             $table->enum('status', ['active', 'inactive'])->default('active');
             $table->timestamps();
             $table->softDeletes();
         });
     }
+
     /**
      * Reverse the migrations.
      */

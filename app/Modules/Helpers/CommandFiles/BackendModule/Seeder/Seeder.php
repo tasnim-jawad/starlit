@@ -8,16 +8,17 @@ if (!function_exists('Seeder')) {
         $targetClass = null;
         $formated_module = explode('/', $moduleName);
         if (count($formated_module) > 1) {
-            $moduleName = implode('/', $formated_module);
+            $moduleName = implode('\\', $formated_module);
             $targetClass = $moduleName;
             $moduleName = Str::replace("/", "\\", $moduleName);
         } else {
             $moduleName = Str::replace("/", "\\", $moduleName);
+            $targetClass = $moduleName;
         }
 
 
 
-
+        // dd($targetClass);
 
 
         $content = <<<"EOD"
@@ -31,7 +32,7 @@ if (!function_exists('Seeder')) {
         {
             /**
              * Run the database seeds.
-             php artisan db:seed --class="/app/Modules/Management/{$targetClass}/Seeder/Seeder"
+             php artisan db:seed --class="App\\Modules\\Management\\{$targetClass}\\Seeder\\Seeder"
              */
             static \$model = \App\\Modules\\Management\\{$moduleName}\\Models\\Model::class;
 

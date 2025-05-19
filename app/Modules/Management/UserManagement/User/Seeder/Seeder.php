@@ -25,15 +25,13 @@ class Seeder extends SeederClass
             'password' => Hash::make('@12345678'),
             'image' => 'avatar.png',
             'role_id' => 1,
-            
         ]);
         self::$model::create([
-            'name' => "employee",
-            'email' => "employee@gmail.com",
+            'name' => "admin",
+            'email' => "admin@gmail.com",
             'password' => Hash::make('@12345678'),
             'image' => 'avatar.png',
             'role_id' => 2,
-            
         ]);
     }
 }

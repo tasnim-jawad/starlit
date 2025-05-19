@@ -1,8 +1,8 @@
 export default [
-  {
-    name: "name",
-    label: "  name",
-    type: "text",
-    value: "",
-  },
+	{
+		name: "name",
+		label: "Enter your name",
+		type: "text",
+		value: "",
+	},
 ];

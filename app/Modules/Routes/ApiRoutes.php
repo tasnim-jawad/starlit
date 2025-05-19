@@ -7,20 +7,27 @@
 include_once base_path("app/Modules/Management/Auth/Routes/Route.php");
 /*
 |--------------------------------------------------------------------------
-| User Management Module
+| Setting Management Module
 |--------------------------------------------------------------------------
 */
-
-include_once base_path("app/Modules/Management/UserManagement/Role/Routes/Route.php");
-include_once base_path("app/Modules/Management/UserManagement/User/Routes/Route.php");
-
+include_once base_path("app/Modules/Management/SettingManagement/WebsiteSettings/Routes/Route.php");
 /*
 |--------------------------------------------------------------------------
-| Dashboard and settings Management Module
+| User Management Module
 |--------------------------------------------------------------------------
+
+
 */
-include_once base_path("app/Modules/Management/Dashboard/Routes/Route.php");
-include_once base_path("app/Modules/Management/SettingManagement/WebsiteSettings/Routes/Route.php");
+include_once base_path("app/Modules/Management/UserManagement/User/Routes/Route.php");
 
 
-include_once base_path("app/Modules/Management/BlogCategory/Routes/Route.php");
+include_once base_path("app/Modules/Management/Blog/Routes/Route.php");
+
+
+
+
+include_once base_path("app/Modules/Management/TestModule/TestOne/Routes/Route.php");
+include_once base_path("app/Modules/Management/TestModule/TestTwo/Routes/Route.php");
+include_once base_path("app/Modules/Management/Blog/Routes/Route.php");
+include_once base_path("app/Modules/Management/test/Routes/Route.php");
+include_once base_path("app/Modules/Management/TestOneThree/Routes/Route.php");

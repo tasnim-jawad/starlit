@@ -11,11 +11,16 @@ use Laravel\Passport\HasApiTokens;
 
 class Model extends Authenticatable
 {
+
     use HasApiTokens, HasFactory, Notifiable;
+
     use SoftDeletes;
+
     protected $table = "users";
     protected $guarded = [];
     protected $hidden = ['password'];
+
+
 
 
     public static $roleModel = \App\Modules\Management\UserManagement\Role\Models\Model::class;
