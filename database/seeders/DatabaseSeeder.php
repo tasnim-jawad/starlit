@@ -36,7 +36,6 @@ class DatabaseSeeder extends Seeder
             /**
              * Suppliyer seeder management.
              */
-            BlogCategorySeeder::class
 
         ]);
     }
