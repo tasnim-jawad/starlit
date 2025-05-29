@@ -62,13 +62,71 @@
         :menus="[
           {
             route_name: `AllBlogCategory`,
-            title: `Blog Category`,
+            title: `BlogCategory`,
+            icon: `zmdi zmdi-dot-circle-alt`,
+          },
+          {
+            route_name: `AllBlog`,
+            title: `Blog`,
             icon: `zmdi zmdi-dot-circle-alt`,
           },
         ]"
       />
 
-      <!-- Management end -->
+      <side-bar-drop-down-menus
+        :icon="`fa fa-plus`"
+        :menu_title="`Property Management`"
+        :menus="[
+          {
+            route_name: `AllPropertyGroup`,
+            title: `Property Group`,
+            icon: `zmdi zmdi-dot-circle-alt`,
+          },
+          {
+            route_name: `AllPropertyCategory`,
+            title: `Property Category`,
+            icon: `zmdi zmdi-dot-circle-alt`,
+          },
+          {
+            route_name: `AllProperty`,
+            title: `Property `,
+            icon: `zmdi zmdi-dot-circle-alt`,
+          },
+        ]"
+      />
+
+      <side-bar-drop-down-menus
+        :icon="`fa fa-plus`"
+        :menu_title="`Gallary Management`"
+        :menus="[
+          {
+            route_name: `AllImageGallary`,
+            title: `Image Gallary`,
+            icon: `zmdi zmdi-dot-circle-alt`,
+          },
+          {
+            route_name: `AllVideoGallary`,
+            title: `Video Gallary`,
+            icon: `zmdi zmdi-dot-circle-alt`,
+          },
+        ]"
+      />
+
+
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`Banner`"  :route_name="`AllBanner`" />
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`AboutUs`"  :route_name="`AllAboutUs`" />
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`AtAGlance`"  :route_name="`AllAtAGlance`" />
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`OurTeam`"  :route_name="`AllOurTeam`" />
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`TodaySells`"  :route_name="`AllTodaySells`" />
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`OurService`"  :route_name="`AllOurService`" />
+
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`Testimonial`"  :route_name="`AllTestimonial`" />
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`CustomPage`"  :route_name="`AllCustomPage`" />
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`Newsletter`"  :route_name="`AllNewsletter`" />
+
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`Contact`"  :route_name="`AllContact`" />
+
+<!-- Management end -->
     </ul>
   </div>
 </template>

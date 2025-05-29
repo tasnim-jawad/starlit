@@ -15,19 +15,27 @@ include_once base_path("app/Modules/Management/SettingManagement/WebsiteSettings
 |--------------------------------------------------------------------------
 | User Management Module
 |--------------------------------------------------------------------------
-
-
 */
 include_once base_path("app/Modules/Management/UserManagement/User/Routes/Route.php");
-
-
-include_once base_path("app/Modules/Management/Blog/Routes/Route.php");
-
-
-
-
-include_once base_path("app/Modules/Management/TestModule/TestOne/Routes/Route.php");
-include_once base_path("app/Modules/Management/TestModule/TestTwo/Routes/Route.php");
-include_once base_path("app/Modules/Management/Blog/Routes/Route.php");
-include_once base_path("app/Modules/Management/test/Routes/Route.php");
-include_once base_path("app/Modules/Management/TestOneThree/Routes/Route.php");
+/*
+|--------------------------------------------------------------------------
+| Others Management Module
+|--------------------------------------------------------------------------
+*/
+include_once base_path("app/Modules/Management/BlogManagement/Blog/Routes/Route.php");
+include_once base_path("app/Modules/Management/BannerManagement/Banner/Routes/Route.php");
+include_once base_path("app/Modules/Management/AboutUsManagement/AboutUs/Routes/Route.php");
+include_once base_path("app/Modules/Management/AtAGlanceManagement/AtAGlance/Routes/Route.php");
+include_once base_path("app/Modules/Management/OurTeamManagement/OurTeam/Routes/Route.php");
+include_once base_path("app/Modules/Management/TodaySellsManagement/TodaySells/Routes/Route.php");
+include_once base_path("app/Modules/Management/OurServiceManagement/OurService/Routes/Route.php");
+include_once base_path("app/Modules/Management/PropertyManagement/PropertyGroup/Routes/Route.php");
+include_once base_path("app/Modules/Management/PropertyManagement/PropertyCategory/Routes/Route.php");
+include_once base_path("app/Modules/Management/PropertyManagement/Property/Routes/Route.php");
+include_once base_path("app/Modules/Management/TestimonialManagement/Testimonial/Routes/Route.php");
+include_once base_path("app/Modules/Management/BlogManagement/BlogCategory/Routes/Route.php");
+include_once base_path("app/Modules/Management/CustomPageManagement/CustomPage/Routes/Route.php");
+include_once base_path("app/Modules/Management/NewsletterManagement/Newsletter/Routes/Route.php");
+include_once base_path("app/Modules/Management/ImageGallaryManagement/ImageGallary/Routes/Route.php");
+include_once base_path("app/Modules/Management/VideoGallaryManagement/VideoGallary/Routes/Route.php");
+include_once base_path("app/Modules/Management/ContactManagement/Contact/Routes/Route.php");

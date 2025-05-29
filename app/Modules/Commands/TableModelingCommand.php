@@ -24,13 +24,12 @@ class TableModelingCommand extends Command
     {
 
         $moduleName = $this->argument('module_name');
-        $ViewModuleName = $this->argument('module_name');
         // $migration = $this->option('m');
         // $seed = $this->option('seed');
         $fields = [];
 
 
-
+        // dd($this->hasArgument('[field]') && $this->argument('[field]'));
         // Check if the field argument is provided
         if ($this->hasArgument('[field]') && $this->argument('[field]')) {
             $fieldName = $this->argument('[field]');
@@ -47,84 +46,45 @@ class TableModelingCommand extends Command
 
 
         $baseDirectory = app_path("Modules/Management/");
-        $format_dir = explode('/', $moduleName);
-        $module_dir = null;
+        $formatDir = explode('/', $moduleName);
 
-        if (count($format_dir) > 1) {
-            $moduleName = end($format_dir);
-            array_pop($format_dir); //if do not make last name folder
-            $module_dir = implode('/', $format_dir);
-            if (!File::isDirectory($baseDirectory . $module_dir)) {
-                mkdir($baseDirectory . $module_dir, 0777, true);
+        if (count($formatDir) > 1) {
+            $moduleName = array_pop($formatDir);
+            $moduleDir = implode('/', $formatDir);
+            $targetDir = $baseDirectory . '/' . $moduleDir;
+            if (!File::isDirectory($targetDir)) {
+                File::makeDirectory($targetDir, 0777, true);
             }
-            $baseDirectory = $baseDirectory . $module_dir . '/';
+            $baseDirectory = $targetDir;
         }
 
-        $table = Str::plural((Str::snake($moduleName)));
+        $table = Str::plural(Str::snake($moduleName));
+        $migrationFile = 'create_' . $table . '_table.php';
+        $modelFile = $moduleName . 'Model.php';
 
+        $modelDirectory = $baseDirectory . '/Models';
+        $databaseDirectory = $baseDirectory . '/Database';
 
-
-
-        $migrationtable = 'create_' . $table . '_table.php';
-        $model = $moduleName . 'Model.php';
-        $actionFiles = [
-            $model,
-            $migrationtable,
-
-        ];
-
-
-
-        if ($module_dir != null) {
-            $module_name = $module_dir . '/' . $moduleName;
-        } else {
-            $module_name = $moduleName;
+        if (!File::isDirectory($modelDirectory)) {
+            File::makeDirectory($modelDirectory, 0777, true);
         }
 
-
-
-        $ModelDirectory = $baseDirectory  . '/Models';
-
-        if (!File::isDirectory($ModelDirectory)) {
-            File::makeDirectory($ModelDirectory);
+        if (!File::isDirectory($databaseDirectory)) {
+            File::makeDirectory($databaseDirectory, 0777, true);
         }
 
+        // Write model file
+        File::put($modelDirectory . '/' . $modelFile, TableModel($moduleName, $moduleName));
 
+        // Write migration file
+        File::put($databaseDirectory . '/' . $migrationFile, TableMigration($moduleName, $fields));
 
-        $DatabaseDirectory = $baseDirectory  . '/Database';
-        if (!File::isDirectory($DatabaseDirectory)) {
-            File::makeDirectory($DatabaseDirectory);
-        }
+        // Run migration
+        $relativeMigrationPath = str_replace(base_path() . '/', '', $databaseDirectory . '/' . $migrationFile);
 
-        foreach ($actionFiles as $file) {
-            if ($file == $model) {
-
-                File::put($ModelDirectory . '/' . $file, TableModel($module_name, $moduleName));
-            }
-            if ($file == $migrationtable) {
-
-                File::put($DatabaseDirectory  . '/' . $file, TableMigration($module_name, $fields));
-            }
-        }
-
-
-
-        if (true) {
-            $table_name = '';
-            $formated_module = explode('/', $ViewModuleName);
-            if (count($formated_module) > 1) {
-                array_pop($formated_module);
-                $moduleName = implode('/', $formated_module);
-                $moduleName = Str::replace("/", "\\", $moduleName);
-                $table_name = Str::plural((Str::snake($formated_module[count($formated_module) - 1])));
-            } else {
-                $table_name = Str::plural((Str::snake($moduleName)));
-                $moduleName = Str::replace("/", "\\", $moduleName);
-            }
-
-
-            $migrationPath = "\App\\Modules\\Management\\{$moduleName}\\Database\\create_{$table_name}_table.php";
-            Artisan::call('migrate', ['--path' => $migrationPath]);
-        }
+        $this->info("Running migration: $relativeMigrationPath");
+        Artisan::call('migrate', ['--path' => $relativeMigrationPath]);
+        $this->info(Artisan::output());
+        
     }
 }

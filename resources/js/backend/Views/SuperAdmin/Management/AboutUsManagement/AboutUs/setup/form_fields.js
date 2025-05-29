@@ -1,0 +1,68 @@
+export default [
+	{
+		name: "title",
+		label: "Enter your title",
+		type: "text",
+		value: "",
+	},
+
+	{
+		name: "description",
+		label: "Enter your description",
+		type: "text",
+		value: "",
+	},
+
+
+	{
+		name: "quotation",
+		label: "Enter your quotation",
+		type: "text",
+		value: "",
+	},
+
+	{
+		name: "video_url",
+		label: "Enter your video url",
+		type: "text",
+		value: "",
+	},
+
+	{
+		name: "primary_image",
+		label: "Enter your primary image",
+		type: "file",
+		value: "",
+	},
+
+	{
+		name: "secondery_image",
+		label: "Enter your secondery image",
+		type: "file",
+		value: "",
+	},
+
+	{
+		name: "page_type",
+		label: "Enter your page type",
+		type: "select",
+		label: "Select page type",
+		multiple: false,
+		data_list: [
+			{
+				label: "About_us",
+				value: "about_us",
+			},
+			{
+				label: "Our_mission",
+				value: "our_mission",
+			},
+			{
+				label: "Our_vission",
+				value: "our_vission",
+			},
+			
+		],
+		value: "",
+	},
+];

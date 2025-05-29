@@ -67,7 +67,7 @@
         <image-component
           :name="name"
           :multiple="multiple"
-          :accept="`.jpg,.jpeg,.png`"
+          :accept="`.jpg,.jpeg,.png,.mp4`"
           :images="multiple ? images_list : value"
         ></image-component>
       </div>

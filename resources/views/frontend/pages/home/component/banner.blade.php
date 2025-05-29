@@ -7,7 +7,10 @@
         
                 <!-- HTML5 VIDEO -->
                 <video autoplay muted loop id="myVideo">
-                    <source src="{{ asset('assets/frontend') }}/media/3.mp4" type="video/mp4">
+                    {{-- <source src="{{ asset('assets/frontend/media/3.mp4') }}" type="video/mp4"> --}}
+                    {{-- <source src="{{ asset('assets/frontend' . ($banner?->video_file ?? '/media/3.mp4')) }}" type="{{$banner?->video_type ?? 'video/mp4'}}"> --}}
+                    <source src="{{ $banner?->video_file ?? '/media/3.mp4' }}" type="video/mp4">
+
                 </video>
         
                 <!-- YouTube VIDEO -->
@@ -27,9 +30,8 @@
                                     <div class="slide-item-info">
                                         <div class="slide-item-info-inner ltn__slide-animation">
                                             <h6 class="slide-sub-title white-color animated"><span><i
-                                                        class="fas fa-home"></i></span> Real Estate Agency</h6>
-                                            <h1 class="slide-title text-uppercase white-color animated ">Find Your Dream <br>
-                                                House By Us</h1>
+                                                        class="fas fa-home"></i></span> {{ $banner?->short_title }}</h6>
+                                            <h1 class="slide-title text-uppercase white-color animated ">{{ $banner?->short_description }}</h1>
                                         </div>
                                     </div>
                                 </div>
