@@ -23,7 +23,7 @@ export default [
 	{
 		name: "banner_image",
 		label: "Enter your banner image",
-		type: "text",
+		type: "file",
 		value: "",
 	},
 ];

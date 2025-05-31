@@ -10,7 +10,27 @@ class StoreData
     {
         try {
             $requestData = $request->validated();
+            $categoryIds = $requestData['blog_category_id'] ?? [];
+            unset($requestData['blog_category_id']);
+
+            if ($request->hasFile('thumbnail_image')) {
+                $thumbnail_image = $request->file('thumbnail_image');
+                $currentDate = now()->format('Y/m');
+                $requestData['thumbnail_image'] = uploader($thumbnail_image, 'uploads/blog/thumbnail_image/' . $currentDate);
+            }
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $currentDate = now()->format('Y/m');
+                $requestData['image'] = uploader($image, 'uploads/blog/image/' . $currentDate);
+            }
+            
+
             if ($data = self::$model::query()->create($requestData)) {
+                
+                if (!empty($categoryIds)) {
+                    $data->categories()->attach($categoryIds);
+                }
+
                 return messageResponse('Item added successfully', $data, 201);
             }
         } catch (\Exception $e) {

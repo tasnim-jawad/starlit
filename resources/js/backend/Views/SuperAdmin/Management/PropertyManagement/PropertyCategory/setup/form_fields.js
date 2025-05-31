@@ -9,7 +9,8 @@ export default [
 	{
 		name: "property_group_id",
 		label: "Enter your property group id",
-		type: "number",
+		type: "select",
 		value: "",
+		data_list: [],
 	},
 ];

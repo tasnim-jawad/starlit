@@ -1,5 +1,12 @@
 export default [
 	{
+		name: "blog_category_id",
+		label: "Enter your category",
+		type: "select",
+		value: "",
+		data_list: [],
+	},
+	{
 		name: "title",
 		label: "Enter your title",
 		type: "text",
@@ -23,7 +30,7 @@ export default [
 	{
 		name: "publish_date",
 		label: "Enter your publish date",
-		type: "datetime",
+		type: "date",
 		value: "",
 	},
 
@@ -51,14 +58,14 @@ export default [
 	{
 		name: "thumbnail_image",
 		label: "Enter your thumbnail image",
-		type: "text",
+		type: "file",
 		value: "",
 	},
 
 	{
 		name: "image",
 		label: "Enter your image",
-		type: "text",
+		type: "file",
 		value: "",
 	},
 

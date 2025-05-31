@@ -5,8 +5,8 @@ if ($request->hasFile('image')) {
 }
  // search
  if (request()->input('product_category_id')) {
-            $data->where('product_category_id', request()->input('product_category_id'));
-        }
-        if (request()->input('product_sub_category_id')) {
-            $data->where('product_sub_category_id', request()->input('product_sub_category_id'));
-        }
+    $data->where('product_category_id', request()->input('product_category_id'));
+}
+if (request()->input('product_sub_category_id')) {
+    $data->where('product_sub_category_id', request()->input('product_sub_category_id'));
+}

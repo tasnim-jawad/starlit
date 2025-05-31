@@ -30,7 +30,7 @@ export default [
 	{
 		name: "message",
 		label: "Enter your message",
-		type: "text",
+		type: "textarea",
 		value: "",
 	},
 ];

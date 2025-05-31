@@ -10,6 +10,13 @@ class StoreData
     {
         try {
             $requestData = $request->validated();
+
+            if ($request->hasFile('banner_image')) {
+                $banner_image = $request->file('banner_image');
+                $currentDate = now()->format('Y/m');
+                $requestData['banner_image'] = uploader($banner_image, 'uploads/custom_page/' . $currentDate);
+            }
+
             if ($data = self::$model::query()->create($requestData)) {
                 return messageResponse('Item added successfully', $data, 201);
             }

@@ -1,20 +1,15 @@
 <?php
 
-namespace App\Modules\Management\TodaySellsManagement\TodaySells\Models;
+namespace App\Modules\Management\BlogBlogCategory\Models;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class Model extends EloquentModel
+class BlogBlogCategoryModel extends EloquentModel
 {
     use SoftDeletes;
-    protected $table = "today_sells";
+    protected $table = "blog_blog_categories";
     protected $guarded = [];
-    protected $casts = [
-        'features' => 'array',
-        'key_features' => 'array',
-        'image_gallery_left' => 'array',
-    ];
 
     protected static function booted()
     {

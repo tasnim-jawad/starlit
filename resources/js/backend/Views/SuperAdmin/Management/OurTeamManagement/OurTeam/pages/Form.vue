@@ -223,6 +223,9 @@ export default {
     },
 
     submitHandler: async function ($event) {
+      if (!this.validate_data()) {
+        return; // Stop submission if validation fails
+      }
       this.set_only_latest_data(true);
       if (this.param_id) {
         let response = await this.update($event);

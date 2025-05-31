@@ -20,15 +20,15 @@
         class="mt-1 mb-3"
       >
         <template v-if="name == 'tags'">
-          <!-- <input type="text" class="form-control" :value="tags" :name="name" data-role="tagsinput"> -->
-          <div class="bootstrap-tagsinput" style="min-height: 40px">
+          <input type="text" class="form-control" :value="tags" :name="name" data-role="tagsinput">
+          <!-- <div class="bootstrap-tagsinput" style="min-height: 40px">
             <input
               type="text"
               placeholder=""
               v-on:keydown.enter="onEnter"
               v-model="tag_input_value"
             />
-          </div>
+          </div> -->
         </template>
         <template v-else>
           <input

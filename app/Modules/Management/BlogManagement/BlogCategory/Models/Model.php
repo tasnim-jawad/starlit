@@ -3,6 +3,7 @@
 namespace App\Modules\Management\BlogManagement\BlogCategory\Models;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
+use App\Modules\Management\BlogManagement\Blog\Models\Model as BlogModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
 class Model extends EloquentModel
@@ -26,6 +27,13 @@ class Model extends EloquentModel
             $data->save();
         });
     }
+
+    public function blogs()
+{
+    return $this->belongsToMany(BlogModel::class, 'blog_blog_categories', 'blog_category_id', 'blog_id')
+                ->withTimestamps();
+}
+
 
     public function scopeActive($q)
     {

@@ -30,7 +30,7 @@ export default [
 	{
 		name: "feedback",
 		label: "Enter your feedback",
-		type: "text",
+		type: "textarea",
 		value: "",
 	},
 ];

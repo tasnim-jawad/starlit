@@ -5,7 +5,7 @@ namespace App\Modules\Management\BlogPostCategory\Models;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
-class  extends EloquentModel
+class BlogPostCategoryModel extends EloquentModel
 {
     use SoftDeletes;
     protected $table = "blog_post_categories";
@@ -25,6 +25,11 @@ class  extends EloquentModel
             }
             $data->save();
         });
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(BlogCategory::class, 'blog_category_id');
     }
 
     public function scopeActive($q)
