@@ -15,31 +15,38 @@
             'month',
             'radio',
             'checkbox',
+            'datetime-local',
           ].includes(type)
         "
         class="mt-1 mb-3"
       >
-        <template v-if="name == 'tags'">
-          <input type="text" class="form-control" :value="tags" :name="name" data-role="tagsinput">
-          <!-- <div class="bootstrap-tagsinput" style="min-height: 40px">
+        <!-- <template v-if="name == 'tags'">
+          <input
+            type="text"
+            class="form-control"
+            :value="tags"
+            :name="name"
+            data-role="tagsinput"
+          />
+          <div class="bootstrap-tagsinput" style="min-height: 40px">
             <input
               type="text"
               placeholder=""
               v-on:keydown.enter="onEnter"
               v-model="tag_input_value"
             />
-          </div> -->
-        </template>
-        <template v-else>
-          <input
-            class="form-control form-control-square mb-2"
-            :type="type"
-            :name="name"
-            :id="name"
-            :value="value"
-            @change="errorReset"
-          />
-        </template>
+          </div>
+        </template> -->
+        <!-- <template v-else> -->
+        <input
+          class="form-control form-control-square mb-2"
+          :type="type"
+          :name="name"
+          :id="name"
+          :value="value"
+          @change="errorReset"
+        />
+        <!-- </template> -->
       </div>
 
       <div v-if="type === 'textarea'" class="mt-1 mb-3">
@@ -50,7 +57,12 @@
       </div>
 
       <div v-if="type === 'select'" class="mt-1 mb-3">
-        <select :name="name" class="form-control" :id="name" @change="errorReset">
+        <select
+          :name="name"
+          class="form-control"
+          :id="name"
+          @change="errorReset"
+        >
           <option value="">Select item</option>
           <option
             v-for="data in data_list"
@@ -63,7 +75,6 @@
         </select>
       </div>
       <div v-if="type === 'file'" class="mt-1 mb-3">
-        {{ images_list }}
         <image-component
           :name="name"
           :multiple="multiple"
@@ -226,7 +237,8 @@ export default {
 }
 
 .bootstrap-tagsinput .tag [data-role="remove"]:hover {
-  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2), 0 1px 2px rgba(0, 0, 0, 0.05);
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.2),
+    0 1px 2px rgba(0, 0, 0, 0.05);
 }
 
 .bootstrap-tagsinput .tag [data-role="remove"]:hover:active {

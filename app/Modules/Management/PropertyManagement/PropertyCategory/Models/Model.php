@@ -5,11 +5,15 @@ namespace App\Modules\Management\PropertyManagement\PropertyCategory\Models;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Support\Facades\App;
+
 class Model extends EloquentModel
 {
     use SoftDeletes;
     protected $table = "property_categories";
     protected $guarded = [];
+
+    protected static $propertyGroupsModel = \App\Modules\Management\PropertyManagement\PropertyGroup\Models\Model::class;
 
     protected static function booted()
     {
@@ -32,12 +36,16 @@ class Model extends EloquentModel
         return $q->where('status', 'active');
     }
 
-     public function scopeInactive($q)
+    public function scopeInactive($q)
     {
         return $q->where('status', 'inactive');
     }
-     public function scopeTrased($q)
+    public function scopeTrased($q)
     {
         return $q->onlyTrashed();
+    }
+    public function property_group()
+    {
+        return $this->belongsTo(self::$propertyGroupsModel);
     }
 }

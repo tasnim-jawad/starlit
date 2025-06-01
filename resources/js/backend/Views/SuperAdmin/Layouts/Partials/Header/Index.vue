@@ -204,9 +204,7 @@ export default {
     unseen_vouchers: [],
   }),
 
-  created: async function () {
-    await this.get_all_pending_expense();
-  },
+  created: async function () {},
 
   methods: {
     toggle_menu: function () {

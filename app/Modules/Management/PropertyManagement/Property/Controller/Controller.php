@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Modules\Management\PropertyManagement\Property\Controller;
+
 use App\Modules\Management\PropertyManagement\Property\Actions\GetAllData;
 use App\Modules\Management\PropertyManagement\Property\Actions\DestroyData;
 use App\Modules\Management\PropertyManagement\Property\Actions\GetSingleData;
@@ -10,6 +11,8 @@ use App\Modules\Management\PropertyManagement\Property\Actions\UpdateStatus;
 use App\Modules\Management\PropertyManagement\Property\Actions\SoftDelete;
 use App\Modules\Management\PropertyManagement\Property\Actions\RestoreData;
 use App\Modules\Management\PropertyManagement\Property\Actions\ImportData;
+use App\Modules\Management\PropertyManagement\Property\Actions\DeletePropertyImage;
+use App\Modules\Management\PropertyManagement\Property\Actions\DeletePropertyFloorPlanImage;
 use App\Modules\Management\PropertyManagement\Property\Validations\BulkActionsValidation;
 use App\Modules\Management\PropertyManagement\Property\Validations\DataStoreValidation;
 use App\Modules\Management\PropertyManagement\Property\Actions\BulkActions;
@@ -19,7 +22,8 @@ use App\Http\Controllers\Controller as ControllersController;
 class Controller extends ControllersController
 {
 
-    public function index( ){
+    public function index()
+    {
 
         $data = GetAllData::execute();
         return $data;
@@ -42,7 +46,7 @@ class Controller extends ControllersController
         $data = UpdateData::execute($request, $slug);
         return $data;
     }
-         public function updateStatus()
+    public function updateStatus()
     {
         $data = UpdateStatus::execute();
         return $data;
@@ -73,5 +77,14 @@ class Controller extends ControllersController
         $data = BulkActions::execute($request);
         return $data;
     }
-
+    public function DeletePropertyImage($slug)
+    {
+        $data = DeletePropertyImage::execute($slug);
+        return $data;
+    }
+    public function DeletePropertyFloorPlanImage($slug)
+    {
+        $data = DeletePropertyFloorPlanImage::execute($slug);
+        return $data;
+    }
 }

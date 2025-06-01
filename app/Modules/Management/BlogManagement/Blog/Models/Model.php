@@ -7,6 +7,7 @@ use App\Modules\Management\BlogManagement\BlogCategory\Models\Model as BlogCateg
 // use App\Modules\Management\BlogPostCategory\Models\BlogPostCategoryModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Model extends EloquentModel
 {
     use SoftDeletes;
@@ -29,11 +30,16 @@ class Model extends EloquentModel
         });
     }
 
-    public function categories()
+    // public function categories()
+    // {
+    //     return $this->belongsToMany(BlogCategory::class, 'blog_blog_categories', 'blog_id', 'blog_category_id')
+    //         ->withTimestamps();
+    // }
+    public function blog_category()
     {
-        return $this->belongsToMany(BlogCategory::class, 'blog_blog_categories', 'blog_id', 'blog_category_id')
-                    ->withTimestamps();
+        return $this->belongsTo(BlogCategory::class, 'blog_category_id');
     }
+
 
 
     public function scopeActive($q)
@@ -41,11 +47,11 @@ class Model extends EloquentModel
         return $q->where('status', 'active');
     }
 
-     public function scopeInactive($q)
+    public function scopeInactive($q)
     {
         return $q->where('status', 'inactive');
     }
-     public function scopeTrased($q)
+    public function scopeTrased($q)
     {
         return $q->onlyTrashed();
     }

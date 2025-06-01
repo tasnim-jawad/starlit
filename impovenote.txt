@@ -75,3 +75,13 @@ details body
         <template v-else>
           {{ trim_content(item[row_item], row_item) }}
         </template>
+
+
+
+
+
+
+
+
+starlit --
+select_fields - in details show in data details page

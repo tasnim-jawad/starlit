@@ -36,6 +36,9 @@
               v-bind:key="index"
             >
               <common-input
+                v-if="
+                  form_field.type !== 'file' && form_field.multiple !== true
+                "
                 :label="form_field.label"
                 :type="form_field.type"
                 :name="form_field.name"
@@ -45,12 +48,18 @@
                 :is_visible="form_field.is_visible"
                 :row_col_class="form_field.row_col_class"
               />
+              <multiple-image-uploader
+                v-else-if="form_field.type === 'file' && form_field.multiple"
+                :name="form_field.name"
+                :accept="form_field.accept"
+                :images="form_field.images_list"
+              />
             </template>
 
             <!-- for facts_and_features list input start-->
             <div class="col-md-12 pt-3">
               <div
-                class="d-flex justify-content-between align-items-center border-bottom pb-2"
+                class="d-flex justify-content-between align-items-center pb-2 section-title"
               >
                 <h5 class="m-0">Add facts and features</h5>
                 <button
@@ -61,7 +70,7 @@
                 </button>
               </div>
               <div
-                class="row align-items-center"
+                class="row align-items-center justify-content-start"
                 v-for="(facts_and_features, index) in facts_and_features_data"
                 :key="index"
               >
@@ -163,12 +172,12 @@
                   </div>
                 </div>
                 <div
-                  class="col-md-2 d-flex align-items-center justify-content-center"
+                  class="col-md-1 d-flex align-items-center justify-content-center"
                 >
                   <button
                     class="btn btn-sm btn-outline-danger"
                     :style="{
-                      width: '100%',
+                      width: '50%',
                       marginTop:
                         !errors['facts_and_features']?.[index]?.icon &&
                         !errors['facts_and_features']?.[index]?.title &&
@@ -178,7 +187,7 @@
                     }"
                     @click.prevent="delete_row('facts_and_features', index)"
                   >
-                    delete <i class="fa-solid fa-trash"></i>
+                    <i class="fa fa-trash"></i>
                   </button>
                 </div>
               </div>
@@ -187,7 +196,7 @@
             <!-- for amenities list input start-->
             <div class="col-md-12 pt-3">
               <div
-                class="d-flex justify-content-between align-items-center border-bottom pb-2"
+                class="d-flex justify-content-between align-items-center pb-2 section-title"
               >
                 <h5 class="m-0">Add amenities</h5>
                 <button
@@ -265,19 +274,19 @@
                   </div>
                 </div>
                 <div
-                  class="col-md-2 d-flex align-items-center justify-content-center"
+                  class="col-md-1 d-flex align-items-center justify-content-center"
                 >
                   <button
                     class="btn btn-sm btn-outline-danger"
                     :style="{
-                      width: '100%',
+                      width: '50%',
                       marginTop: !errors['amenities']?.[index]?.title
                         ? '30px'
                         : '0',
                     }"
                     @click.prevent="delete_row('amenities', index)"
                   >
-                    delete <i class="fa-solid fa-trash"></i>
+                    <i class="fa fa-trash"></i>
                   </button>
                 </div>
               </div>
@@ -286,7 +295,7 @@
             <!-- for floor_plan list input start-->
             <div class="col-md-12 pt-3">
               <div
-                class="d-flex justify-content-between align-items-center border-bottom pb-2"
+                class="d-flex justify-content-between align-items-center pb-2 section-title"
               >
                 <h5 class="m-0">Add floor plan</h5>
                 <button
@@ -301,7 +310,7 @@
                 v-for="(floor_plan, index) in floor_plan_data"
                 :key="index"
               >
-                <div class="col-md-2">
+                <div class="col-md-3">
                   <div class="form-group">
                     <label for="">floor_number</label>
                     <div class="mt-1 mb-3">
@@ -316,13 +325,13 @@
                             errors['floor_plan'][index].floor_number,
                         }"
                       >
-                        <option :value="null">-- select --</option>
+                        <option value="">-- select --</option>
                         <option
                           v-for="(number_of_floor, i) in number_of_floors"
                           :key="i"
                           :value="number_of_floor.text"
                         >
-                          {{ number_of_floor.number }}
+                          {{ number_of_floor.text }}
                         </option>
                       </select>
                     </div>
@@ -338,7 +347,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-3">
                   <div class="form-group">
                     <label for="">description</label>
                     <div class="mt-1 mb-3">
@@ -373,14 +382,14 @@
                     <div>
                       <label for="">image up</label>
                       <a
-                        :href="floor_plan_data[index].image_preview"
+                        :href="floor_plan_data[index].image"
                         data-lightbox="image-1"
                         data-title="My caption"
                       >
                         <img
                           class="image_preview"
-                          v-if="floor_plan_data[index].image_preview"
-                          :src="floor_plan_data[index].image_preview"
+                          v-if="floor_plan_data[index].image"
+                          :src="floor_plan_data[index].image"
                         />
                       </a>
                     </div>
@@ -413,19 +422,19 @@
                   </div>
                 </div>
                 <div
-                  class="col-md-2 d-flex align-items-center justify-content-center"
+                  class="col-md-1 d-flex align-items-center justify-content-center"
                 >
                   <button
                     class="btn btn-sm btn-outline-danger"
                     :style="{
-                      width: '100%',
+                      width: '50%',
                       marginTop: !errors['floor_plan']?.[index]?.title
                         ? '30px'
                         : '0',
                     }"
                     @click.prevent="delete_row('floor_plan', index)"
                   >
-                    delete <i class="fa-solid fa-trash"></i>
+                    <i class="fa fa-trash"></i>
                   </button>
                 </div>
               </div>
@@ -434,7 +443,7 @@
             <!-- for floor_plan_details list input start-->
             <div class="col-md-12 pt-3 mt-2">
               <div
-                class="d-flex justify-content-between align-items-center border-bottom pb-2"
+                class="d-flex justify-content-between align-items-center pb-2 section-title"
               >
                 <h5 class="m-0">Add floor plan details</h5>
                 <button
@@ -449,7 +458,7 @@
                 v-for="(floor_plan_details, index) in floor_plan_details_data"
                 :key="index"
               >
-                <div class="col-md-4">
+                <div class="col-md-5">
                   <div class="form-group">
                     <label for="">title</label>
                     <div class="mt-1 mb-3">
@@ -479,11 +488,11 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-6">
+                <div class="col-md-5">
                   <div class="form-group">
                     <label for="">description</label>
                     <div class="mt-1 mb-3">
-                      <textarea
+                      <input
                         class="form-control form-control-square mb-2"
                         type="text"
                         :name="`floor_plan_details[${index}][description]`"
@@ -495,49 +504,48 @@
                             errors['floor_plan_details'][index] &&
                             errors['floor_plan_details'][index].description,
                         }"
-                      ></textarea>
+                      />
                     </div>
-                      <div
-                        v-if="
-                          errors['floor_plan_details'] &&
-                          errors['floor_plan_details'][index] &&
-                          errors['floor_plan_details'][index].description
-                        "
-                        class="text-danger small"
-                      >
-                        {{ errors["floor_plan_details"][index].description }}
-                      </div>
+                    <div
+                      v-if="
+                        errors['floor_plan_details'] &&
+                        errors['floor_plan_details'][index] &&
+                        errors['floor_plan_details'][index].description
+                      "
+                      class="text-danger small"
+                    >
+                      {{ errors["floor_plan_details"][index].description }}
                     </div>
                   </div>
                 </div>
                 <div
-                  class="col-md-2 d-flex align-items-center justify-content-center"
+                  class="col-md-1 d-flex align-items-center justify-content-center"
                 >
                   <button
                     class="btn btn-sm btn-outline-danger"
                     :style="{
-                      width: '100%',
+                      width: '50%',
                       marginTop:
                         !errors['floor_plan_details']?.[index]?.title &&
-                        !errors['floor_plan_details']?.[index]?.description 
+                        !errors['floor_plan_details']?.[index]?.description
                           ? '30px'
                           : '0',
                     }"
                     @click.prevent="delete_row('floor_plan_details', index)"
                   >
-                    delete <i class="fa-solid fa-trash"></i>
+                    <i class="fa fa-trash"></i>
                   </button>
                 </div>
               </div>
             </div>
           </div>
         </div>
-        <div class="card-footer">
-          <button type="submit" class="btn btn-light btn-square px-5">
-            <i class="icon-lock"></i>
-            Submit
-          </button>
-        </div>
+      </div>
+      <div class="card-footer">
+        <button type="submit" class="btn btn-light btn-square px-5">
+          <i class="icon-lock"></i>
+          Submit
+        </button>
       </div>
     </form>
   </div>
@@ -548,28 +556,23 @@ import { mapActions, mapState } from "pinia";
 import { store } from "../store";
 import setup from "../setup";
 import form_fields from "../setup/form_fields";
+import MultipleImageUploader from "../components/metadata/MultipleImageUploader.vue";
 
 export default {
+  components: {
+    MultipleImageUploader,
+  },
   data: () => ({
     setup,
     form_fields,
     param_id: null,
-
-    //----------- for facts_and_features list input ----------
-
-    facts_and_features_data_object: {
-      icon: "",
-      title: "",
-      description: "",
-    },
-    facts_and_features_data: [
-      {
-        icon: "",
-        title: "",
-        description: "",
-      },
+    errors: [],
+    number_of_floors: [
+      { text: "First Floor", number: 1 },
+      { text: "Second Floor", number: 2 },
+      { text: "Third Floor", number: 3 },
+      { text: "Fourth Floor", number: 4 },
     ],
-
     icons: [
       { class: "fa-thumbs-down", title: "Bad" }, // bad
       { class: "fa-bath", title: "Bath" }, // bath
@@ -587,6 +590,22 @@ export default {
       { class: "fa-door-closed", title: "Door" }, // door
       { class: "fa-house", title: "House" }, // house/home
     ],
+
+    //----------- for facts_and_features list input ----------
+
+    facts_and_features_data_object: {
+      icon: "",
+      title: "",
+      description: "",
+    },
+    facts_and_features_data: [
+      {
+        icon: "",
+        title: "",
+        description: "",
+      },
+    ],
+
     //----------- for facts_and_features list input ----------
 
     //----------- for amenities list input ----------
@@ -616,28 +635,6 @@ export default {
       },
     ],
 
-    number_of_floors: [
-      { text: "First Floor", number: 1 },
-      { text: "Second Floor", number: 2 },
-      { text: "Third Floor", number: 3 },
-      { text: "Fourth Floor", number: 4 },
-      { text: "Fifth Floor", number: 5 },
-      { text: "Sixth Floor", number: 6 },
-      { text: "Seventh Floor", number: 7 },
-      { text: "Eighth Floor", number: 8 },
-      { text: "Ninth Floor", number: 9 },
-      { text: "Tenth Floor", number: 10 },
-      { text: "Eleventh Floor", number: 11 },
-      { text: "Twelfth Floor", number: 12 },
-      { text: "Thirteenth Floor", number: 13 },
-      { text: "Fourteenth Floor", number: 14 },
-      { text: "Fifteenth Floor", number: 15 },
-      { text: "Sixteenth Floor", number: 16 },
-      { text: "Seventeenth Floor", number: 17 },
-      { text: "Eighteenth Floor", number: 18 },
-      { text: "Nineteenth Floor", number: 19 },
-      { text: "Twentieth Floor", number: 20 },
-    ],
     //----------- for floor_plan list input ----------
 
     //----------- for floor_plan_details list input ----------
@@ -652,18 +649,15 @@ export default {
       },
     ],
     //----------- for floor_plan_details list input ----------
-
-    errors: [],
   }),
   created: async function () {
     let id = (this.param_id = this.$route.params.id);
+    this.get_all_property_category();
     this.reset_fields();
     if (id) {
       this.set_fields(id);
     }
     // get all property groups and categories for select options
-    this.get_all_property_group();
-    this.get_all_property_category();
   },
   methods: {
     ...mapActions(store, {
@@ -695,6 +689,13 @@ export default {
             ) {
               $("#property_detail").summernote("code", value[1]);
             }
+            // Set summernote content for property_detail
+            if (field.name == "banner_image" && value[0] == "banner_image") {
+              this.form_fields[index].images_list = value[1];
+            }
+            if (field.name == "gallery" && value[0] == "gallery") {
+              this.form_fields[index].images_list = value[1];
+            }
 
             // Set summernote content for property_description
             if (
@@ -705,6 +706,36 @@ export default {
             }
           });
         });
+        if (this.item.facts_and_features) {
+          this.facts_and_features_data = this.item.facts_and_features.map(
+            (facts_and_features) => ({
+              icon: facts_and_features.icon,
+              title: facts_and_features.title,
+              description: facts_and_features.description,
+            })
+          );
+        }
+        if (this.item.amenities) {
+          this.amenities_data = this.item.amenities.map((amenities) => ({
+            title: amenities.title,
+            available: amenities.available,
+          }));
+        }
+        if (this.item.floor_plan) {
+          this.floor_plan_data = this.item.floor_plan.map((floor_plan) => ({
+            floor_number: floor_plan.floor_number,
+            description: floor_plan.description,
+            image: floor_plan.image,
+          }));
+        }
+        if (this.item.floor_plan_details) {
+          this.floor_plan_details_data = this.item.floor_plan_details.map(
+            (floor_plan_details) => ({
+              title: floor_plan_details.title,
+              description: floor_plan_details.description,
+            })
+          );
+        }
       }
     },
 
@@ -764,22 +795,28 @@ export default {
     delete_row(field_name, index) {
       if (field_name === "facts_and_features") {
         if (this.facts_and_features_data.length < 2) {
-          console.error("cant delete first row");
+          alert("cant delete first row");
           return;
         }
         this.facts_and_features_data.splice(index, 1);
       } else if (field_name === "amenities") {
         if (this.amenities_data.length < 2) {
-          console.error("cant delete first row");
+          alert("cant delete first row");
           return;
         }
         this.amenities_data.splice(index, 1);
       } else if (field_name === "floor_plan") {
         if (this.floor_plan_data.length < 2) {
-          console.error("cant delete first row");
+          alert("cant delete first row");
           return;
         }
-        this.floor_plan_data.splice(index, 1);
+        if (this.param_id) {
+          const confirmed = window.s_confirm();
+          if (!confirmed) return;
+          this.delete_floor_paln_image(index);
+        } else {
+          this.floor_plan_data.splice(index, 1);
+        }
       } else if (field_name === "floor_plan_details") {
         if (this.floor_plan_details_data.length < 2) {
           console.error("cant delete first row");
@@ -890,29 +927,16 @@ export default {
       return true;
     },
 
-    get_all_property_group: async function () {
-      let response = await axios.get("property-groups?get_all=1");
-      if (response.data.status == "success") {
-        response = response.data.data;
-        this.form_fields[1].data_list = [];
-        response.forEach((item) => {
-          let dataList = {};
-          dataList.label = item.name;
-          dataList.value = item.id;
-          this.form_fields[1].data_list.push(dataList);
-        });
-      }
-    },
     get_all_property_category: async function () {
       let response = await axios.get("property-categories?get_all=1");
       if (response.data.status == "success") {
         response = response.data.data;
-        this.form_fields[2].data_list = [];
+        this.form_fields[0].data_list = [];
         response.forEach((item) => {
           let dataList = {};
           dataList.label = item.name;
           dataList.value = item.id;
-          this.form_fields[2].data_list.push(dataList);
+          this.form_fields[0].data_list.push(dataList);
         });
       }
     },
@@ -926,9 +950,23 @@ export default {
         // create base64 preview
         const reader = new FileReader();
         reader.onload = (e) => {
-          this.floor_plan_data[index].image_preview = e.target.result;
+          this.floor_plan_data[index].image = e.target.result;
         };
         reader.readAsDataURL(file);
+      }
+    },
+    delete_floor_paln_image: async function (index) {
+      let response = await axios.post(
+        `properties/proprerty-floor-plan-image-delete/${this.item.slug}`,
+        {
+          index: index,
+        }
+      );
+      console.log(response);
+
+      if (response.data.status == "success") {
+        window.s_alert(response.data.message);
+        this.floor_plan_data.splice(index, 1);
       }
     },
   },
@@ -940,11 +978,25 @@ export default {
   },
 };
 </script>
-<style>
+<style scoped>
 .image_preview {
   width: 40px;
   height: 40px;
   margin-left: 30px;
   object-fit: cover;
+  border: 1px solid #dddddd35;
+  padding: 3px;
+}
+.section-title {
+  border: 1px solid #dddddd78;
+  padding: 10px;
+  margin: 10px 0;
+  border-radius: 5px;
+  font-weight: 500;
+  color: #343a40;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 </style>

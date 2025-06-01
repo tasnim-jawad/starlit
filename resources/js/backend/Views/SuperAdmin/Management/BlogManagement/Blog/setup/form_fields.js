@@ -13,12 +13,7 @@ export default [
 		value: "",
 	},
 
-	{
-		name: "description",
-		label: "Enter your description",
-		type: "text",
-		value: "",
-	},
+	
 
 	{
 		name: "tags",
@@ -30,7 +25,7 @@ export default [
 	{
 		name: "publish_date",
 		label: "Enter your publish date",
-		type: "date",
+		type: "datetime-local",
 		value: "",
 	},
 
@@ -55,20 +50,7 @@ export default [
 		value: "",
 	},
 
-	{
-		name: "thumbnail_image",
-		label: "Enter your thumbnail image",
-		type: "file",
-		value: "",
-	},
-
-	{
-		name: "image",
-		label: "Enter your image",
-		type: "file",
-		value: "",
-	},
-
+	
 	{
 		name: "blog_type",
 		label: "Enter your blog type",
@@ -89,4 +71,25 @@ export default [
 		type: "text",
 		value: "",
 	},
+	{
+		name: "thumbnail_image",
+		label: "Upload thumbnail image",
+		type: "file",
+		value: "",
+	},
+
+	{
+		name: "image",
+		label: "Upload  image",
+		type: "file",
+		value: "",
+	},
+	{
+		name: "description",
+		label: "Enter your description",
+		type: "textarea",
+		value: "",
+		row_col_class: "col-12",
+	},
+
 ];

@@ -1,12 +1,26 @@
 <template>
   <!-- {{ item }} -->
 
-  <template v-for="(row_item, index) in setup.table_row_data" :key="index">
+  <template v-for="(row_item, index) in setup.details_page_data" :key="index">
     <tr>
       <th>{{ row_item }}</th>
       <th class="text-center">:</th>
       <th class="text-trim">
-        {{ trim_content(item[row_item], row_item) }}
+        <template
+          v-if="
+            (row_item == 'image' || row_item == 'thumbnail_image') &&
+            item[row_item]
+          "
+        >
+          <img class="max-w-120" :src="item[row_item]" alt="" />
+        </template>
+        <!-- ✅ Render HTML content safely -->
+        <template v-else-if="row_item === 'description'">
+          <div v-html="item[row_item]"></div>
+        </template>
+        <template v-else>
+          {{ trim_content(item[row_item], row_item) }}
+        </template>
       </th>
     </tr>
   </template>

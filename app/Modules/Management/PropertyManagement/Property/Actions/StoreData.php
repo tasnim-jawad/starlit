@@ -9,31 +9,45 @@ class StoreData
     public static function execute($request)
     {
         try {
+            // dd($request->all());
             $requestData = $request->validated();
             $requestData['facts_and_features'] = $requestData['facts_and_features'] ?? [];
             $requestData['amenities'] = $requestData['amenities'] ?? [];
             $requestData['floor_plan'] = $requestData['floor_plan'] ?? [];
             $requestData['floor_plan_details'] = $requestData['floor_plan_details'] ?? [];
 
-            unset($requestData['gallery']);
-            unset($requestData['banner_image']);
             // dd($requestData);
 
-            // if ($request->hasFile('primary_image')) {
-            //     $primary_image = $request->file('primary_image');
-            //     $currentDate = now()->format('Y/m');
-            //     $requestData['primary_image'] = uploader($primary_image, 'uploads/about/' . $currentDate);
-            // }
-            // if ($request->hasFile('secondery_image')) {
-            //     $secondery_image = $request->file('secondery_image');
-            //     $currentDate = now()->format('Y/m');
-            //     $requestData['secondery_image'] = uploader($secondery_image, 'uploads/about/' . $currentDate);
-            // }
+            if ($request->hasFile('banner_image')) {
+                foreach ($request->file('banner_image') as $key => $banner_image) {
+                    $currentDate = now()->format('Y/m');
+                    $requestData['banner_image'][$key] = uploader($banner_image, 'uploads/property/banner_image/' . $currentDate);
+                }
+            }
+            if ($request->hasFile('gallery')) {
+                foreach ($request->file('gallery') as $key => $gallery) {
+                    $currentDate = now()->format('Y/m');
+                    $requestData['gallery'][$key] = uploader($gallery, 'uploads/property/gallery/' . $currentDate);
+                }
+            }
+
+            if (!empty($requestData['floor_plan'])) {
+                foreach ($requestData['floor_plan'] as $index => $floor) {
+                    if (isset($floor['image']) && $floor['image'] instanceof \Illuminate\Http\UploadedFile) {
+                        $currentDate = now()->format('Y/m');
+                        $uploadedPath = uploader($floor['image'], 'uploads/property/floor_plan/' . $currentDate);
+                        $requestData['floor_plan'][$index]['image'] = $uploadedPath;
+                    }
+                }
+            }
+
+
+
             if ($data = self::$model::query()->create($requestData)) {
                 return messageResponse('Item added successfully', $data, 201);
             }
         } catch (\Exception $e) {
-            return messageResponse($e->getMessage(),[], 500, 'server_error');
+            return messageResponse($e->getMessage(), [], 500, 'server_error');
         }
     }
 }
