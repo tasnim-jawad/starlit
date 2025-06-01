@@ -27,6 +27,7 @@ return new class extends Migration
             $table->json('gallery')->nullable();
             $table->json('amenities')->nullable();
             $table->json('floor_plan')->nullable();
+            $table->json('floor_plan_details')->nullable();
             $table->string('property_video_url', 100)->nullable();
             $table->string('map_location_url', 100)->nullable();
 

@@ -47,28 +47,6 @@
               />
             </template>
 
-            <div class="col-md-6">
-              <div class="form-group">
-                <label for="">Enter your image</label>
-                <div class="mt-1 mb-3">
-                  <div>
-                    <!-- <input
-                      class="form-control form-control"
-                      type="file"
-                      accept=".jpg,.jpeg,.png,.mp4"
-                      name="image"
-                    /> -->
-                    <image-component
-                      :name="'image_gallery_left'"
-                      :multiple="true"
-                      :accept="`.jpg,.jpeg,.png`"
-                      :images="multiple ? images_list : value"
-                    ></image-component>
-                  </div>
-                </div>
-              </div>
-            </div>
-
             <!-- for featurese list input start-->
             <div class="col-md-12 pt-3">
               <div

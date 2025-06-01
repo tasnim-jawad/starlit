@@ -15,6 +15,7 @@ import App from "./Layouts/App.vue";
 // common components
 import CommonInput from "../../GlobalComponents/FormComponents/CommonInput.vue";
 import Pagination from "../../GlobalComponents/Pagination.vue";
+import ImageComponent from "../../GlobalComponents/FormComponents/ImageComponent.vue";
 // project rotes
 // project rotes
 import Routes from "./Routes/routes.js";
@@ -45,6 +46,7 @@ const app = createApp({});
 app.component("app", App);
 app.component("common-input", CommonInput);
 app.component("pagination", Pagination);
+app.component("image-component", ImageComponent);
 
 app.use(pinia);
 app.use(router);

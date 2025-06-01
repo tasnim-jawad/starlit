@@ -10,6 +10,12 @@ class Model extends EloquentModel
     use SoftDeletes;
     protected $table = "properties";
     protected $guarded = [];
+    protected $casts = [
+        'facts_and_features' => 'array',
+        'amenities' => 'array',
+        'floor_plan' => 'array',
+        'floor_plan_details' => 'array',
+    ];
 
     protected static function booted()
     {

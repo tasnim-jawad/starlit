@@ -2,22 +2,25 @@ export default [
 	{
 		name: "banner_image",
 		label: "Enter your banner image",
-		type: "text",
+		type: "file",
+		multiple: "true",
 		value: "",
 	},
 
 	{
 		name: "property_group_id",
 		label: "Enter your property group id",
-		type: "number",
+		type: "select",
 		value: "",
+		data_list: [],
 	},
 
 	{
 		name: "property_category_id",
 		label: "Enter your property category id",
-		type: "number",
+		type: "select",
 		value: "",
+		data_list: [],
 	},
 
 	{
@@ -42,7 +45,7 @@ export default [
 	{
 		name: "date",
 		label: "Enter your date",
-		type: "datetime",
+		type: "date",
 		value: "",
 	},
 
@@ -53,6 +56,22 @@ export default [
 		value: "",
 	},
 
+	
+
+	{
+		name: "property_description",
+		label: "Enter your property description",
+		type: "textarea",
+		value: "",
+	},
+
+	{
+		name: "property_detail",
+		label: "Enter your property detail",
+		type: "textarea",
+		value: "",
+	},
+
 	{
 		name: "property_address",
 		label: "Enter your property address",
@@ -60,47 +79,34 @@ export default [
 		value: "",
 	},
 
-	{
-		name: "property_description",
-		label: "Enter your property description",
-		type: "text",
-		value: "",
-	},
-
-	{
-		name: "property_detail",
-		label: "Enter your property detail",
-		type: "text",
-		value: "",
-	},
-
-	{
-		name: "facts_and_features",
-		label: "Enter your facts and features",
-		type: "text",
-		value: "",
-	},
+	// {
+	// 	name: "facts_and_features",
+	// 	label: "Enter your facts and features",
+	// 	type: "text",
+	// 	value: "",
+	// },
 
 	{
 		name: "gallery",
 		label: "Enter your gallery",
-		type: "text",
+		type: "file",
+		multiple: "true",
 		value: "",
 	},
 
-	{
-		name: "amenities",
-		label: "Enter your amenities",
-		type: "text",
-		value: "",
-	},
+	// {
+	// 	name: "amenities",
+	// 	label: "Enter your amenities",
+	// 	type: "text",
+	// 	value: "",
+	// },
 
-	{
-		name: "floor_plan",
-		label: "Enter your floor plan",
-		type: "text",
-		value: "",
-	},
+	// {
+	// 	name: "floor_plan",
+	// 	label: "Enter your floor plan",
+	// 	type: "text",
+	// 	value: "",
+	// },
 
 	{
 		name: "property_video_url",

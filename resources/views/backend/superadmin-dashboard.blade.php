@@ -30,10 +30,18 @@
     <link href="{{ asset('backend/assets/css/app-style.css') }}" rel="stylesheet" />
     <link rel="stylesheet" href="{{ asset('backend/assets/plugins/summernote/dist/summernote-bs4.css') }}" />
     <!-- latest jquery-->
+    
+    
+
     <script src="/plugins/js/sweet_alert.js" defer></script>
     <script src="/backend/assets/js/jquery.min.js"></script>
     <script src="{{ asset('backend/assets/plugins/summernote/dist/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('backend/assets/plugins/inputtags/js/bootstrap-tagsinput.js') }}"></script>
+    {{-- lightbox --}}
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/css/lightbox.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/lightbox2/2.11.4/js/lightbox.min.js"></script>
+    {{-- lightbox --}}
+    
     @vite(['resources/js/backend/Views/SuperAdmin/app.js'])
 </head>
 

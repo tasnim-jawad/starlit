@@ -34,17 +34,19 @@ export default [
 		value: "",
 	},
 
-	// {
-	// 	name: "image_gallery_left",
-	// 	label: "Enter your image gallery left",
-	// 	type: "text",
-	// 	value: "",
-	// },
+	{
+		name: "image_gallery_left",
+		label: "Enter your image gallery left",
+		type: "file",
+		multiple: "true",
+		value: "",
+	},
 
-	// {
-	// 	name: "image_gallery_right",
-	// 	label: "Enter your image gallery right",
-	// 	type: "text",
-	// 	value: "",
-	// },
+	{
+		name: "image_gallery_right",
+		label: "Enter your image gallery right",
+		type: "file",
+		multiple: "true",
+		value: "",
+	},
 ];

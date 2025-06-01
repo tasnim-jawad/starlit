@@ -55,6 +55,7 @@ class DataStoreValidation extends FormRequest
             'gallery' => 'required | sometimes',
             'amenities' => 'required | sometimes',
             'floor_plan' => 'required | sometimes',
+            'floor_plan_details' => 'required | sometimes',
             'property_video_url' => 'required | sometimes',
             'map_location_url' => 'required | sometimes',
             'status' => ['sometimes', Rule::in(['active', 'inactive'])],

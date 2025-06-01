@@ -77,13 +77,13 @@
 
 <script>
 import TextEditor from "./TextEditor.vue";
-import ImageComponent from "./ImageComponent.vue";
-import { mapActions, mapState } from "pinia";
+// import ImageComponent from "./ImageComponent.vue";
+// import { mapActions, mapState } from "pinia";
 /**
  * props:
  */
 export default {
-  components: { TextEditor, ImageComponent },
+  components: { TextEditor },
   data: () => ({
     tag_input_value: "",
   }),
