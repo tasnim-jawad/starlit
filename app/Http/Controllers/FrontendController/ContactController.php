@@ -5,12 +5,14 @@ namespace App\Http\Controllers\FrontendController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use App\Modules\Management\PropertyManagement\PropertyCategory\Models\Model as PropertyCategory;
 
 class ContactController extends Controller
 {
     public function index()
     {
-        return view('frontend.pages.contact.contact');
+        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();
+        return view('frontend.pages.contact.contact',compact('property_category_list'));
     }
 
     public function store(Request $request)

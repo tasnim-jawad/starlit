@@ -27,7 +27,7 @@
                     <h1>{{ $property?->property_name }}</h1>
                     <label><span class="ltn__secondary-color"><i class="flaticon-pin"></i></span> {{ $property?->property_address }}</label>
                     <h4 class="title-2">Description</h4>
-                    <p>{!! $property?->property_description !!}</p>
+                    <p>{{ Str::limit(strip_tags($property?->property_description), 60) }}</p>
                     <p>To the left is the modern kitchen with central island, leading through to the unique breakfast family room which feature glass walls and doors out onto the garden and access to the separate utility room.</p>
 
                     <h4 class="title-2">Property Detail</h4>  

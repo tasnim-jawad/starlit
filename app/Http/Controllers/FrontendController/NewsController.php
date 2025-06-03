@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Modules\Management\PropertyManagement\PropertyCategory\Models\Model as PropertyCategory;
 
 class NewsController extends Controller
 {
@@ -46,6 +47,7 @@ class NewsController extends Controller
             ->limit(5)
             ->get();
 
+        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();
         return view(
             'frontend.pages.news.news',
             compact('blogs', 'blog_category', 'top_rated_blogs', 'latest_blogs')

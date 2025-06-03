@@ -42,6 +42,7 @@ Route::group([
     Route::get('/about', 'FrontendController\AboutController@index')->name('about');
 
     Route::get('/properties', 'FrontendController\PropertiesController@index')->name('properties');
+    Route::get('/properties/categories', 'FrontendController\PropertiesController@categories')->name('properties.categories');
     Route::get('/properties/category-wise/{category}', 'FrontendController\PropertiesController@category_wise')->name('properties.category_wise');
 
     Route::get('/properties/luxury', 'FrontendController\PropertiesController@luxury')->name('properties.luxury');

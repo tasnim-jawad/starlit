@@ -84,14 +84,15 @@
                                     <li class=""><a href="{{ route('about') }}">About</a>
                                     </li>
                                     <li class="menu-icon"><a href="{{ route('properties') }}">Property</a>
-                                        <ul>
-                                            <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
+                                        <ul id="property_gategory">
+                                            
+                                            {{-- <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
                                             <li><a href="{{ route('properties.classic') }}">Classic</a></li>
                                             <li><a href="{{ route('properties.wellness') }}">Welmess Communities</a></li>
                                             <li><a href="{{ route('properties.comercial') }}">Comercial</a></li>
                                             <li><a href="{{ route('properties.ongoing') }}">Ongoing</a></li>
                                             <li><a href="{{ route('properties.upcoming') }}">upcoming</a></li>
-                                            <li><a href="{{ route('properties.completed') }}">Completed</a></li>
+                                            <li><a href="{{ route('properties.completed') }}">Completed</a></li> --}}
                                         </ul>
                                     </li>
                                     <li class="menu-icon"><a href="{{ route('gallery') }}">gallery</a>
@@ -233,3 +234,25 @@
     </div>
 </div>
 <!-- Utilize Mobile Menu End -->
+@push('js_start')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/properties/categories')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('property_gategory');
+            container.innerHTML = ''; // Clear existing content if any
+            console.log(data);
+            
+            data?.data.forEach(category => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="/properties/category-wise/${category.name}">${category.name}</a>`;
+                container.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    });
+</script>
+@endpush

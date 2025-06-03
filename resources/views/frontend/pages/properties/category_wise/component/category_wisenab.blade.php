@@ -6,7 +6,7 @@
                 <ul>
                     <li><a href="{{ route('home') }}"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
                     <li><a href="{{ route('properties') }}"><span class="ltn__secondary-color"><i class=""></i></span>Properties</a></li>
-                    <li>Luxury</li>
+                    <li>{{$category_name}}</li>
                 </ul>
             </div>
         </div>

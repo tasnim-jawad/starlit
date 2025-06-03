@@ -14,6 +14,7 @@ use App\Modules\Management\OurServiceManagement\OurService\Models\Model as OurSe
 use App\Modules\Management\TestimonialManagement\Testimonial\Models\Model as Testimonial;
 use App\Modules\Management\BlogManagement\Blog\Models\Model as Blog;
 use App\Modules\Management\PropertyManagement\Property\Models\Model as Property;
+use App\Modules\Management\PropertyManagement\PropertyCategory\Models\Model as PropertyCategory;
 
 class AboutController extends Controller
 {
@@ -36,6 +37,8 @@ class AboutController extends Controller
                 ->where('status', 'active')
                 ->inRandomOrder()
                 ->latest()->limit(3)->get();
+        
+        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();        
         // dd($blogs->toArray());
         // dd($about_us?->video_url);
         // $projects = Project::orderBy('id','DESC')
@@ -57,6 +60,7 @@ class AboutController extends Controller
                 'testimonials',
                 'blogs',
                 'properties',
+                'property_category_list',
             ));
     }
     

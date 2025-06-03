@@ -46,7 +46,7 @@
                             </div>
                             <h2 class="product-title"><a href="product-details.html"> {{ $property?->property_name }}</a></h2>
                             <div class="product-description">
-                                <p>{!! $property?->property_description !!}</p>
+                                <p>{{ Str::limit(strip_tags($property?->property_description), 60) }}</p>
                             </div>
                             <ul class="ltn__list-item-2 ltn__list-item-2-before">
                                 @foreach ( array_slice($property?->facts_and_features, 0, 2) as $feature )

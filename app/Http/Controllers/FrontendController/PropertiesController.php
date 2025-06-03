@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Management\PropertyManagement\Property\Models\Model as Property;
+use App\Modules\Management\PropertyManagement\PropertyCategory\Models\Model as PropertyCategory;
 use App\Modules\Management\PropertyManagement\Property\Models\PropertyCustomerReviewModel;
 
 class PropertiesController extends Controller
@@ -39,6 +40,32 @@ class PropertiesController extends Controller
         // dd($properties_data['Comercial']);
         return view('frontend.pages.properties.properties',
             compact('property_category_list','properties_data')
+        );
+    }
+    public function categories()
+    
+    {   
+        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();
+        return response()->json([
+            'status' => 'success',
+            'data' => $property_category_list,
+        ]);
+    }
+
+    public function category_wise($category)
+    
+    {   
+        $category_name = $category;
+        $category_data = PropertyCategory::where('name', $category)->firstOrFail();
+        // dd($category_data);
+        $properties = Property::with('category')
+            ->where('status', 'active')
+            ->where('property_category_id', $category_data->id)
+            ->latest()
+            ->get();
+        // dd($properties);
+        return view('frontend.pages.properties.category_wise.category_wise',
+            compact('properties','category_name')
         );
     }
     public function luxury()

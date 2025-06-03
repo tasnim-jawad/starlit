@@ -574,21 +574,21 @@ export default {
       { text: "Fourth Floor", number: 4 },
     ],
     icons: [
-      { class: "fa-thumbs-down", title: "Bad" }, // bad
-      { class: "fa-bath", title: "Bath" }, // bath
-      { class: "fa-parking", title: "Parking" }, // parking
-      { class: "fa-tree", title: "Garden" }, // garden
-      { class: "fa-bolt", title: "Electric" }, // electric
-      { class: "fa-bed", title: "Bed" }, // bed/bedroom
-      { class: "fa-lightbulb", title: "Light" }, // lighting
-      { class: "fa-water", title: "Water" }, // water
-      { class: "fa-fire", title: "Fire" }, // fire/heating
-      { class: "fa-car", title: "Car" }, // car/vehicle
-      { class: "fa-sun", title: "Sun" }, // sun/weather
-      { class: "fa-wind", title: "Wind" }, // wind/ventilation
-      { class: "fa-plug", title: "Plug" }, // power plug
-      { class: "fa-door-closed", title: "Door" }, // door
-      { class: "fa-house", title: "House" }, // house/home
+      { class: "fa-solid fa-thumbs-down", title: "Bad" }, // bad
+      { class: "fa-solid fa-bath", title: "Bath" }, // bath
+      { class: "fa-solid fa-parking", title: "Parking" }, // parking
+      { class: "fa-solid fa-tree", title: "Garden" }, // garden
+      { class: "fa-solid fa-bolt", title: "Electric" }, // electric
+      { class: "fa-solid fa-bed", title: "Bed" }, // bed/bedroom
+      { class: "fa-solid fa-lightbulb", title: "Light" }, // lighting
+      { class: "fa-solid fa-water", title: "Water" }, // water
+      { class: "fa-solid fa-fire", title: "Fire" }, // fire/heating
+      { class: "fa-solid fa-car", title: "Car" }, // car/vehicle
+      { class: "fa-solid fa-sun", title: "Sun" }, // sun/weather
+      { class: "fa-solid fa-wind", title: "Wind" }, // wind/ventilation
+      { class: "fa-solid fa-plug", title: "Plug" }, // power plug
+      { class: "fa-solid fa-door-closed", title: "Door" }, // door
+      { class: "fa-solid fa-house", title: "House" }, // house/home
     ],
 
     //----------- for facts_and_features list input ----------
