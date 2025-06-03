@@ -105,17 +105,14 @@ export default {
       const confirmed = await window.s_confirm();
       if (!confirmed) return;
 
-      if (this.item.slug !== undefined) {
-        const parsedData = { field: this.name, index: data.index };
-        const response = await axios.post(
-          `properties/proprerty-image-delete/${
-            this.item.slug
-          }?data=${JSON.stringify(parsedData)}`
-        );
+      const parsedData = { field: this.name, index: data.index };
+      const response = await axios.post(
+        `properties/proprerty-image-delete/${
+          this.item.slug
+        }?data=${JSON.stringify(parsedData)}`
+      );
 
-        window.s_alert(response.data.message);
-      }
-
+      window.s_alert(response.data.message);
       this.component_images.splice(data.index, 1);
       const dt = new DataTransfer();
       const input = this.$refs.input_files;

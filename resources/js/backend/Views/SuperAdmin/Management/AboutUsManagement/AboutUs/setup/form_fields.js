@@ -7,6 +7,14 @@ export default [
 	},
 
 	{
+		name: "description",
+		label: "Enter your description",
+		type: "text",
+		value: "",
+	},
+
+
+	{
 		name: "quotation",
 		label: "Enter your quotation",
 		type: "text",
@@ -56,13 +64,5 @@ export default [
 			
 		],
 		value: "",
-	},
-	{
-		name: "description",
-		label: "Enter your description",
-		type: "textarea",
-		value: "",
-		row_col_class: "col-md-12",
-		
 	},
 ];

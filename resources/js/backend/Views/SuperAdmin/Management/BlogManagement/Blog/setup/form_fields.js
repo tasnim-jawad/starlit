@@ -25,7 +25,7 @@ export default [
 	{
 		name: "publish_date",
 		label: "Enter your publish date",
-		type: "date",
+		type: "datetime-local",
 		value: "",
 	},
 
