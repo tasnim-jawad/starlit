@@ -39,3 +39,5 @@ include_once base_path("app/Modules/Management/NewsletterManagement/Newsletter/R
 include_once base_path("app/Modules/Management/ImageGallaryManagement/ImageGallary/Routes/Route.php");
 include_once base_path("app/Modules/Management/VideoGallaryManagement/VideoGallary/Routes/Route.php");
 include_once base_path("app/Modules/Management/ContactManagement/Contact/Routes/Route.php");
+include_once base_path("app/Modules/Management/ImageGallaryManagement/ImageGallaryCategory/Routes/Route.php");
+include_once base_path("app/Modules/Management/VideoGallaryManagement/VideoGallaryCategory/Routes/Route.php");

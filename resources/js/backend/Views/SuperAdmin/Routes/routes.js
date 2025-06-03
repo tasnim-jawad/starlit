@@ -5,6 +5,8 @@ import Dashboard from "../Management/Dashboard/Dashboard.vue";
 //SettingsRoutes
 import SettingsRoutes from "../Management/Settings/setup/routes.js";
 //routes
+import VideoGallaryCategoryRoutes from '../Management/VideoGallaryManagement/VideoGallaryCategory/setup/routes.js';
+import ImageGallaryCategoryRoutes from '../Management/ImageGallaryManagement/ImageGallaryCategory/setup/routes.js';
 import BlogRoutes from '../Management/BlogManagement/Blog/setup/routes.js';
 import BlogCategoryRoutes from '../Management/BlogManagement/BlogCategory/setup/routes.js';
 import ContactRoutes from '../Management/ContactManagement/Contact/setup/routes.js';
@@ -41,6 +43,8 @@ const routes = {
             name: 'adminDashboard',
         },
         //management routes
+        VideoGallaryCategoryRoutes,
+        ImageGallaryCategoryRoutes,
         BlogRoutes,
         BlogCategoryRoutes,
         ContactRoutes,

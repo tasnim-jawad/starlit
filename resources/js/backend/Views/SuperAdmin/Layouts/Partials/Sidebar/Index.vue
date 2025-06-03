@@ -126,6 +126,8 @@
 
 <side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`Contact`"  :route_name="`AllContact`" />
 
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`ImageGallaryCategory`"  :route_name="`AllImageGallaryCategory`" />
+<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`VideoGallaryCategory`"  :route_name="`AllVideoGallaryCategory`" />
 <!-- Management end -->
     </ul>
   </div>
