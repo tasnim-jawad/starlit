@@ -1,0 +1,12 @@
+1/ Today sells - multiple image for single column store problem
+3/ Blog - Tags field stort problem
+
+
+---------------- frontend ----------------
+** multiple image show korano hoy ni
+** today_sale -  multiple image set upload kora jacche na 
+** today_sale -  gallery image set kora niye shomossa
+** property cad - taka , image, video add problem hoche  (count add korte hobe abong link korte hobe )
+** property add problem - textarea is toooo long . need to change type 
+** Testimonial add problem - textarea is toooo long . need to change type 
+** about us edit problem - if  image change temp image path upload hoy .
