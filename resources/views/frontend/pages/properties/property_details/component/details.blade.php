@@ -382,14 +382,27 @@
                     
                     <div class="ltn__shop-details-tab-content-inner--- ltn__shop-details-tab-inner-2 ltn__product-details-review-inner mb-60">
                         <h4 class="title-2">Customer Reviews</h4>
+                        @php
+                            $totalReviews = count($property_customer_reviews);
+                            $totalRating = array_sum(array_column($property_customer_reviews->toArray(), 'rating'));
+                            $averageRating = $totalReviews > 0 ? $totalRating / $totalReviews : 0;
+                        @endphp
                         <div class="product-ratting">
                             <ul>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                <li><a href="#"><i class="far fa-star"></i></a></li>
-                                <li class="review-total"> <a href="#"> ( 95 Reviews )</a></li>
+                                @for ($i = 0; $i < 5; $i++)
+                                    <li>
+                                        <a href="#">
+                                            @if ($i < floor($averageRating))
+                                                <i class="fas fa-star"></i>
+                                            @elseif ($i < ceil($averageRating))
+                                                <i class="fas fa-star-half-alt"></i>
+                                            @else
+                                                <i class="far fa-star"></i>
+                                            @endif
+                                        </a>
+                                    </li>
+                                @endfor
+                                <li class="review-total"> <a href="#"> ( {{ $totalReviews }} Reviews )</a></li>
                             </ul>
                         </div>
                         <hr>
@@ -401,7 +414,7 @@
                                         <li>
                                             <div class="ltn__comment-item clearfix">
                                                 <div class="ltn__commenter-img">
-                                                    <img src="{{ asset($review['image'] ?? 'assets/frontend/img/testimonial/default.png') }}" alt="Image">
+                                                    <img src="{{ asset($review['image'] ?? 'uploads/default_man.jpeg') }}" alt="Image">
                                                 </div>
                                                 <div class="ltn__commenter-comment">
                                                     <h6><a href="#">{{ $review['name'] }}</a></h6>
@@ -417,12 +430,12 @@
                                                         </ul>
                                                     </div>
                                                     <p>{{ $review['comment'] }}</p>
-                                                    <span class="ltn__comment-reply-btn">{{ $review['date'] }}</span>
+                                                    <span class="ltn__comment-reply-btn">{{ \Carbon\Carbon::parse($review['created_at'])->format('F j, Y') }}</span>
                                                 </div>
                                             </div>
                                         </li>
                                     @endforeach
-                                    <li>
+                                    {{-- <li>
                                         <div class="ltn__comment-item clearfix">
                                             <div class="ltn__commenter-img">
                                                 <img src="{{ asset('assets/frontend') }}/img/testimonial/Kawser-Ali.png" alt="Image">
@@ -463,12 +476,21 @@
                                                 <span class="ltn__comment-reply-btn">September 2, 2020</span>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> --}}
                                 </ul>
                             </div>
                         </div>
                         <!-- comment-reply -->
                         <div class="ltn__comment-reply-area ltn__form-box mb-30">
+                            @if ($errors->any())
+                                <div class="alert alert-danger">
+                                    <ul>
+                                        @foreach ($errors->all() as $error)
+                                            <li>{{ $error }}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
                             <form action="{{ route('property_customer_review') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="property_id" value="{{ $property->id }}">

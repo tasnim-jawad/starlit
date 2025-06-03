@@ -21,7 +21,7 @@ const setup: setup_type = {
         "id",
         "title",
             "image",
-            "type",
+            
         "status",
         "slug",
         "created_at",
@@ -32,7 +32,7 @@ const setup: setup_type = {
         "id",
         "title",
             "image",
-            "type",
+            
         "status",
         "created_at",
     ],
@@ -40,7 +40,7 @@ const setup: setup_type = {
         "id",
         "title",
             "image",
-            "type",
+            
         "status",
         "created_at",
     ],
@@ -48,7 +48,7 @@ const setup: setup_type = {
         "id",
         "title",
             "image",
-            "type",
+            
         "status",
         "created_at",
     ],

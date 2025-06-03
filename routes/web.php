@@ -42,6 +42,8 @@ Route::group([
     Route::get('/about', 'FrontendController\AboutController@index')->name('about');
 
     Route::get('/properties', 'FrontendController\PropertiesController@index')->name('properties');
+    Route::get('/properties/category-wise/{category}', 'FrontendController\PropertiesController@category_wise')->name('properties.category_wise');
+
     Route::get('/properties/luxury', 'FrontendController\PropertiesController@luxury')->name('properties.luxury');
     Route::get('/properties/comercial', 'FrontendController\PropertiesController@comercial')->name('properties.comercial');
     Route::get('/properties/classic', 'FrontendController\PropertiesController@classic')->name('properties.classic');
@@ -57,7 +59,11 @@ Route::group([
     Route::get('/gallery/video', 'FrontendController\GalleryController@video')->name('gallery.video');
 
     Route::get('/news', 'FrontendController\NewsController@index')->name('news');
-    Route::get('/news/details', 'FrontendController\NewsController@news_details')->name('news_details');
+    Route::get('/news/details/{slug}', 'FrontendController\NewsController@news_details')->name('news_details');
+    Route::get('/news/category/{slug}', 'FrontendController\NewsController@news_category')->name('news_category');
+    Route::get('/ajax/blog/search', 'FrontendController\NewsController@ajaxSearch')->name('ajax.blog.search');
+
 
     Route::get('/contact', 'FrontendController\ContactController@index')->name('contact');
+    Route::post('/contact', 'FrontendController\ContactController@store')->name('contact.store');
 });
