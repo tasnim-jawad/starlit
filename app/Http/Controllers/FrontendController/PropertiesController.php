@@ -157,8 +157,8 @@ class PropertiesController extends Controller
             ->active()
             ->latest()
             ->get();
-        dd($property_customer_reviews);
-        return view('frontend.pages.properties.property_details.property_details', compact('property'));
+        // dd($property_customer_reviews);
+        return view('frontend.pages.properties.property_details.property_details', compact('property', 'property_customer_reviews'));
     }
 
     public function property_customer_review(Request $request)
