@@ -397,27 +397,31 @@
                         <div class="ltn__comment-area mb-30">
                             <div class="ltn__comment-inner">
                                 <ul>
-                                    <li>
-                                        <div class="ltn__comment-item clearfix">
-                                            <div class="ltn__commenter-img">
-                                                <img src="{{ asset('assets/frontend') }}/img/testimonial/Mr.-Helal.png" alt="Image">
-                                            </div>
-                                            <div class="ltn__commenter-comment">
-                                                <h6><a href="#">Mr.Helal</a></h6>
-                                                <div class="product-ratting">
-                                                    <ul>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                        <li><a href="#"><i class="fas fa-star-half-alt"></i></a></li>
-                                                        <li><a href="#"><i class="far fa-star"></i></a></li>
-                                                    </ul>
+                                    @foreach ($property_customer_reviews as $review)
+                                        <li>
+                                            <div class="ltn__comment-item clearfix">
+                                                <div class="ltn__commenter-img">
+                                                    <img src="{{ asset($review['image'] ?? 'assets/frontend/img/testimonial/default.png') }}" alt="Image">
                                                 </div>
-                                                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Doloribus, omnis fugit corporis iste magnam ratione.</p>
-                                                <span class="ltn__comment-reply-btn">September 3, 2020</span>
+                                                <div class="ltn__commenter-comment">
+                                                    <h6><a href="#">{{ $review['name'] }}</a></h6>
+                                                    <div class="product-ratting">
+                                                        <ul>
+                                                            @for ($i = 0; $i < 5; $i++)
+                                                                <li>
+                                                                    <a href="#">
+                                                                        <i class="{{ $i < $review['rating'] ? 'fas fa-star' : 'far fa-star' }}"></i>
+                                                                    </a>
+                                                                </li>
+                                                            @endfor
+                                                        </ul>
+                                                    </div>
+                                                    <p>{{ $review['comment'] }}</p>
+                                                    <span class="ltn__comment-reply-btn">{{ $review['date'] }}</span>
+                                                </div>
                                             </div>
-                                        </div>
-                                    </li>
+                                        </li>
+                                    @endforeach
                                     <li>
                                         <div class="ltn__comment-item clearfix">
                                             <div class="ltn__commenter-img">
