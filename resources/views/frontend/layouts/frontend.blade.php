@@ -62,6 +62,7 @@
     </div>
     <!-- preloader area end -->
     <!-- JavaScript -->
+    @stack('js_start')
     <script>
         // Function to set active button
         function setActive(button) {

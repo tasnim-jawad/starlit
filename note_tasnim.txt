@@ -8,5 +8,6 @@
 ** today_sale -  gallery image set kora niye shomossa
 ** property cad - taka , image, video add problem hoche  (count add korte hobe abong link korte hobe )
 ** property add problem - textarea is toooo long . need to change type 
+** property video image not included into database . gallary image is shown temporaly
 ** Testimonial add problem - textarea is toooo long . need to change type 
 ** about us edit problem - if  image change temp image path upload hoy .

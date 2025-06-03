@@ -57,10 +57,10 @@
                             @foreach ($property?->facts_and_features as $item)
                                 <li>
                                     <div class="property-detail-feature-list-item">
-                                        <i class="flaticon-double-bed"></i>
+                                        <i class="{{$item['icon']}}"></i>
                                         <div>
-                                            <h6>{{$item['icon']}}</h6>
-                                            <small>20 x 16 sq feet</small>
+                                            <h6>{{$item['title']}}</h6>
+                                            <small>{{$item['description']}}</small>
                                         </div>
                                     </div>
                                 </li>
@@ -135,16 +135,17 @@
                     <div class="ltn__property-details-gallery mb-30">
                         <div class="row">
                             <div class="col-md-6">
-                                <a href="{{ asset('assets/frontend') }}/img/others/14.jpg" data-rel="lightcase:myCollection">
-                                    <img class="mb-30" src="{{ asset('assets/frontend') }}/img/others/14.jpg" alt="Image">
+                                {{-- <p>{{$property->gallery[0]}}</p> --}}
+                                <a href="{{ asset($property->gallery[0] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                    <img class="mb-30" src="{{ asset($property->gallery[0] ?? 'uploads/default.jpg' ) }}" alt="Image">
                                 </a>
-                                <a href="{{ asset('assets/frontend') }}/img/others/15.jpg" data-rel="lightcase:myCollection">
-                                    <img class="mb-30" src="{{ asset('assets/frontend') }}/img/others/15.jpg" alt="Image">
+                                <a href="{{ asset($property->gallery[1] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                    <img class="mb-30" src="{{ asset($property->gallery[1] ?? 'uploads/default.jpg') }}" alt="Image">
                                 </a>
                             </div>
                             <div class="col-md-6">
-                                <a href="{{ asset('assets/frontend') }}/img/others/16.jpg" data-rel="lightcase:myCollection">
-                                    <img class="mb-30" src="{{ asset('assets/frontend') }}/img/others/16.jpg" alt="Image">
+                                <a href="{{ asset($property->gallery[2] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                    <img class="mb-30" src="{{ asset($property->gallery[2] ?? 'uploads/default.jpg') }}" alt="Image">
                                 </a>
                             </div>
                         </div>
@@ -152,121 +153,33 @@
 
                     <h4 class="title-2 mb-10">Amenities</h4>
                     <div class="property-details-amenities mb-60">
+                        @php
+                            $amenities = $property->amenities ?? [];
+                            $chunks = array_chunk($amenities, ceil(count($amenities) / 3));
+                        @endphp
                         <div class="row">
-                            <div class="col-lg-4 col-md-6">
-                                <div class="ltn__menu-widget">
-                                    <ul>
-                                        <li>
-                                            <label class="checkbox-item">Air Conditioning
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Gym
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Microwave
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Swimming Pool
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">WiFi
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                    </ul>
+                            @foreach($chunks as $chunk)
+                                <div class="col-lg-4 col-md-6">
+                                    <div class="ltn__menu-widget">
+                                        <ul>
+                                            @foreach($chunk as $item)
+                                                <li>
+                                                    <label class="checkbox-item">{{ $item['title'] }}
+                                                        <input type="checkbox" {{ isset($item['available']) && $item['available'] ? 'checked' : '' }}>
+                                                        <span class="checkmark"></span>
+                                                    </label>
+                                                </li>
+                                            @endforeach
+                                        </ul>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="ltn__menu-widget">
-                                    <ul>
-                                        <li>
-                                            <label class="checkbox-item">Barbeque
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Recreation
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Microwave
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Basketball Cout
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Fireplace
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
-                            <div class="col-lg-4 col-md-6">
-                                <div class="ltn__menu-widget">
-                                    <ul>
-                                        <li>
-                                            <label class="checkbox-item">Refrigerator
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Window Coverings
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Washer
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">24x7 Security
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                        <li>
-                                            <label class="checkbox-item">Indoor Game
-                                                <input type="checkbox" checked="checked">
-                                                <span class="checkmark"></span>
-                                            </label>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
 
                     <h4 class="title-2">Location</h4>
                     <div class="property-details-google-map mb-60">
-                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9334.271551495209!2d-73.97198251485975!3d40.668170674982946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b0456b5a2e7%3A0x68bdf865dda0b669!2sBrooklyn%20Botanic%20Garden%20Shop!5e0!3m2!1sen!2sbd!4v1590597267201!5m2!1sen!2sbd" width="100%" height="100%" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <iframe src="{{ $property?->map_location_url ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9334.271551495209!2d-73.97198251485975!3d40.668170674982946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b0456b5a2e7%3A0x68bdf865dda0b669!2sBrooklyn%20Botanic%20Garden%20Shop!5e0!3m2!1sen!2sbd!4v1590597267201!5m2!1sen!2sbd'}}" width="100%" height="100%" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
 
                     <h4 class="title-2">Floor Plans</h4>
@@ -274,47 +187,54 @@
                     <div class="ltn__apartments-plan-area product-details-apartments-plan mb-60">
                         <div class="ltn__tab-menu ltn__tab-menu-3 ltn__tab-menu-top-right-- text-uppercase--- text-center---">
                             <div class="nav">
-                                <a data-bs-toggle="tab" href="#liton_tab_3_1">First Floor</a>
+                                @foreach ( $property?->floor_plan as $key => $floor )
+                                    @if ($key == 0)
+                                        <a class="active show" data-bs-toggle="tab" href="#liton_tab_3_{{ $key }}">{{ $floor['floor_number'] }}</a>
+                                    @else
+                                        <a data-bs-toggle="tab" href="#liton_tab_3_{{ $key }}">{{ $floor['floor_number'] }}</a>
+                                    @endif
+                                    
+                                @endforeach
+                                {{-- <a data-bs-toggle="tab" href="#liton_tab_3_0">First Floor</a>
                                 <a class="active show"  data-bs-toggle="tab" href="#liton_tab_3_2" class="">Second Floor</a>
                                 <a data-bs-toggle="tab" href="#liton_tab_3_3" class="">Third Floor</a>
-                                <a data-bs-toggle="tab" href="#liton_tab_3_4" class="">Top Garden</a>
+                                <a data-bs-toggle="tab" href="#liton_tab_3_4" class="">Top Garden</a> --}}
                             </div>
                         </div>
                         <div class="tab-content">
-                            <div class="tab-pane fade" id="liton_tab_3_1">
-                                <div class="ltn__apartments-tab-content-inner">
-                                    <div class="row">
-                                        <div class="col-lg-7">
-                                            <div class="apartments-plan-img">
-                                                <img src="{{ asset('assets/frontend') }}/img/others/10.png" alt="#">
+                            @foreach ( $property?->floor_plan as $key => $floor )
+                                <div class="tab-pane fade {{ $key === 0 ? 'active show' : '' }}" id="liton_tab_3_{{ $key }}">
+                                    <div class="ltn__apartments-tab-content-inner">
+                                        <div class="row">
+                                            <div class="col-lg-7">
+                                                <div class="apartments-plan-img">
+                                                    <img src="{{ asset( $floor['image'] ?? '/img/others/10.png') }}" alt="#">
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-5">
-                                            <div class="apartments-plan-info ltn__secondary-bg--- text-color-white---">
-                                                <h2>First Floor</h2>
-                                                <p>Enimad minim veniam quis nostrud exercitation ullamco laboris.
-                                                    Lorem ipsum dolor sit amet cons aetetur adipisicing elit sedo
-                                                    eiusmod tempor.Incididunt labore et dolore magna aliqua.
-                                                    sed ayd minim veniam.</p>
+                                            <div class="col-lg-5">
+                                                <div class="apartments-plan-info ltn__secondary-bg--- text-color-white---">
+                                                    <h2>{{ $floor['floor_number'] }}</h2>
+                                                    <p>{{ $floor['description'] }}</p>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <div class="col-lg-12">
-                                            <div class="product-details-apartments-info-list  section-bg-1">
-                                                <div class="row">
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Total Area</label> <span>2800 Sq. Ft</span></li>
-                                                                <li><label>Bedroom</label> <span>150 Sq. Ft</span></li>
-                                                            </ul>
+                                            <div class="col-lg-12">
+                                                <div class="product-details-apartments-info-list  section-bg-1">
+                                                    <div class="row">
+                                                        <div class="col-lg-6">
+                                                            <div class="apartments-info-list apartments-info-list-color mt-40---">
+                                                                <ul>
+                                                                    <li><label>Total Area</label> <span>2800 Sq. Ft</span></li>
+                                                                    <li><label>Bedroom</label> <span>150 Sq. Ft</span></li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                    <div class="col-lg-6">
-                                                        <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                            <ul>
-                                                                <li><label>Belcony/Pets</label> <span>Allowed</span></li>
-                                                                <li><label>Lounge</label> <span>650 Sq. Ft</span></li>
-                                                            </ul>
+                                                        <div class="col-lg-6">
+                                                            <div class="apartments-info-list apartments-info-list-color mt-40---">
+                                                                <ul>
+                                                                    <li><label>Belcony/Pets</label> <span>Allowed</span></li>
+                                                                    <li><label>Lounge</label> <span>650 Sq. Ft</span></li>
+                                                                </ul>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
@@ -322,8 +242,8 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="tab-pane fade active show" id="liton_tab_3_2">
+                            @endforeach
+                            {{-- <div class="tab-pane fade active show" id="liton_tab_3_2">
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row">
                                         <div class="col-lg-7">
@@ -448,14 +368,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                     <!-- APARTMENTS PLAN AREA END -->
 
                     <h4 class="title-2">Property Video</h4>
-                    <div class="ltn__video-bg-img ltn__video-popup-height-500 bg-overlay-black-50 bg-image mb-60" data-bs-bg="{{ asset('assets/frontend') }}/img/others/5.jpg">
-                        <a class="ltn__video-icon-2 ltn__video-icon-2-border---" href="https://www.youtube.com/embed/x9gIy59kWw0?autoplay=1&amp;showinfo=0" data-rel="lightcase:myCollection">
+                    <div class="ltn__video-bg-img ltn__video-popup-height-500 bg-overlay-black-50 bg-image mb-60" data-bs-bg="{{ asset($property->gallery[0] ?? 'uploads/default.jpg') }}">
+                        <a class="ltn__video-icon-2 ltn__video-icon-2-border---" href="{{ $property?->property_video_url ?? 'https://www.youtube.com/embed/x9gIy59kWw0?autoplay=1&amp;showinfo=0'}}" data-rel="lightcase:myCollection">
                             <i class="fa fa-play"></i>
                         </a>
                     </div>
@@ -545,30 +465,34 @@
                         </div>
                         <!-- comment-reply -->
                         <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                            <form action="#">
+                            <form action="{{ route('property_customer_review') }}" method="POST">
+                                @csrf
+                                <input type="hidden" name="property_id" value="{{ $property->id }}">
+                                
                                 <h4>Add a Review</h4>
                                 <div class="mb-30">
                                     <div class="add-a-review">
                                         <h6>Your Ratings:</h6>
                                         <div class="product-ratting">
                                             <ul>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
-                                                <li><a href="#"><i class="fas fa-star"></i></a></li>
+                                                <li class="customer_rating"><a href="#"><i class="fas fa-star"></i></a></li>
+                                                <li class="customer_rating"><a href="#"><i class="fas fa-star"></i></a></li>
+                                                <li class="customer_rating"><a href="#"><i class="fas fa-star"></i></a></li>
+                                                <li class="customer_rating"><a href="#"><i class="fas fa-star"></i></a></li>
+                                                <li class="customer_rating"><a href="#"><i class="fas fa-star"></i></a></li>
                                             </ul>
+                                            <input type="hidden" name="rating" id="rating" value="5">
                                         </div>
                                     </div>
                                 </div>
                                 <div class="input-item input-item-textarea ltn__custom-icon">
-                                    <textarea placeholder="Type your comments...."></textarea>
+                                    <textarea name="comment" placeholder="Type your comments...."></textarea>
                                 </div>
                                 <div class="input-item input-item-name ltn__custom-icon">
-                                    <input type="text" placeholder="Type your name....">
+                                    <input type="text" name="name" placeholder="Type your name....">
                                 </div>
                                 <div class="input-item input-item-email ltn__custom-icon">
-                                    <input type="email" placeholder="Type your email....">
+                                    <input type="email" name="email" placeholder="Type your email....">
                                 </div>
                                 <div class="input-item input-item-website ltn__custom-icon">
                                     <input type="text" name="website" placeholder="Type your website....">
@@ -588,4 +512,33 @@
         </div>
     </div>
 </div>
+@push('js_start')
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            console.log('Property details page loaded');
+            // Example: Add event listeners or custom functionality here
+        });
+    </script> --}}
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const stars = document.querySelectorAll('.product-ratting .customer_rating');
+            const ratingInput = document.getElementById('rating');
+            
+            stars.forEach((star, index) => {
+                star.addEventListener('click', function(e) {
+                    e.preventDefault();
+
+                    // Set the hidden input value
+                    ratingInput.value = index + 1;
+    
+                    // Optional: highlight stars up to the clicked one
+                    stars.forEach((s, i) => {
+                        s.querySelector('i').classList.toggle('text-warning', i <= index);
+                    });
+                });
+            });
+        });
+    </script>
+@endpush
 <!-- SHOP DETAILS AREA END -->

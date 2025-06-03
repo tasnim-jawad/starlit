@@ -5,6 +5,7 @@ namespace App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Management\PropertyManagement\Property\Models\Model as Property;
+use App\Modules\Management\PropertyManagement\Property\Models\PropertyCustomerReviewModel;
 
 class PropertiesController extends Controller
 {
@@ -152,7 +153,38 @@ class PropertiesController extends Controller
             ->where('status', 'active')
             ->firstOrFail();
         // dd($property);
+        $property_customer_reviews = PropertyCustomerReviewModel::where('property_id', $id)
+            ->active()
+            ->latest()
+            ->get();
+        dd($property_customer_reviews);
         return view('frontend.pages.properties.property_details.property_details', compact('property'));
+    }
+
+    public function property_customer_review(Request $request)
+    {
+        // dd(request()->all());
+
+        $validated = $request->validate([
+            'property_id' => 'required|exists:properties,id',
+            'comment' => 'nullable|string|max:100',
+            'name' => 'nullable|string|max:100',
+            'email' => 'nullable|email|max:50',
+            'website' => 'nullable|string|max:100',
+            'rating' => 'nullable|integer|min:1|max:5',
+        ]);
+    
+        $review = new PropertyCustomerReviewModel();
+        $review->property_id = $validated['property_id'];
+        $review->comment = $request->input('comment');
+        $review->name = $request->input('name');
+        $review->email = $request->input('email');
+        $review->website = $request->input('website');
+        $review->rating = $request->input('rating');
+        $review->creator = auth()->id() ?? 0; // 0 if guest
+        $review->save();
+        // dd($review);
+        return redirect()->back()->with('success', 'Review submitted successfully!');
     }
 
 }

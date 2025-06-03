@@ -7,7 +7,7 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     php artisan migrate --path='\App\Modules\Management\PropertyCustomerReview\Database\create_property_customer_reviews_table.php'
+     php artisan migrate --path='\App\Modules\Management\PropertyManagement\Property\Database\create_property_customer_reviews_table.php'
      * Run the migrations.
      */
     public function up(): void

@@ -50,6 +50,7 @@ Route::group([
     Route::get('/properties/upcoming', 'FrontendController\PropertiesController@upcoming')->name('properties.upcoming');
     Route::get('/properties/completed', 'FrontendController\PropertiesController@completed')->name('properties.completed');
     Route::get('/properties/details/{id}', 'FrontendController\PropertiesController@details')->name('properties_details');
+    Route::post('/property-customer-review', 'FrontendController\PropertiesController@property_customer_review')->name('property_customer_review');
 
     Route::get('/gallery', 'FrontendController\GalleryController@index')->name('gallery');
     Route::get('/gallery/image', 'FrontendController\GalleryController@image')->name('gallery.image');
