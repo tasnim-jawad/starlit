@@ -78,9 +78,8 @@
       <div v-if="type === 'file'" class="mt-1 mb-3">
         <image-component
           :name="name"
-          :multiple="multiple"
           :accept="`.jpg,.jpeg,.png,.mp4`"
-          :images="multiple ? images_list : value"
+          :value="value"
         ></image-component>
       </div>
     </div>

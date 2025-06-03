@@ -37,8 +37,19 @@
             >
               <common-input
                 v-if="
-                  form_field.type !== 'file' && form_field.multiple !== true
+                  form_field.type !== 'file'
                 "
+                :label="form_field.label"
+                :type="form_field.type"
+                :name="form_field.name"
+                :multiple="form_field.multiple"
+                :value="form_field.value"
+                :data_list="form_field.data_list"
+                :is_visible="form_field.is_visible"
+                :row_col_class="form_field.row_col_class"
+              />
+              <common-input
+              v-else-if="form_field.type === 'file' && !form_field.multiple"
                 :label="form_field.label"
                 :type="form_field.type"
                 :name="form_field.name"
@@ -931,12 +942,15 @@ export default {
       let response = await axios.get("property-categories?get_all=1");
       if (response.data.status == "success") {
         response = response.data.data;
-        this.form_fields[0].data_list = [];
+        let item_index = this.form_fields.findIndex(
+          (item) => item.name == "property_category_id"
+        );
+        this.form_fields[item_index].data_list = [];
         response.forEach((item) => {
           let dataList = {};
           dataList.label = item.name;
           dataList.value = item.id;
-          this.form_fields[0].data_list.push(dataList);
+          this.form_fields[item_index].data_list.push(dataList);
         });
       }
     },

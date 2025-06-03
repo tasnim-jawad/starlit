@@ -14,8 +14,8 @@ return new class extends Migration
     {
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
-            $table->json('banner_image')->nullable();
             $table->bigInteger('price')->nullable();
+            $table->json('banner_image')->nullable();
             $table->bigInteger('property_group_id')->nullable();
             $table->bigInteger('property_category_id')->nullable();
             $table->enum('property_status', ['rent', 'sale'])->nullable();
