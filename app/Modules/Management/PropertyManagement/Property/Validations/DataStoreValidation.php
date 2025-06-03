@@ -43,6 +43,7 @@ class DataStoreValidation extends FormRequest
     {
         return [
             'banner_image' => 'required | sometimes',
+            'property_video_thmbnail' => 'required | sometimes',
             'property_group_id' => 'required | sometimes',
             'property_category_id' => 'required | sometimes',
             'property_status' => 'required | sometimes',

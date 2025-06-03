@@ -16,7 +16,7 @@ use App\Modules\Management\OurServiceManagement\OurService\Models\Model as OurSe
 use App\Modules\Management\TestimonialManagement\Testimonial\Models\Model as Testimonial;
 use App\Modules\Management\BlogManagement\Blog\Models\Model as Blog;
 use App\Modules\Management\PropertyManagement\Property\Models\Model as Property;
-
+use App\Modules\Management\PropertyManagement\PropertyCategory\Models\Model as PropertyCategory;
 
 
 
@@ -39,7 +39,8 @@ class HomeController extends Controller
                 ->where('status', 'active')
                 ->inRandomOrder()
                 ->latest()->limit(3)->get();
-        // dd($properties->toArray());
+        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();
+        // dd($property_category_list->toArray());
         // dd($about_us?->video_url);
         return view('frontend.pages.home.home', 
                 compact(
@@ -52,6 +53,7 @@ class HomeController extends Controller
                     'testimonials',
                     'properties',
                     'blogs',
+                    'property_category_list'
 
                 ));
     }

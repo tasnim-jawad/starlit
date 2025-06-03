@@ -77,11 +77,11 @@
         :icon="`fa fa-plus`"
         :menu_title="`Property Management`"
         :menus="[
-          {
-            route_name: `AllPropertyGroup`,
-            title: `Property Group`,
-            icon: `zmdi zmdi-dot-circle-alt`,
-          },
+          // {
+          //   route_name: `AllPropertyGroup`,
+          //   title: `Property Group`,
+          //   icon: `zmdi zmdi-dot-circle-alt`,
+          // },
           {
             route_name: `AllPropertyCategory`,
             title: `Property Category`,

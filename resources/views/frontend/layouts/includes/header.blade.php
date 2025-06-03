@@ -93,13 +93,17 @@
                                     </li>
                                     <li class="menu-icon"><a href="{{ route('properties') }}">Property</a>
                                         <ul>
-                                            <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
+                                            @foreach ($property_category_list as $category)
+                                                {{-- <p>{{$category}}</p> --}}
+                                                <li><a href="{{ route('properties.category_wise', ['category' => $category->name]) }}">{{ $category->name }}</a></li>
+                                            @endforeach
+                                            {{-- <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
                                             <li><a href="{{ route('properties.classic') }}">Classic</a></li>
                                             <li><a href="{{ route('properties.comercial') }}">Welmess Communities</a></li>
                                             <li><a href="{{ route('properties.comercial') }}">Comercial</a></li>
                                             <li><a href="{{ route('properties.ongoing') }}">Ongoing</a></li>
                                             <li><a href="{{ route('properties.upcoming') }}">Upcoming</a></li>
-                                            <li><a href="{{ route('properties.completed') }}">Completed</a></li>
+                                            <li><a href="{{ route('properties.completed') }}">Completed</a></li> --}}
                                         </ul>
                                     </li>
                                     <li class="menu-icon"><a href="{{ route('gallery') }}">gallery</a>
@@ -160,14 +164,14 @@
                 <li><a class="active" href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('about') }}">About</a></li>
                 <li><a href="{{ route('properties') }}">Property</a>
-                    <ul class="sub-menu">
-                        <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
+                    <ul id="property_gategory" class="sub-menu">
+                        {{-- <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
                         <li><a href="{{ route('properties.classic') }}">Classic</a></li>
                         <li><a href="{{ route('properties.wellness') }}">Welmess Communities</a></li>
                         <li><a href="{{ route('properties.comercial') }}">Comercial</a></li>
                         <li><a href="{{ route('properties.ongoing') }}">Ongoing</a></li>
                         <li><a href="{{ route('properties.upcoming') }}">Upcoming</a></li>
-                        <li><a href="{{ route('properties.completed') }}">Completed</a></li>
+                        <li><a href="{{ route('properties.completed') }}">Completed</a></li> --}}
                     </ul>
                 </li>
                 <li><a href="{{ route('gallery') }}">gallery</a>
@@ -190,4 +194,25 @@
         </div>
     </div>
 </div>
+@push('js_start')
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        fetch('/properties/categories')
+        .then(response => response.json())
+        .then(data => {
+            const container = document.getElementById('property_gategory');
+            container.innerHTML = ''; // Clear existing content if any
+
+            data?.data.forEach(category => {
+                const li = document.createElement('li');
+                li.innerHTML = `<a href="/properties/category-wise/${category.name}">${category.name}</a>`;
+                container.appendChild(li);
+            });
+        })
+        .catch(error => {
+            console.error('Error fetching data:', error);
+        });
+    });
+</script>
+@endpush
 <!-- Utilize Mobile Menu End -->
