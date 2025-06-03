@@ -15,9 +15,10 @@ return new class extends Migration
         Schema::create('properties', function (Blueprint $table) {
             $table->id();
             $table->json('banner_image')->nullable();
+            $table->bigInteger('price')->nullable();
             $table->bigInteger('property_group_id')->nullable();
             $table->bigInteger('property_category_id')->nullable();
-            $table->enum('property_status', ['rent','sale'])->nullable();
+            $table->enum('property_status', ['rent', 'sale'])->nullable();
             $table->datetime('date')->nullable();
             $table->string('property_name', 100)->nullable();
             $table->string('property_address', 100)->nullable();
@@ -29,6 +30,7 @@ return new class extends Migration
             $table->json('floor_plan')->nullable();
             $table->json('floor_plan_details')->nullable();
             $table->string('property_video_url', 100)->nullable();
+            $table->string('property_video_thmbnail', 100)->nullable();
             $table->string('map_location_url', 100)->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();

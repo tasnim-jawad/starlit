@@ -7,19 +7,15 @@ use Illuminate\Support\Facades\Schema;
 return new class extends Migration
 {
     /**
-     php artisan migrate --path='\App\Modules\Management\PropertyManagement\Property\Database\create_property_customer_reviews_table.php'
+     php artisan migrate --path='\App\Modules\Management\PropertyView\Database\create_property_views_table.php'
      * Run the migrations.
      */
     public function up(): void
     {
-        Schema::create('property_customer_reviews', function (Blueprint $table) {
+        Schema::create('property_views', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('property_id')->nullable();
-            $table->string('comment', 100)->nullable();
-            $table->string('name', 100)->nullable();
-            $table->string('email', 50)->nullable();
-            $table->string('website', 100)->nullable();
-            $table->integer('rating')->nullable();
+            $table->bigInteger('user_id')->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 50)->nullable();
@@ -34,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('property_customer_reviews');
+        Schema::dropIfExists('property_views');
     }
 };

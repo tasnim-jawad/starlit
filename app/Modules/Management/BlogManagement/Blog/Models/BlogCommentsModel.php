@@ -1,16 +1,16 @@
 <?php
 
-namespace App\Modules\Management\PropertyManagement\Property\Models;
+namespace App\Modules\Management\BlogManagement\Blog\Models;
 
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
 
-class PropertyCustomerReviewModel  extends EloquentModel
+class BlogCommentsModel  extends EloquentModel
 {
     use SoftDeletes;
-    protected $table = "property_customer_reviews";
+    protected $table = "blog_comments";
     protected $guarded = [];
 
     protected static function booted()

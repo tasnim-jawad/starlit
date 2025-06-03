@@ -85,3 +85,6 @@ details body
 
 starlit --
 select_fields - in details show in data details page
+
+
+placeholder add 

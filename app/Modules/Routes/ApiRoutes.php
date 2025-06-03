@@ -36,8 +36,7 @@ include_once base_path("app/Modules/Management/TestimonialManagement/Testimonial
 include_once base_path("app/Modules/Management/BlogManagement/BlogCategory/Routes/Route.php");
 include_once base_path("app/Modules/Management/CustomPageManagement/CustomPage/Routes/Route.php");
 include_once base_path("app/Modules/Management/NewsletterManagement/Newsletter/Routes/Route.php");
-include_once base_path("app/Modules/Management/ImageGallaryManagement/ImageGallary/Routes/Route.php");
-include_once base_path("app/Modules/Management/VideoGallaryManagement/VideoGallary/Routes/Route.php");
 include_once base_path("app/Modules/Management/ContactManagement/Contact/Routes/Route.php");
-include_once base_path("app/Modules/Management/ImageGallaryManagement/ImageGallaryCategory/Routes/Route.php");
-include_once base_path("app/Modules/Management/VideoGallaryManagement/VideoGallaryCategory/Routes/Route.php");
+include_once base_path("app/Modules/Management/GalleryManagement/GalleryCategory/Routes/Route.php");
+include_once base_path("app/Modules/Management/GalleryManagement/ImageGallery/Routes/Route.php");
+include_once base_path("app/Modules/Management/GalleryManagement/VideoGallery/Routes/Route.php");

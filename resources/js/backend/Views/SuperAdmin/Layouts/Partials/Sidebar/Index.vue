@@ -94,41 +94,81 @@
           },
         ]"
       />
-
       <side-bar-drop-down-menus
         :icon="`fa fa-plus`"
-        :menu_title="`Gallary Management`"
+        :menu_title="`Gallery Management`"
         :menus="[
+          // {
+          //   route_name: `AllGalleryCategory`,
+          //   title: `Gallery Category`,
+          //   icon: `zmdi zmdi-dot-circle-alt`,
+          // },
           {
-            route_name: `AllImageGallary`,
-            title: `Image Gallary`,
+            route_name: `AllImageGallery`,
+            title: `Image Gallery`,
             icon: `zmdi zmdi-dot-circle-alt`,
           },
           {
-            route_name: `AllVideoGallary`,
-            title: `Video Gallary`,
+            route_name: `AllVideoGallery`,
+            title: `Video Gallery `,
             icon: `zmdi zmdi-dot-circle-alt`,
           },
         ]"
       />
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`Banner`"
+        :route_name="`AllBanner`"
+      />
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`AboutUs`"
+        :route_name="`AllAboutUs`"
+      />
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`AtAGlance`"
+        :route_name="`AllAtAGlance`"
+      />
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`OurTeam`"
+        :route_name="`AllOurTeam`"
+      />
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`TodaySells`"
+        :route_name="`AllTodaySells`"
+      />
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`OurService`"
+        :route_name="`AllOurService`"
+      />
 
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`Testimonial`"
+        :route_name="`AllTestimonial`"
+      />
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`CustomPage`"
+        :route_name="`AllCustomPage`"
+      />
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`Newsletter`"
+        :route_name="`AllNewsletter`"
+      />
 
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`Banner`"  :route_name="`AllBanner`" />
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`AboutUs`"  :route_name="`AllAboutUs`" />
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`AtAGlance`"  :route_name="`AllAtAGlance`" />
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`OurTeam`"  :route_name="`AllOurTeam`" />
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`TodaySells`"  :route_name="`AllTodaySells`" />
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`OurService`"  :route_name="`AllOurService`" />
+      <side-bar-single-menu
+        :icon="`fa fa-plus`"
+        :menu_title="`Contact`"
+        :route_name="`AllContact`"
+      />
 
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`Testimonial`"  :route_name="`AllTestimonial`" />
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`CustomPage`"  :route_name="`AllCustomPage`" />
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`Newsletter`"  :route_name="`AllNewsletter`" />
-
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`Contact`"  :route_name="`AllContact`" />
-
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`ImageGallaryCategory`"  :route_name="`AllImageGallaryCategory`" />
-<side-bar-single-menu :icon="`fa fa-plus`" :menu_title="`VideoGallaryCategory`"  :route_name="`AllVideoGallaryCategory`" />
-<!-- Management end -->
+      <!-- Management end -->
     </ul>
   </div>
 </template>

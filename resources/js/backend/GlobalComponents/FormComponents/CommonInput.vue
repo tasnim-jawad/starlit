@@ -45,6 +45,7 @@
           :id="name"
           :value="value"
           @change="errorReset"
+          :placeholder="placeholder"
         />
         <!-- </template> -->
       </div>
@@ -145,6 +146,11 @@ export default {
       required: false,
       type: String,
       default: null,
+    },
+    placeholder: {
+      required: false,
+      type: String,
+      default: "",
     },
   },
 

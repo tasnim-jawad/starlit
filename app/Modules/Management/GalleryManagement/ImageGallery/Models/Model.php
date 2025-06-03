@@ -1,16 +1,14 @@
 <?php
 
-namespace App\Modules\Management\PropertyManagement\Property\Models;
-
+namespace App\Modules\Management\GalleryManagement\ImageGallery\Models;
 
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
-
-class PropertyCustomerReviewModel  extends EloquentModel
+class Model extends EloquentModel
 {
     use SoftDeletes;
-    protected $table = "property_customer_reviews";
+    protected $table = "image_galleries";
     protected $guarded = [];
 
     protected static function booted()
@@ -34,11 +32,11 @@ class PropertyCustomerReviewModel  extends EloquentModel
         return $q->where('status', 'active');
     }
 
-    public function scopeInactive($q)
+     public function scopeInactive($q)
     {
         return $q->where('status', 'inactive');
     }
-    public function scopeTrased($q)
+     public function scopeTrased($q)
     {
         return $q->onlyTrashed();
     }
