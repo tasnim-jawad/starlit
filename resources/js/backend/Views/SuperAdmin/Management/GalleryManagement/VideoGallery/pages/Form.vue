@@ -78,6 +78,7 @@ export default {
     if (id) {
       this.set_fields(id);
     }
+    this.get_all_video_category();
   },
   methods: {
     ...mapActions(store, {
@@ -122,6 +123,22 @@ export default {
           window.s_alert("Data Successfully Created");
           this.$router.push({ name: `All${this.setup.route_prefix}` });
         }
+      }
+    },
+    get_all_video_category: async function () {
+      let response = await axios.get("gallery-categories?get_all=1&type=video");
+      if (response.data.status == "success") {
+        response = response.data.data;
+        let item_index = this.form_fields.findIndex(
+          (item) => item.name == "gallery_category_id"
+        );
+        this.form_fields[item_index].data_list = [];
+        response.forEach((item) => {
+          let dataList = {};
+          dataList.label = item.name;
+          dataList.value = item.id;
+          this.form_fields[item_index].data_list.push(dataList);
+        });
       }
     },
   },

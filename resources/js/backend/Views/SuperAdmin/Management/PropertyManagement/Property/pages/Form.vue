@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="submitHandler">
+    <form @submit.prevent="submitHandler" enctype="multipart/form-data">
       <div class="card">
         <div class="card-header d-flex justify-content-between">
           <h5 class="text-capitalize">
@@ -36,9 +36,7 @@
               v-bind:key="index"
             >
               <common-input
-                v-if="
-                  form_field.type !== 'file'
-                "
+                v-if="form_field.type !== 'file'"
                 :label="form_field.label"
                 :type="form_field.type"
                 :name="form_field.name"
@@ -49,7 +47,7 @@
                 :row_col_class="form_field.row_col_class"
               />
               <common-input
-              v-else-if="form_field.type === 'file' && !form_field.multiple"
+                v-else-if="form_field.type === 'file' && !form_field.multiple"
                 :label="form_field.label"
                 :type="form_field.type"
                 :name="form_field.name"

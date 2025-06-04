@@ -44,6 +44,7 @@ class DataStoreValidation extends FormRequest
         return [
             'title' => 'required | sometimes',
             'image' => 'required | sometimes',
+            'gallery_category_id' => 'required | sometimes',
             'type' => 'required | sometimes',
             'status' => ['sometimes', Rule::in(['active', 'inactive'])],
         ];

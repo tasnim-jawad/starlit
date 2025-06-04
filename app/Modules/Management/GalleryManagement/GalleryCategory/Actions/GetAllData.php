@@ -22,12 +22,17 @@ class GetAllData
 
             $data = self::$model::query();
 
+
+            if (request()->has('type') && request()->input('type')) {
+                $condition['type'] = request()->input('type');
+            }
+
             if (request()->has('search') && request()->input('search')) {
                 $searchKey = request()->input('search');
                 $data = $data->where(function ($q) use ($searchKey) {
-    $q->where('name', 'like', '%' . $searchKey . '%');    
+                    $q->where('name', 'like', '%' . $searchKey . '%');    
 
-    $q->orWhere('type', 'like', '%' . $searchKey . '%');              
+                    $q->orWhere('type', 'like', '%' . $searchKey . '%');              
 
                 });
             }

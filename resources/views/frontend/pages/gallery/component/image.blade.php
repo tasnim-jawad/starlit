@@ -11,18 +11,21 @@
         </div>
         <div class="row ltn__product-slider-item-four-active-full-width-d">
             <!-- ltn__product-item -->
-            <div class="col-lg-4">
-                <div class="ltn__product-item ltn__product-item-4 text-center---">
-                    <div class="product-img">
-                        <img src="{{ asset('assets/frontend') }}/img/product-3/1.jpg" alt="#">
-                    </div>
-                    <div class="product-info">
-                        <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
+            @foreach ($images as $image)
+                <div class="col-lg-4">
+                    <div class="ltn__product-item ltn__product-item-4 text-center---">
+                        <div class="product-img">
+                            <img src="{{ asset($image?->image ?? 'uploads/default.jpg') }}" alt="image gallery">
+                        </div>
+                        <div class="product-info">
+                            <h2 class="product-title"><a href="product-details.html">{{$image?->title}}</a></h2>
+                        </div>
                     </div>
                 </div>
-            </div>
+                
+            @endforeach
             <!-- ltn__product-item -->
-            <div class="col-lg-4">
+            {{-- <div class="col-lg-4">
                 <div class="ltn__product-item ltn__product-item-4 text-center---">
                     <div class="product-img">
                         <img src="{{ asset('assets/frontend') }}/img/product-3/2.jpg" alt="#">
@@ -42,7 +45,7 @@
                         <h2 class="product-title"><a href="product-details.html">New Apartment Nice View</a></h2>
                     </div>
                 </div>
-            </div> 
+            </div>  --}}
             <!--  -->
         </div>
         <div>

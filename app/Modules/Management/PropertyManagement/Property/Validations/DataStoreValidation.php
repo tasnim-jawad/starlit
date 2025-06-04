@@ -42,7 +42,7 @@ class DataStoreValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'banner_image' => 'required | sometimes',
+            'banner_image' => 'required | sometimes|array',
             'property_video_thmbnail' => 'required | sometimes',
             'property_group_id' => 'required | sometimes',
             'property_category_id' => 'required | sometimes',
@@ -53,7 +53,7 @@ class DataStoreValidation extends FormRequest
             'property_description' => 'required | sometimes',
             'property_detail' => 'required | sometimes',
             'facts_and_features' => 'required | sometimes',
-            'gallery' => 'required | sometimes',
+            'gallery' => 'required | sometimes|array',
             'amenities' => 'required | sometimes',
             'floor_plan' => 'required | sometimes',
             'floor_plan_details' => 'required | sometimes',

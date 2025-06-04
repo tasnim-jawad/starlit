@@ -17,7 +17,7 @@
       />
 
       <div class="uploaded_image_preview my-2 d-flex gap-1 flex-wrap">
-        <!-- {{ component_images }} -->
+        {{ component_images }}
         <template v-for="(image, index) in component_images" :key="image">
           <div class="position-relative my-1">
             <img
@@ -50,7 +50,7 @@ export default {
   props: {
     name: {
       required: true,
-      default: "selected_images",
+      default: "[]",
     },
     classNames: {
       default: "form-control",

@@ -17,7 +17,7 @@
                         <div class="col-lg-4">
                             <div class="ltn__product-item ltn__product-item-4 text-center---">
                                 <div class="product-img">
-                                    <a href="{{ route('properties_details', $property->id) }}"><img src="{{ isset($property?->banner_image[0]) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>
+                                    <a href="{{ route('properties_details', $property->id) }}"><img src="{{ count($property?->banner_image) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>
                                     <div class="product-badge">
                                         <ul>
                                             <li class="sale-badge bg-green">{{ $property?->property_status }}</li>

@@ -98,11 +98,11 @@
         :icon="`fa fa-plus`"
         :menu_title="`Gallery Management`"
         :menus="[
-          // {
-          //   route_name: `AllGalleryCategory`,
-          //   title: `Gallery Category`,
-          //   icon: `zmdi zmdi-dot-circle-alt`,
-          // },
+          {
+            route_name: `AllGalleryCategory`,
+            title: `Gallery Category`,
+            icon: `zmdi zmdi-dot-circle-alt`,
+          },
           {
             route_name: `AllImageGallery`,
             title: `Image Gallery`,

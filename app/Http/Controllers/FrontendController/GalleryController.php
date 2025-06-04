@@ -5,22 +5,32 @@ namespace App\Http\Controllers\FrontendController;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Modules\Management\PropertyManagement\PropertyCategory\Models\Model as PropertyCategory;
+use App\Modules\Management\GalleryManagement\ImageGallery\Models\Model as ImageGallery;
+use App\Modules\Management\GalleryManagement\VideoGallery\Models\Model as VideoGallery;
 
 class GalleryController extends Controller
 {
     public function index()
     {
-        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();
+        $images = ImageGallery::inRandomOrder()->take(3)->get();
+        $videos = VideoGallery::inRandomOrder()->take(3)->get();
+
         return view('frontend.pages.gallery.gallery',
-            compact('property_category_list')
+            compact('images','videos')
         );
     }
     public function image()
     {
-        return view('frontend.pages.gallery.image.image');
+        $images = ImageGallery::inRandomOrder()->paginate(12);
+        return view('frontend.pages.gallery.image.image',
+            compact('images')
+        );
     } 
     public function video()
     {
-        return view('frontend.pages.gallery.video.video');
+        $videos = VideoGallery::inRandomOrder()->paginate(12);
+        return view('frontend.pages.gallery.video.video',
+            compact('videos')
+        );
     } 
 }

@@ -37,3 +37,4 @@
 ** property store Add floor plan details er shathe flore plane linked kora hoy ni  .
 ** property thumbnail image store kora niye kaj kora hoyni
 
+**image gallery edit problem
