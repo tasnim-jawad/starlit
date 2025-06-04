@@ -11,6 +11,29 @@ class StoreData
         try {
             $requestData = $request->validated();
 
+            // Handle YouTube URL embedding
+            if (!empty($requestData['video_url'])) {
+                $videoUrl = $requestData['video_url'];
+                $parsedUrl = parse_url($videoUrl);
+
+                $videoId = null;
+
+                // Handle full URL: https://www.youtube.com/watch?v=VIDEO_ID
+                if (strpos($parsedUrl['host'], 'youtube.com') !== false && isset($parsedUrl['query'])) {
+                    parse_str($parsedUrl['query'], $queryParams);
+                    $videoId = $queryParams['v'] ?? null;
+                }
+
+                // Handle short URL: https://youtu.be/VIDEO_ID
+                if (strpos($parsedUrl['host'], 'youtu.be') !== false) {
+                    $videoId = ltrim($parsedUrl['path'], '/');
+                }
+
+                if ($videoId) {
+                    $requestData['video_url'] = 'https://www.youtube.com/embed/' . $videoId;
+                }
+            }
+
             // Only allow mp4 video uploads
             if ($request->hasFile('video_file')) {
                 $video = $request->file('video_file');
