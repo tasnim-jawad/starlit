@@ -18,7 +18,7 @@ class UpdateData
             $requestData['floor_plan'] = $requestData['floor_plan'] ?? [];
             $requestData['floor_plan_details'] = $requestData['floor_plan_details'] ?? [];
 
-            // dd($requestData);
+          
 
             $requestData['banner_image'] = $data->banner_image ?? [];
             if ($request->hasFile('banner_image')) {
@@ -27,6 +27,7 @@ class UpdateData
                     $requestData['banner_image'][] = uploader($banner_image, 'uploads/property/banner_image/' . $currentDate);
                 }
             }
+            // dd($requestData);?
             $requestData['gallery'] = $data->gallery ?? [];
             if ($request->hasFile('gallery')) {
                 foreach ($request->file('gallery') as $key => $gallery) {

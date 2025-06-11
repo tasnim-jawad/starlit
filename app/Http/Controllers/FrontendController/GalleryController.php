@@ -21,7 +21,8 @@ class GalleryController extends Controller
     }
     public function image()
     {
-        $images = ImageGallery::inRandomOrder()->paginate(12);
+        $images = ImageGallery::with('category')->get();
+        // dd($images);
         return view('frontend.pages.gallery.image.image',
             compact('images')
         );

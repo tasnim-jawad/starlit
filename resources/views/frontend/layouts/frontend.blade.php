@@ -71,6 +71,23 @@
             buttons.forEach(btn => btn.classList.remove('active'));
             // Add 'active' class to the clicked button
             button.classList.add('active');
+
+            // Get filter value
+            const filter = button.getAttribute('data-filter');
+
+            // Show/hide product items
+            document.querySelectorAll('.image_container').forEach(item => {
+                // Get the category of the item
+                const category = item.getAttribute('data-category');
+                // Check if the item matches the filter
+                if (filter === 'all') {
+                    item.style.display = '';
+                } else if (category === filter) {
+                    item.style.display = '';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
         }
     </script>
     <!-- Bootstrap JS (Optional, for interactive components) -->

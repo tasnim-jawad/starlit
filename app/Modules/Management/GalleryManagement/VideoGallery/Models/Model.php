@@ -5,6 +5,7 @@ namespace App\Modules\Management\GalleryManagement\VideoGallery\Models;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Modules\Management\GalleryManagement\GalleryCategory\Models\Model as GalleryCategory;
 class Model extends EloquentModel
 {
     use SoftDeletes;
@@ -25,6 +26,11 @@ class Model extends EloquentModel
             }
             $data->save();
         });
+    }
+
+    public function category()
+    {
+        return $this->belongsTo(GalleryCategory::class, 'gallery_category_id');
     }
 
     public function scopeActive($q)

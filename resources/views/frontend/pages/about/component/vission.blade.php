@@ -19,7 +19,7 @@
                 <div class="ltn__testimonial-item ltn__testimonial-item-7">
                     <div class="ltn__testimoni-info">
                         <p class="equal-box"><i class="flaticon-left-quote-1"></i> 
-                            {{ $our_vission?->description}}</p>
+                            <span>{!! $our_vission?->description !!}</span></p>
                         </p>
                     </div>
                 </div>
