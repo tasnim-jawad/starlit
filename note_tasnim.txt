@@ -4,7 +4,7 @@
 
 ---------------- frontend ----------------
 ** multiple image show korano hoy ni
-** today_sale -  multiple image set upload kora jacche na 
+** today_sale - multiple image set upload kora jacche na 
 ** today_sale -  gallery image set kora niye shomossa
 ** property cad - taka , image, video add problem hoche  (count add korte hobe abong link korte hobe )
 ** property add problem - textarea is toooo long . need to change type 

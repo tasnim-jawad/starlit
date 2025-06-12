@@ -203,11 +203,11 @@ class PropertiesController extends Controller
         try {
             $validated = $request->validate([
                 'property_id' => 'required|exists:properties,id',
-                'comment' => 'nullable|string',
-                'name' => 'nullable|string|max:100',
-                'email' => 'nullable|email|max:50',
+                'comment' => 'required|string',
+                'name' => 'required|string|max:100',
+                'email' => 'required|email|max:50',
                 'website' => 'nullable|string|max:100',
-                'rating' => 'nullable|integer|min:1|max:5',
+                'rating' => 'required|integer|min:1|max:5',
             ]);
         
             $review = new PropertyCustomerReviewModel();
@@ -216,7 +216,7 @@ class PropertiesController extends Controller
             $review->name = $request->input('name');
             $review->email = $request->input('email');
             $review->website = $request->input('website');
-            $review->rating = $request->input('rating');
+            $review->rating = $request->input('rating') ?? 5;
             $review->creator = auth()->id() ?? 0; // 0 if guest
             $review->save();
             // dd($review);

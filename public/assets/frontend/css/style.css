@@ -10564,7 +10564,7 @@ blockquote {
   max-width: 100%;
 
   min-height: 350px;
-  max-height: 350px;
+  /* max-height: 350px; */
   overflow: hidden;
   
   padding-bottom: 10px;
@@ -12096,12 +12096,21 @@ input.cart-plus-minus-box {
     margin-left: 30px; }
 
   .equal-box {
-    height: 500px; /* Set a fixed height */
-    width: 400px;   /* Ensure it spans the full column width */
+    /* height: 500px;  */
+    /* width: 400px;    */
     object-fit: contain;
     display: flex;
     align-items: center; /* Optional: Center content vertically */
     justify-content: center; /* Optional: Center content horizontally */
+}
+.equal-box span {
+  display: -webkit-box;
+  -webkit-line-clamp: 14; /* Adjust this number to fit ~500px */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  line-height: 1.5em;
+  max-height: 100%;
 }
 
 .about-img-right {

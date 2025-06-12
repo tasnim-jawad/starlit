@@ -17,7 +17,7 @@
                         <div class="col-lg-4">
                             <div class="ltn__product-item ltn__product-item-4 text-center---">
                                 <div class="product-img">
-                                    <a href="{{ route('properties_details', $property->id) }}"><img src="{{ count($property?->banner_image) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>
+                                    <a href="{{ route('properties_details', $property->id) }}"><img src="{{  is_countable($property?->banner_image) && count($property?->banner_image) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>
                                     <div class="product-badge">
                                         <ul>
                                             <li class="sale-badge bg-green">{{ $property?->property_status }}</li>
@@ -45,7 +45,7 @@
                                 </div>
                                 <div class="product-info">
                                     <div class="product-price">
-                                        <span>$34,900<label>/Month</label></span>
+                                        <span>৳ {{ $property?->price ?? 00 }} <label>/Month</label></span>
                                     </div>
                                     <h2 class="product-title"><a href="{{ route('properties_details', $property->id) }}"> {{ $property?->property_name }}</a></h2>
                                     <div class="product-description">

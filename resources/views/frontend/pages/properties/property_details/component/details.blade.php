@@ -20,7 +20,7 @@
                                 @endif
                             </li>
                             <li>
-                                <a href="#"><i class="far fa-comments"></i>35 Comments</a>
+                                <a href="#"><i class="far fa-comments"></i>{{count($property_customer_reviews)}} Comments</a>
                             </li>
                         </ul>
                     </div>
@@ -219,8 +219,30 @@
                                             </div>
                                             <div class="col-lg-12">
                                                 <div class="product-details-apartments-info-list  section-bg-1">
+                                                    @php
+                                                        $floor_details = collect($property?->floor_plan_details ?? [])
+                                                            ->where('floor_number', $floor['floor_number'])
+                                                            ->values(); // reindex
+
+                                                        $chunks = array_chunk($floor_details->all(), ceil($floor_details->count() / 2));
+                                                    @endphp
                                                     <div class="row">
-                                                        <div class="col-lg-6">
+                                                        @foreach($chunks as $chunk)
+                                                                <div class="col-lg-6">
+                                                                    <div class="apartments-info-list apartments-info-list-color mt-40---">
+                                                                        <ul>
+                                                                            @foreach($chunk as $floor_detail)
+                                                                                <li>
+                                                                                    <label>{{ $floor_detail['title'] ?? 'N/A' }}</label>
+                                                                                    <span>{{ $floor_detail['description'] ?? 'N/A' }}</span>
+                                                                                </li>
+                                                                            @endforeach
+                                                                            {{-- <li><label>{{ $floor_detail['title'] ?? 'N/A' }}</label> <span>{{ $floor_detail['description'] ?? 'N/A' }}</span></li> --}}
+                                                                        </ul>
+                                                                    </div>
+                                                                </div>
+                                                        @endforeach
+                                                        {{-- <div class="col-lg-6">
                                                             <div class="apartments-info-list apartments-info-list-color mt-40---">
                                                                 <ul>
                                                                     <li><label>Total Area</label> <span>2800 Sq. Ft</span></li>
@@ -235,7 +257,7 @@
                                                                     <li><label>Lounge</label> <span>650 Sq. Ft</span></li>
                                                                 </ul>
                                                             </div>
-                                                        </div>
+                                                        </div> --}}
                                                     </div>
                                                 </div>
                                             </div>
@@ -481,8 +503,8 @@
                             </div>
                         </div>
                         <!-- comment-reply -->
-                        <div class="ltn__comment-reply-area ltn__form-box mb-30">
-                            @if ($errors->any())
+                        <div id="reviewFormWrapper"  class="ltn__comment-reply-area ltn__form-box mb-30">
+                            {{-- @if ($errors->any())
                                 <div class="alert alert-danger">
                                     <ul>
                                         @foreach ($errors->all() as $error)
@@ -490,8 +512,8 @@
                                         @endforeach
                                     </ul>
                                 </div>
-                            @endif
-                            <form action="{{ route('property_customer_review') }}" method="POST">
+                            @endif --}}
+                            <form id="review_form" action="{{ route('property_customer_review') }}" method="POST">
                                 @csrf
                                 <input type="hidden" name="property_id" value="{{ $property->id }}">
                                 
@@ -509,21 +531,36 @@
                                             </ul>
                                             <input type="hidden" name="rating" id="rating" value="5">
                                         </div>
+                                        @error('rating')
+                                            <small class="text-danger">{{ $message }}</small>
+                                        @enderror
                                     </div>
                                 </div>
                                 <div class="input-item input-item-textarea ltn__custom-icon">
                                     <textarea name="comment" placeholder="Type your comments...."></textarea>
+                                    @error('comment')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                                <div class="input-item input-item-name ltn__custom-icon">
-                                    <input type="text" name="name" placeholder="Type your name....">
+                                <div class="input-item input-item-name ltn__custom-icon mb-3" >
+                                    <input class="mb-0" type="text" name="name" placeholder="Type your name....">
+                                    @error('name')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                                <div class="input-item input-item-email ltn__custom-icon">
-                                    <input type="email" name="email" placeholder="Type your email....">
+                                <div class="input-item input-item-email ltn__custom-icon mb-3">
+                                    <input class="mb-0" type="email" name="email" placeholder="Type your email....">
+                                    @error('email')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                                <div class="input-item input-item-website ltn__custom-icon">
-                                    <input type="text" name="website" placeholder="Type your website....">
+                                <div class="input-item input-item-website ltn__custom-icon mb-3">
+                                    <input class="mb-0" type="text" name="website" placeholder="Type your website....">
+                                    @error('website')
+                                        <small class="text-danger">{{ $message }}</small>
+                                    @enderror
                                 </div>
-                                <label class="mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label>
+                                {{-- <label class="mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label> --}}
                                 <div class="btn-wrapper">
                                     <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
                                 </div>
@@ -564,6 +601,17 @@
                     });
                 });
             });
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            @if ($errors->any())
+                setTimeout(function () {
+                    const wrapper = document.getElementById('reviewFormWrapper');
+                    if (wrapper) {
+                        wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 100); // Delay lets browser finish default scroll first
+            @endif
         });
     </script>
 @endpush

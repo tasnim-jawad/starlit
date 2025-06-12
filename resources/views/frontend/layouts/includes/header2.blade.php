@@ -7,8 +7,8 @@
                 <div class="col-md-7">
                     <div class="ltn__top-bar-menu">
                         <ul>
-                            <li><a href="mailto:info@webmail.com?Subject=Flower%20greetings%20to%20you"><i class="icon-mail"></i> info@webmail.com</a></li>
-                            <li><a href="locations.html"><i class="icon-placeholder"></i> 15/A, Nest Tower, NYC</a></li>
+                            <li><a href="javascript:void(0)" class="text-white"><i class="icon-mail"></i> info@webmail.com</a></li>
+                            <li><a href="javascript:void(0)" class="text-white"><i class="icon-placeholder"></i> House- 413, Road- 7, Avenue- 3, Mirpur DOHS, Dhaka-1216.</a></li>
                         </ul>
                     </div>
                 </div>
