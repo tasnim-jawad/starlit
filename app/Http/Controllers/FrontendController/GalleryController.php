@@ -29,7 +29,7 @@ class GalleryController extends Controller
     } 
     public function video()
     {
-        $videos = VideoGallery::inRandomOrder()->paginate(12);
+        $videos = VideoGallery::with('category')->get();
         return view('frontend.pages.gallery.video.video',
             compact('videos')
         );

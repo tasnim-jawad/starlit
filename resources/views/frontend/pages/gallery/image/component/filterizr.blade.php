@@ -1,7 +1,7 @@
 <div class="mb-25">
     <!-- Navigation Bar -->
     <div class="filterizer-font-size">
-        <ul class="nav" id="property_category_nav">
+        <ul class="nav" id="gallery_category_nav">
             <li class="nav-item">
                 <a class="nav-link" onclick="setActive(this)" href="#" data-filter="all">All</a>
             </li>
@@ -32,7 +32,7 @@
             const image_categories = categories.filter(item => item.type === 'image');
             console.log("image categories", image_categories);
             
-            const nav = document.getElementById('property_category_nav');
+            const nav = document.getElementById('gallery_category_nav');
             nav.innerHTML = ''; // Clear existing items
             
             // Add default "All" item
