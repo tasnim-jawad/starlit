@@ -63,7 +63,7 @@ Route::group([
     Route::get('/news/details/{slug}', 'FrontendController\NewsController@news_details')->name('news_details');
     Route::get('/news/category/{slug}', 'FrontendController\NewsController@news_category')->name('news_category');
     Route::get('/ajax/blog/search', 'FrontendController\NewsController@ajaxSearch')->name('ajax.blog.search');
-
+    Route::post('/blog-comment', 'FrontendController\NewsController@blog_comment')->name('blog_comment');
 
     Route::get('/contact', 'FrontendController\ContactController@index')->name('contact');
     Route::post('/contact', 'FrontendController\ContactController@store')->name('contact.store');

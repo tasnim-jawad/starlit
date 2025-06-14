@@ -12,7 +12,8 @@ class StoreData
             $requestData = $request->validated();
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
-                $requestData['image'] = uploader($image, 'uploads/gallery');
+                $currentDate = now()->format('Y/m');
+                $requestData['image'] = uploader($image, 'uploads/gallery/' . $currentDate);
             }
             if ($data = self::$model::query()->create($requestData)) {
                 return messageResponse('Item added successfully', $data, 201);

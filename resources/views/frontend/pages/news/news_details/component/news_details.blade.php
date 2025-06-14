@@ -24,7 +24,7 @@
                                     {{ \Carbon\Carbon::parse($blog->publish_date)->format('M d, Y') }}
                                 </li>
                                 <li>
-                                    <a href="#"><i class="far fa-comments"></i>35 Comments</a>
+                                    <a href="#"><i class="far fa-comments"></i>{{count($blog?->comments)}} Comments</a>
                                 </li>
                             </ul>
                         </div>
@@ -102,7 +102,7 @@
                         <h4 class="title-2">03 Comments</h4>
                         <div class="ltn__comment-inner">
                             <ul>
-                                <li>
+                                {{-- <li>
                                     <div class="ltn__comment-item clearfix">
                                         <div class="ltn__commenter-img">
                                             <img src="{{ asset('assets/frontend') }}/img/testimonial/Khondker-Abul-Qasem3.png"
@@ -136,49 +136,62 @@
                                             </div>
                                         </li>
                                     </ul>
-                                </li>
+                                </li> --}}
+                                @foreach ($blog?->comments as $comment)
                                 <li>
                                     <div class="ltn__comment-item clearfix">
                                         <div class="ltn__commenter-img">
-                                            <img src="{{ asset('assets/frontend') }}/img/testimonial/Abul-Kashem.png"
+                                            <img src="{{ asset('uploads/default_man.jpeg') }}"
                                                 alt="Image">
                                         </div>
                                         <div class="ltn__commenter-comment">
-                                            <h6><a href="#">Adam Smit</a></h6>
-                                            <span class="comment-date">25th May 2020</span>
-                                            <p>As we continue to grow, Starlite remains steadfast in its pursuit of
-                                                excellence. We are actively expanding our footprint into new markets,
-                                                exploring innovative building technologies</p>
-                                            <a href="#" class="ltn__comment-reply-btn"><i
-                                                    class="icon-reply-1"></i>Reply</a>
+                                            <h6><a href="#">{{$comment?->name ?? "Unknown"}}</a></h6>
+                                            <span class="comment-date">{{ \Carbon\Carbon::parse($comment?->created_at)->format('d M Y') }}</span>
+                                            <p>{{$comment?->comment}}</p>
+                                            {{-- <a href="#" class="ltn__comment-reply-btn"><i
+                                                    class="icon-reply-1"></i>Reply</a> --}}
                                         </div>
                                     </div>
                                 </li>
+                                @endforeach
                             </ul>
                         </div>
                     </div>
                     <hr>
                     <!-- comment-reply -->
-                    <div class="ltn__comment-reply-area ltn__form-box mb-60---">
+                    <div  id="commentFormWrapper" class="ltn__comment-reply-area ltn__form-box mb-60---">
                         <h4 class="title-2">Post Comment</h4>
-                        <form action="#">
+                        <form id="comment_form" action="{{ route('blog_comment') }}" method="POST">
+                            @csrf
+                            <input type="hidden" name="blog_id" value="{{ $blog->id }}">
+
                             <div class="input-item input-item-textarea ltn__custom-icon">
-                                <textarea placeholder="Type your comments...."></textarea>
+                                <textarea name="comment" placeholder="Type your comments...."></textarea>
+                                @error('comment')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
-                            <div class="input-item input-item-name ltn__custom-icon">
-                                <input type="text" placeholder="Type your name....">
+                            <div class="input-item input-item-name ltn__custom-icon mb-3" >
+                                <input class="mb-0" type="text" name="name" placeholder="Type your name....">
+                                @error('name')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
-                            <div class="input-item input-item-email ltn__custom-icon">
-                                <input type="email" placeholder="Type your email....">
+                            <div class="input-item input-item-email ltn__custom-icon mb-3">
+                                <input class="mb-0" type="email" name="email" placeholder="Type your email....">
+                                @error('email')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
-                            <div class="input-item input-item-website ltn__custom-icon">
-                                <input type="text" name="website" placeholder="Type your website....">
+                            <div class="input-item input-item-website ltn__custom-icon mb-3">
+                                <input class="mb-0" type="text" name="website" placeholder="Type your website....">
+                                @error('website')
+                                    <small class="text-danger">{{ $message }}</small>
+                                @enderror
                             </div>
-                            <label class="mb-0 input-info-save"><input type="checkbox" name="agree"> Save my name,
-                                email, and website in this browser for the next time I comment.</label>
+                            {{-- <label class="mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label> --}}
                             <div class="btn-wrapper">
-                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit"><i
-                                        class="far fa-comments"></i> Post Comment</button>
+                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
                             </div>
                         </form>
                     </div>
@@ -189,3 +202,19 @@
     </div>
 </div>
 <!-- PAGE DETAILS AREA END -->
+
+
+@push('js_start')
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            @if ($errors->any())
+                setTimeout(function () {
+                    const wrapper = document.getElementById('commentFormWrapper');
+                    if (wrapper) {
+                        wrapper.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                }, 100); // Delay lets browser finish default scroll first
+            @endif
+        });
+    </script>
+@endpush

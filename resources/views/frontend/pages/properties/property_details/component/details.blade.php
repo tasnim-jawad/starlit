@@ -224,7 +224,11 @@
                                                             ->where('floor_number', $floor['floor_number'])
                                                             ->values(); // reindex
 
-                                                        $chunks = array_chunk($floor_details->all(), ceil($floor_details->count() / 2));
+                                                        $chunks = [];
+
+                                                        if ($floor_details->count() > 0) {
+                                                            $chunks = array_chunk($floor_details->all(), ceil($floor_details->count() / 2));
+                                                        }
                                                     @endphp
                                                     <div class="row">
                                                         @foreach($chunks as $chunk)

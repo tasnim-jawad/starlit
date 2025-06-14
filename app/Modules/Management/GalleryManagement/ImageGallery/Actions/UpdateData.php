@@ -15,7 +15,8 @@ class UpdateData
             $requestData = $request->validated();
             if ($request->hasFile('image')) {
                 $image = $request->file('image');
-                $requestData['image'] = uploader($image, 'uploads/gallery');
+                $currentDate = now()->format('Y/m');
+                $requestData['image'] = uploader($image, 'uploads/team/' . $currentDate);
             }
             $data->update($requestData);
             return messageResponse('Item updated successfully', $data, 201);

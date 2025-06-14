@@ -9,7 +9,7 @@
                     <div class="ltn__top-bar-menu">
                         <ul>
                             <li><a href="javascript:void(0)" class="text-white"><i class="icon-mail"></i> starlithomesltd@gmail.com</a></li>
-                            <li><a href="javascript:void(0)" class="text-white"><i class="icon-placeholder"></i> House- 413, Road- 7, Avenue- 3, Mirpur DOHS, Dhaka-1216.</a></li>
+                            <li><a href="javascript:void(0)" class="text-white"><i class="icon-placeholder"></i> House#413, Road#7, Avenue#3, Mirpur DOHS, Dhaka-1216.</a></li>
                         </ul>
                     </div>
                 </div>

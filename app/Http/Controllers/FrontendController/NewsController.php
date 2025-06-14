@@ -6,6 +6,8 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Modules\Management\PropertyManagement\PropertyCategory\Models\Model as PropertyCategory;
+use App\Modules\Management\BlogManagement\Blog\Models\BlogCommentsModel as BlogComments;
+use App\Modules\Management\BlogManagement\Blog\Models\Model as Blog; // Assuming this is the correct namespace for BlogModel
 
 class NewsController extends Controller
 {
@@ -56,8 +58,8 @@ class NewsController extends Controller
     
     public function news_details($slug)
     {
-        $blog = DB::table('blogs')->where('slug', $slug)->first();
-
+        $blog = Blog::with('comments')->where('slug', $slug)->first();
+        // dd($blog);
         $blog_category = DB::table('blog_categories')
             ->leftJoin('blogs', 'blog_categories.id', '=', 'blogs.blog_category_id')
             ->select('blog_categories.*', DB::raw('COUNT(blogs.id) as blog_count'))
@@ -162,5 +164,39 @@ class NewsController extends Controller
         }
 
         return response($output);
+    }
+
+    public function blog_comment(Request $request)
+    {
+        // dd(request()->all());
+        try {
+            $validated = $request->validate([
+                'blog_id' => 'required|exists:blogs,id',
+                'comment' => 'required|string',
+                'name' => 'required|string|max:100',
+                'email' => 'required|email|max:50',
+                'website' => 'nullable|string|max:100',
+            ]);
+        
+            $comment = new BlogComments();
+            $comment->blog_id = $validated['blog_id'];
+            $comment->comment = $request->input('comment');
+            $comment->name = $request->input('name');
+            $comment->email = $request->input('email');
+            $comment->website = $request->input('website');
+            $comment->creator = auth()->id() ?? 0; // 0 if guest
+            $comment->save();
+            // dd($review);
+            return redirect()->back()->with('success', 'comment submitted successfully!');
+        
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            // Redirect back with errors
+            return redirect()->back()
+                ->withErrors($e->validator)
+                ->withInput();
+        } catch (\Throwable $th) {
+            // Optional: log or show error
+            return redirect()->back()->with('error', 'Something went wrong.');
+        }
     }
 }
