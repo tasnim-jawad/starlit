@@ -12,7 +12,7 @@
         <div class="row">
             <div class="col-lg-6 align-self-center">
                 <div class=" about-img-left">
-                    <img class="equal-box" src="{{ asset($our_vission?->primary_image) }}" alt="Our Vission Image">
+                    <img class="equal-box fixed_h_w mx-auto" src="{{ asset($our_vission?->primary_image) }}" alt="Our Vission Image">
                 </div>
             </div>
             <div class="col-lg-6">

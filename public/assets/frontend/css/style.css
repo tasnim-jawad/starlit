@@ -12103,6 +12103,7 @@ input.cart-plus-minus-box {
     align-items: center; /* Optional: Center content vertically */
     justify-content: center; /* Optional: Center content horizontally */
 }
+
 .equal-box span {
   display: -webkit-box;
   -webkit-line-clamp: 14; /* Adjust this number to fit ~500px */
@@ -12112,6 +12113,8 @@ input.cart-plus-minus-box {
   line-height: 1.5em;
   max-height: 100%;
 }
+/* .equal-box span span {
+  color: var(--ltn__primary-color); } */
 
 .about-img-right {
   margin-left: 30px; }

@@ -28,8 +28,14 @@ color: white;
 a{
     text-decoration: none;
 }
+
 @media (min-width: 1600px) {
     .ltn__slide-item-2 {
         max-height: 1500px;
     }
+}
+
+.fixed_h_w {
+    height: 500px;
+    width: 400px;
 }

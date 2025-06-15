@@ -20,7 +20,7 @@
             </div>
             <div class="col-lg-6 align-self-center">
                 <div class="about-img-right">
-                    <img class="equal-box" src="{{ asset($our_mission?->primary_image) }}" alt="Our Mission Image">
+                    <img class="equal-box fixed_h_w mx-auto" src="{{ asset($our_mission?->primary_image) }}" alt="Our Mission Image">
                 </div>
             </div>
             <!--  -->
