@@ -99,10 +99,11 @@
                         <h4 class="footer-title">Newsletter</h4>
                         <p>Subscribe to our weekly Newsletter and receive updates via email.</p>
                         <div class="footer-newsletter">
-                            <form action="#">
-                                <input type="email" name="email" placeholder="Email*">
+                            <form id="newsletter-form">
+                                <input id="newsletter-email" type="email" name="email" placeholder="Email*">
+                                <small id="newsletter-error" style="color: red;"></small> <!-- Display validation error -->
                                 <div class="btn-wrapper">
-                                    <button class="theme-btn-1 btn" type="submit"><i class="fas fa-location-arrow"></i></button>
+                                    <button class="theme-btn-1" type="submit"><i class="fa-solid fa-location-arrow"></i></button>
                                 </div>
                             </form>
                         </div>
@@ -135,3 +136,47 @@
     </div>
    </div>
 </footer>
+
+@push('js_start')
+<script>
+    async function onSubmitNewsletter(e) {
+        e.preventDefault();
+        const email = document.getElementById('newsletter-email').value;
+        const form = document.getElementById('newsletter-form');
+        const errorDiv = document.getElementById('newsletter-error');
+        errorDiv.innerText = ""; // Clear previous errors
+
+        try {
+            const response = await fetch('/api/v1/newsletters/store', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify({ email })
+            });
+
+            const data = await response.json();
+
+            if (response.ok) {
+                alert("Subscribed  successfully!");
+                form.reset();
+            } else if (response.status === 422) {
+                // Laravel validation errors
+                if (data.errors && data.errors.email) {
+                    errorDiv.innerText = data.errors.email[0];
+                } else {
+                    errorDiv.innerText = data.message || "Validation error.";
+                }
+            } else {
+                alert(data.message || "Something went wrong.");
+            }
+        } catch (err) {
+            console.error(err);
+            alert("Network or server error.");
+        }
+    }
+
+    document.getElementById('newsletter-form').addEventListener('submit', onSubmitNewsletter);
+</script>
+@endpush

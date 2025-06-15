@@ -42,7 +42,7 @@ class DataStoreValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'email' => 'required | sometimes | email',
+            'email' => 'required|email|unique:newsletters,email',
             'status' => ['sometimes', Rule::in(['active', 'inactive'])],
         ];
     }

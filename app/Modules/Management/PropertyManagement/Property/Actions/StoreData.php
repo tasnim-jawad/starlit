@@ -24,6 +24,8 @@ class StoreData
                     $requestData['banner_image'][$key] = uploader($banner_image, 'uploads/property/banner_image/' . $currentDate);
                 }
             }
+
+            
             if ($request->hasFile('gallery')) {
                 foreach ($request->file('gallery') as $key => $gallery) {
                     $currentDate = now()->format('Y/m');

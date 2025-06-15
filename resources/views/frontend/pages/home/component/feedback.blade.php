@@ -20,12 +20,14 @@
                                 </div> --}}
                                 <div class="ltn__testimoni-name-designation">
                                     <h5>{{$item?->name}}</h5>
-                                    <label>{{$item?->company_location}}</label>
-                                    <label>{{$item?->designation}}, {{ $item?->company}}</label>
+                                    <label>{{$item?->company_location}}, {{ $item?->company}}</label>
+                                    <label>{{$item?->designation}}</label>
                                 </div>
                             </div>
-                            <p><i class="flaticon-left-quote-1"></i> 
-                                {{$item?->feedback}}</p>
+                            <p >
+                                <i class="flaticon-left-quote-1"></i> 
+                                {!! strip_tags($item?->feedback, '<span><strong><em><b><i><u>') !!}
+                            </p>
                         </div>
                     </div>
                 </div>

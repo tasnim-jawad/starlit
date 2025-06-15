@@ -3,7 +3,7 @@
     <div class="ltn__img-slider-area pt-60 mb-60">
         <div class="container-fluid">
             <div class="row ltn__image-slider-5-active slick-arrow-1 slick-arrow-1-inner ltn__no-gutter-all">
-                @foreach ($property->banner_image as $item)
+                @foreach ($property->banner_image ?? [] as $item)
                 <div class="col-lg-12">
                     <div class="ltn__img-slide-item-4">
                         <a href="{{ asset($item) }}" data-rel="lightcase:myCollection">

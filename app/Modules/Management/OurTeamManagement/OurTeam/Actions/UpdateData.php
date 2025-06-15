@@ -13,6 +13,13 @@ class UpdateData
                 return messageResponse('Data not found...',$data, 404, 'error');
             }
             $requestData = $request->validated();
+
+            if ($request->hasFile('image')) {
+                $image = $request->file('image');
+                $currentDate = now()->format('Y/m');
+                $requestData['image'] = uploader($image, 'uploads/team/' . $currentDate);
+            }
+            
             $data->update($requestData);
             return messageResponse('Item updated successfully',$data, 201);
         } catch (\Exception $e) {

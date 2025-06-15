@@ -78,7 +78,11 @@
                         }"
                       >
                         <option value="">-- select --</option>
-                        <option v-for="(icon, i) in icons" :key="i" :value="icon.class">
+                        <option
+                          v-for="(icon, i) in icons"
+                          :key="i"
+                          :value="icon.class"
+                        >
                           {{ icon.title }}
                         </option>
                       </select>
@@ -187,6 +191,21 @@ export default {
       { class: "fa-solid fa-shopping-cart", title: "Shopping Cart" },
       { class: "fa-solid fa-lock", title: "Lock" },
       { class: "fa-solid fa-chart-bar", title: "Chart Bar" },
+      { class: "fa-solid fa-person-shelter", title: "Person Shelter" },
+      { class: "fa-solid fa-person-booth", title: "Person Booth" },
+      { class: "fa-solid fa-people-roof", title: "People Roof" },
+      { class: "fa-solid fa-restroom", title: "Restroom" },
+      { class: "fa-solid fa-kitchen-set", title: "Kitchen Set" },
+      { class: "fa-solid fa-faucet-drip", title: "Water Faucet" },
+      { class: "fa-solid fa-warehouse", title: "Warehouse" },
+      { class: "fa-solid fa-road", title: "Road" },
+      { class: "fa-solid fa-building", title: "Building" },
+      { class: "fa-solid fa-school", title: "School" },
+      { class: "fa-solid fa-building-columns", title: "Government Building" },
+      { class: "fa-solid fa-bed", title: "Bed" },
+      { class: "fa-solid fa-hospital", title: "Hospital" },
+      { class: "fa-solid fa-fan", title: "Fan" },
+      { class: "fa-solid fa-temperature-arrow-up", title: "High Temperature" },
     ],
   }),
   created: async function () {

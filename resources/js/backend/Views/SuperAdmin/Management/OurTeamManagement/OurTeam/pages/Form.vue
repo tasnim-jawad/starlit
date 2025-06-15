@@ -212,11 +212,30 @@ export default {
       this.param_id = id;
       await this.details(id);
       if (this.item) {
+        console.log("this.item", this.item.social_link);
+
         this.form_fields.forEach((field, index) => {
           Object.entries(this.item).forEach((value) => {
             if (field.name == value[0]) {
               this.form_fields[index].value = value[1];
             }
+          });
+        });
+
+        this.social_data = [];
+        let social_link = this.item.social_link;
+        // Parse if it's a JSON string
+        if (typeof social_link === "string") {
+          try {
+            social_link = JSON.parse(social_link);
+          } catch (e) {
+            social_link = [];
+          }
+        }
+        (social_link || []).forEach((element) => {
+          this.social_data.push({
+            icon: element.icon,
+            title: element.title,
           });
         });
       }

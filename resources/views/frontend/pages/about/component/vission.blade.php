@@ -12,14 +12,14 @@
         <div class="row">
             <div class="col-lg-6 align-self-center">
                 <div class=" about-img-left">
-                    <img class="equal-box" src="{{ asset($our_vission?->primary_image) }}" alt="Our Vission Image">
+                    <img class="equal-box fixed_h_w mx-auto" src="{{ asset($our_vission?->primary_image) }}" alt="Our Vission Image">
                 </div>
             </div>
             <div class="col-lg-6">
                 <div class="ltn__testimonial-item ltn__testimonial-item-7">
                     <div class="ltn__testimoni-info">
                         <p class="equal-box"><i class="flaticon-left-quote-1"></i> 
-                            {{ $our_vission?->description}}</p>
+                            <span>{!! $our_vission?->description !!}</span></p>
                         </p>
                     </div>
                 </div>

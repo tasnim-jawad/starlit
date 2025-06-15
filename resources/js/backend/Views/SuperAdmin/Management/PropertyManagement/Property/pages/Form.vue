@@ -1,6 +1,6 @@
 <template>
   <div>
-    <form @submit.prevent="submitHandler">
+    <form @submit.prevent="submitHandler" enctype="multipart/form-data">
       <div class="card">
         <div class="card-header d-flex justify-content-between">
           <h5 class="text-capitalize">
@@ -36,9 +36,7 @@
               v-bind:key="index"
             >
               <common-input
-                v-if="
-                  form_field.type !== 'file'
-                "
+                v-if="form_field.type !== 'file'"
                 :label="form_field.label"
                 :type="form_field.type"
                 :name="form_field.name"
@@ -49,7 +47,7 @@
                 :row_col_class="form_field.row_col_class"
               />
               <common-input
-              v-else-if="form_field.type === 'file' && !form_field.multiple"
+                v-else-if="form_field.type === 'file' && !form_field.multiple"
                 :label="form_field.label"
                 :type="form_field.type"
                 :name="form_field.name"
@@ -469,7 +467,44 @@
                 v-for="(floor_plan_details, index) in floor_plan_details_data"
                 :key="index"
               >
-                <div class="col-md-5">
+              <div class="col-md-2">
+                  <div class="form-group">
+                    <label for="">floor_number</label>
+                    <div class="mt-1 mb-3">
+                      <select
+                        class="form-control form-control-square mb-2"
+                        :name="`floor_plan_details[${index}][floor_number]`"
+                        v-model="floor_plan_details.floor_number"
+                        :class="{
+                          custom_error:
+                            errors['floor_plan_details'] &&
+                            errors['floor_plan_details'][index] &&
+                            errors['floor_plan_details'][index].floor_number,
+                        }"
+                      >
+                        <option value="">-- select --</option>
+                        <option
+                          v-for="(number_of_floor, i) in number_of_floors"
+                          :key="i"
+                          :value="number_of_floor.text"
+                        >
+                          {{ number_of_floor.text }}
+                        </option>
+                      </select>
+                    </div>
+                    <div
+                      v-if="
+                        errors['floor_plan_details'] &&
+                        errors['floor_plan_details'][index] &&
+                        errors['floor_plan_details'][index].floor_number
+                      "
+                      class="text-danger small"
+                    >
+                      {{ errors["floor_plan_details"][index].floor_number }}
+                    </div>
+                  </div>
+                </div>
+                <div class="col-md-4">
                   <div class="form-group">
                     <label for="">title</label>
                     <div class="mt-1 mb-3">
@@ -499,7 +534,7 @@
                     </div>
                   </div>
                 </div>
-                <div class="col-md-5">
+                <div class="col-md-4">
                   <div class="form-group">
                     <label for="">description</label>
                     <div class="mt-1 mb-3">
@@ -650,11 +685,13 @@ export default {
 
     //----------- for floor_plan_details list input ----------
     floor_plan_details_data_object: {
+      floor_number: "",
       title: "",
       description: "",
     },
     floor_plan_details_data: [
       {
+        floor_number: "",
         title: "",
         description: "",
       },
@@ -742,6 +779,7 @@ export default {
         if (this.item.floor_plan_details) {
           this.floor_plan_details_data = this.item.floor_plan_details.map(
             (floor_plan_details) => ({
+              floor_number: floor_plan_details.floor_number,
               title: floor_plan_details.title,
               description: floor_plan_details.description,
             })

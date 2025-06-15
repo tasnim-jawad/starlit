@@ -14,13 +14,13 @@
                 <div class="ltn__testimonial-item ltn__testimonial-item-7">
                     <div class="ltn__testimoni-info ">
                         <p class="equal-box"><i class="flaticon-left-quote-1"></i> 
-                            {{ $our_mission?->description}}</p>
+                            <span>{!! $our_mission?->description!!}</span></p>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 align-self-center">
                 <div class="about-img-right">
-                    <img class="equal-box" src="{{ asset($our_mission?->primary_image) }}" alt="Our Mission Image">
+                    <img class="equal-box fixed_h_w mx-auto" src="{{ asset($our_mission?->primary_image) }}" alt="Our Mission Image">
                 </div>
             </div>
             <!--  -->

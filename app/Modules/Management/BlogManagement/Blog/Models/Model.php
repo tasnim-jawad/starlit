@@ -7,6 +7,7 @@ use App\Modules\Management\BlogManagement\BlogCategory\Models\Model as BlogCateg
 // use App\Modules\Management\BlogPostCategory\Models\BlogPostCategoryModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use App\Modules\Management\BlogManagement\Blog\Models\BlogCommentsModel ; // Assuming this is the correct namespace for BlogCommentsModel
 
 class Model extends EloquentModel
 {
@@ -38,6 +39,11 @@ class Model extends EloquentModel
     public function blog_category()
     {
         return $this->belongsTo(BlogCategory::class, 'blog_category_id');
+    }
+
+    public function comments()
+    {
+        return $this->hasMany(BlogCommentsModel::class, 'blog_id');
     }
 
 

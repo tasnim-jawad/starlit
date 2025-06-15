@@ -11,7 +11,7 @@
         </div>
         <div class="row  ">
             @foreach ($our_team as $item)
-            <div class="col-lg-3">
+            <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="ltn__team-item ltn__team-item-3---">
                     <div class="team-img">
                         <img src="{{ asset($item->image) }}" alt="team_image">

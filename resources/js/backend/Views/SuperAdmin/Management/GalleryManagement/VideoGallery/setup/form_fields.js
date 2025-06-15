@@ -1,5 +1,12 @@
 export default [
   {
+    name: "gallery_category_id",
+    label: "Select Gallery category ",
+    type: "select",
+    value: "",
+    data_list: [],
+  },
+  {
     name: "title",
     label: "Enter your title",
     type: "text",

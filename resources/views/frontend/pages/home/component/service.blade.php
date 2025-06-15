@@ -18,7 +18,7 @@
                             <img src="{{ asset($item->image) }}" alt="#">
                         </div>
                         <div class="ltn__feature-info">
-                            <h3><a href="service-details.html">{{ $item?->title}}</a></h3>
+                            <h3><a href="/properties">{{ $item?->title}}</a></h3>
                             <p>{{$item?->description }}</p>
                             <a class="ltn__service-btn" href="{{$item?->url}}">Find A Home <i class="flaticon-right-arrow"></i></a>
                         </div>
