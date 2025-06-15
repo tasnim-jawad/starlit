@@ -211,15 +211,16 @@
                 <li class="active"><a  href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('about') }}">About</a></li>
                 <li><a href="{{ route('properties') }}">Property</a>
-                    <ul class="sub-menu">
+                    <ul class="sub-menu" id="property_gategory_2nd">
+                        {{-- <li><a href="{{ route('properties.ongoing') }}">Ongoing</a></li>
                         <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
                         <li><a href="{{ route('properties.comercial') }}">Comercial</a></li>
                         <li><a href="{{ route('properties.wellness') }}">Welmess Communities</a></li>
-                        <li><a href="{{ route('properties.classic') }}">Classic</a></li>
+                        <li><a href="{{ route('properties.classic') }}">Classic</a></li> --}}
                     </ul>
                 </li>
-                <li><a href="#">News</a></li>
-                <li><a href="contact.html">Contact</a></li>
+                <li><a href="{{ route('news') }}">News</a></li>
+                <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
         </div>
        
@@ -241,6 +242,7 @@
         .then(response => response.json())
         .then(data => {
             const container = document.getElementById('property_gategory');
+            const container_2nd = document.getElementById('property_gategory_2nd');
             container.innerHTML = ''; // Clear existing content if any
             console.log(data);
             
@@ -248,6 +250,7 @@
                 const li = document.createElement('li');
                 li.innerHTML = `<a href="/properties/category-wise/${category.name}">${category.name}</a>`;
                 container.appendChild(li);
+                container_2nd.appendChild(li);
             });
         })
         .catch(error => {
