@@ -21,10 +21,10 @@
                                 </li>
                                 <li class="ltn__blog-date">
                                     <i class="far fa-calendar-alt"></i>
-                                    {{ \Carbon\Carbon::parse($blog->publish_date)->format('M d, Y') }}
+                                    {{ optional($blog?->publish_date ?? $blog?->created_at ? \Carbon\Carbon::parse($blog?->publish_date ?? $blog?->created_at) : null)?->format('M d, Y') ?? 'N/A' }}
                                 </li>
                                 <li>
-                                    <a href="#"><i class="far fa-comments"></i>{{count($blog?->comments)}} Comments</a>
+                                    <a href="#"><i class="far fa-comments"></i>{{count($blog?->comments ?? [])}} Comments</a>
                                 </li>
                             </ul>
                         </div>
@@ -99,7 +99,7 @@
                                     technologies</p>
                             </div>
                         </div> --}}
-                        <h4 class="title-2">03 Comments</h4>
+                        <h4 class="title-2">{{count($blog?->comments ?? [])}} Comments</h4>
                         <div class="ltn__comment-inner">
                             <ul>
                                 {{-- <li>
@@ -137,7 +137,7 @@
                                         </li>
                                     </ul>
                                 </li> --}}
-                                @foreach ($blog?->comments as $comment)
+                                @foreach ($blog?->comments ?? []  as $comment)
                                 <li>
                                     <div class="ltn__comment-item clearfix">
                                         <div class="ltn__commenter-img">

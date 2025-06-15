@@ -4,9 +4,9 @@
         <div class="row">
             <div class="text-center pb-20">
                 @if (request()->routeIs('news_category'))
-                    <h2>{{ ucfirst($category->title ?? '') }} News</h2>
+                    <h2>{{ ucfirst($category->title ?? '') }} Blog</h2>
                 @else
-                    <h2>Starlite News</h2>
+                    <h2>Starlite Blogs</h2>
                 @endif
 
             </div>
@@ -25,34 +25,34 @@
                                 <div class="ltn__blog-meta">
                                     <ul>
                                         <li class="ltn__blog-category">
-                                            <a href="#">{{ $blog->category_name ?? 'Starlit' }}</a>
+                                            <a href="#">{{ $blog?->category_name ?? 'Starlit' }}</a>
                                         </li>
                                     </ul>
                                 </div>
-                                <h2 class="ltn__blog-title">{{ $blog->title ?? '' }}</h2>
+                                <h2 class="ltn__blog-title">{{ $blog?->title ?? '' }}</h2>
                                 <div class="ltn__blog-meta">
                                     <ul>
-                                        <li>
+                                        {{-- <li>
                                             <a href="#"><i class="far fa-eye"></i>232 Views</a>
-                                        </li>
+                                        </li> --}}
                                         <li>
-                                            <a href="#"><i class="far fa-comments"></i>35 Comments</a>
+                                            <a href="#"><i class="far fa-comments"></i>{{count($blog?->comments ?? [])}} Comments</a>
                                         </li>
                                         <li class="ltn__blog-date">
                                             <i class="far fa-calendar-alt"></i>
-                                            {{ \Carbon\Carbon::parse($blog->publish_date)->format('M d, Y') }}
+                                            {{ \Carbon\Carbon::parse($blog?->publish_date)->format('M d, Y') }}
                                         </li>
                                     </ul>
                                 </div>
                                 <p>
-                                    {!! \Illuminate\Support\Str::limit(strip_tags($blog->description ?? ''), 200) !!}
+                                    {!! \Illuminate\Support\Str::limit(strip_tags($blog?->description ?? ''), 200) !!}
                                 </p>
                                 <div class="ltn__blog-meta-btn">
                                     <div class="ltn__blog-meta">
                                         <ul>
                                             <li class="ltn__blog-author">
-                                                <a href="#"><img src="{{ asset('assets/frontend') }}/img/blog/author.jpg"
-                                                        alt="#">By: {{ $blog->writer ?? '' }}</a>
+                                                <a href="#"><img src="{{ asset('uploads/default_man.jpeg') }}"
+                                                        alt="#">By: {{ $blog?->writer ?? '' }}</a>
                                             </li>
                                         </ul>
                                     </div>

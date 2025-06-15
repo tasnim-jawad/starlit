@@ -38,3 +38,9 @@
 ** property thumbnail image store kora niye kaj kora hoyni
 
 **image gallery edit problem
+
+
+---------------- new problem ----------------
+
+** small screen side nave when open hamburger cross is not work
+** Search Blogs is not functionality.

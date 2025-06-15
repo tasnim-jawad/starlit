@@ -32,7 +32,8 @@
                             <div class="ltn__blog-meta-btn">
                                 <div class="ltn__blog-meta">
                                     <ul>
-                                        <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>{{ \Carbon\Carbon::parse($blog->publish_date)->format('M d, Y') }}</li>
+                                        <li class="ltn__blog-date"><i class="far fa-calendar-alt"></i>{{ optional($blog?->publish_date ?? $blog?->created_at ? \Carbon\Carbon::parse($blog?->publish_date ?? $blog?->created_at) : null)?->format('M d, Y') ?? 'N/A' }}
+                                        </li>
                                     </ul>
                                 </div>
                                 <div class="ltn__blog-btn">

@@ -6,7 +6,7 @@
                 <ul>
                     <li><a href="{{ route('home') }}"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
                     <li><a href="{{ route('home') }}"><span><i class="fas fa-home"></i></span> News</a></li>
-                    <li>News Details</li>
+                    <li>Blog Details</li>
                 </ul>
             </div>
         </div>
