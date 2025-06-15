@@ -11,7 +11,7 @@
         </div>
         <div class="row ltn__product-slider-item-four-active-full-width-d">
             @foreach ( $properties_data['Welness Communities'] as $property )
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-6">
                     <div class="ltn__product-item ltn__product-item-4 text-center---">
                         <div class="product-img">
                             <a href="product-details.html"><img src="{{ isset($property?->banner_image[0]) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>

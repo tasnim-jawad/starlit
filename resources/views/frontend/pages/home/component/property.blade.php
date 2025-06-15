@@ -14,7 +14,7 @@
                 <div class="row">
                     <!-- ltn__product-item -->
                     @foreach ( $properties as $property )
-                        <div class="col-lg-4">
+                        <div class="col-lg-4 col-md-6">
                             <div class="ltn__product-item ltn__product-item-4 text-center---">
                                 <div class="product-img">
                                     <a href="{{ route('properties_details', $property->id) }}"><img src="{{  is_countable($property?->banner_image) && count($property?->banner_image) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>
