@@ -39,8 +39,9 @@
 
 **image gallery edit problem
 
-
----------------- new problem ----------------
-
 ** small screen side nave when open hamburger cross is not work
 ** Search Blogs is not functionality.
+
+
+---------------- new problem ----------------
+** image and video gallery te property slug nite hobe . <h2 class="product-title"><a href="product-details.html">{{$image?->title}}</a></h2>

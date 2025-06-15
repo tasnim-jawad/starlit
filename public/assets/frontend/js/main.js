@@ -67,15 +67,25 @@
                 $ltn__utilize = $('.ltn__utilize'),
                 $ltn__utilizeOverlay = $('.ltn__utilize-overlay'),
                 $mobileMenuToggle = $('.mobile-menu-toggle');
+
             $ltn__utilizeToggle.on('click', function (e) {
                 e.preventDefault();
                 var $this = $(this),
-                    $target = $this.attr('href');
-                $body.addClass('ltn__utilize-open');
-                $($target).addClass('ltn__utilize-open');
-                $ltn__utilizeOverlay.fadeIn();
-                if ($this.parent().hasClass('mobile-menu-toggle')) {
-                    $this.addClass('close');
+                    $target = $($this.attr('href'));
+
+                // Toggle logic
+                if ($body.hasClass('ltn__utilize-open')) {
+                    $body.removeClass('ltn__utilize-open');
+                    $target.removeClass('ltn__utilize-open');
+                    $ltn__utilizeOverlay.fadeOut();
+                    $mobileMenuToggle.find('a').removeClass('close');
+                } else {
+                    $body.addClass('ltn__utilize-open');
+                    $target.addClass('ltn__utilize-open');
+                    $ltn__utilizeOverlay.fadeIn();
+                    if ($this.parent().hasClass('mobile-menu-toggle')) {
+                        $this.addClass('close');
+                    }
                 }
             });
             $('.ltn__utilize-close, .ltn__utilize-overlay').on('click', function (e) {
