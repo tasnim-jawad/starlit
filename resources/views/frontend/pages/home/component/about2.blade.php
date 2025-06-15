@@ -61,11 +61,24 @@
                     </ul>
                 </div>
             </div>
-            <div class="col-lg-6 align-self-center">
-                <div class="about-us-img-wrap about-img-right">
-                    <img src="{{ asset('assets/frontend') }}/img/others/9.png" alt="About Us Image">
+            <div class="col-lg-6 p-0">
+                <div class="image_gallery_wrap h-100">
+                    <div class="row h-100 g-4">
+                        <div class="col-md-6">
+                            <img class="image_default_custom w-100 h-100" src="{{ asset('/uploads/default.jpg') }}" alt="About Us Image">
+                        </div>
+                        <div class="col-md-6 d-flex flex-column gap-4">
+                            <div class="flex-fill">
+                                <img class="image_default_custom w-100 h-100" src="{{ asset('/uploads/default.jpg') }}" alt="About Us Image">
+                            </div>
+                            <div class="flex-fill">
+                                <img class="image_default_custom w-100 h-100" src="{{ asset('/uploads/default.jpg') }}" alt="About Us Image">
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
+            
         </div>
     </div>
  </div>

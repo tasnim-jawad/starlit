@@ -36,6 +36,6 @@ class ContactController extends Controller
         ]);
 
         // Redirect back with a success message
-        return redirect()->route('contact')->with('success', 'Your message has been sent successfully!');
+        return redirect()->route('contact')->with('success', 'Thank you! Your message has been received.');
     }
 }

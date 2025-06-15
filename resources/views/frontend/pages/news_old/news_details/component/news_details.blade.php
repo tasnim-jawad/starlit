@@ -130,7 +130,7 @@
                                 <p>As we continue to grow, Starlite remains steadfast in its pursuit of excellence. We are actively expanding our footprint into new markets, exploring innovative building technologies</p>
                             </div>
                         </div>
-                        <h4 class="title-2">03 Comments</h4>
+                        <h4 class="title-2">{{count($blog?->comments ?? [])}} Comments</h4>
                         <div class="ltn__comment-inner">
                             <ul>
                                 <li>

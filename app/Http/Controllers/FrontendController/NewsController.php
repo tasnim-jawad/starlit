@@ -21,11 +21,11 @@ class NewsController extends Controller
             ->get();
 
 
-        $blogs = DB::table("blogs")
-            ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
-            ->select('blogs.*', 'blog_categories.title as category_name')
-            ->paginate(10);
-
+        // $blogs = DB::table("blogs")
+        //     ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+        //     ->select('blogs.*', 'blog_categories.title as category_name')
+        //     ->paginate(10);
+        $blogs = Blog::with('comments')->paginate(4);
         $top_rated_blogs_query = DB::table("blogs")
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
             ->select('blogs.*', 'blog_categories.title as category_name');
@@ -55,6 +55,19 @@ class NewsController extends Controller
             compact('blogs', 'blog_category', 'top_rated_blogs', 'latest_blogs')
         );
     }
+
+    public function blog_search(Request $request)
+    {
+        $query = $request->get('q');
+
+        $blogs = Blog::where('title', 'LIKE', "%{$query}%")
+            ->select('id', 'title', 'slug') // adjust as needed
+            ->limit(10)
+            ->get();
+
+        return response()->json($blogs);
+    }
+
     
     public function news_details($slug)
     {

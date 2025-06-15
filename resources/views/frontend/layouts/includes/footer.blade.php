@@ -34,7 +34,7 @@
                                         <i class="icon-mail"></i>
                                     </div>
                                     <div class="footer-address-info">
-                                        <p><a class="text-white" href="mailto:starlithomesltd@gmail.com">starlithomesltd@gmail.com</a></p>
+                                        <p><a class="text-white " href="mailto:starlithomesltd@gmail.com">starlithomesltd@gmail.com</a></p>
                                     </div>
                                 </li>
                             </ul>
@@ -54,12 +54,12 @@
                         <h4 class="footer-title">Company</h4>
                         <div class="footer-menu text-wh">
                             <ul>
-                                <li><a href="about.html">About</a></li>
-                                <li><a href="blog.html">Blog</a></li>
-                                <li><a href="shop.html">All Products</a></li>
-                                <li><a href="locations.html">Locations Map</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="{{ route('about') }}">About</a></li>
+                                <li><a href="{{ route('news') }}">Blog</a></li>
+                                <li><a href="{{ route('properties') }}">Properties</a></li>
+                                <li><a href="{{ route('about') }}">Locations Map</a></li>
+                                <li><a href="{{ route('about') }}">FAQ</a></li>
+                                <li><a href="{{ route('contact') }}">Contact us</a></li>
                             </ul>
                         </div>
                     </div>
@@ -69,12 +69,12 @@
                         <h4 class="footer-title">Services</h4>
                         <div class="footer-menu text-wh">
                             <ul>
-                                <li><a href="order-tracking.html">Order tracking</a></li>
-                                <li><a href="wishlist.html">Wish List</a></li>
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="account.html">My account</a></li>
-                                <li><a href="about.html">Terms & Conditions</a></li>
-                                <li><a href="about.html">Promotional Offers</a></li>
+                                <li><a href="javascript:void(0)">Order tracking</a></li>
+                                <li><a href="javascript:void(0)">Wish List</a></li>
+                                <li><a href="javascript:void(0)">Login</a></li>
+                                <li><a href="javascript:void(0)">My account</a></li>
+                                <li><a href="javascript:void(0)">Terms & Conditions</a></li>
+                                <li><a href="javascript:void(0)">Promotional Offers</a></li>
                             </ul>
                         </div>
                     </div>
@@ -84,12 +84,12 @@
                         <h4 class="footer-title">Customer Care</h4>
                         <div class="footer-menu text-wh">
                             <ul>
-                                <li><a href="login.html">Login</a></li>
-                                <li><a href="account.html">My account</a></li>
-                                <li><a href="wishlist.html">Wish List</a></li>
-                                <li><a href="order-tracking.html">Order tracking</a></li>
-                                <li><a href="faq.html">FAQ</a></li>
-                                <li><a href="contact.html">Contact us</a></li>
+                                <li><a href="/login">Login</a></li>
+                                <li><a href="javascript:void(0)">My account</a></li>
+                                <li><a href="javascript:void(0)">Wish List</a></li>
+                                <li><a href="javascript:void(0)">Order tracking</a></li>
+                                <li><a href="javascript:void(0)">FAQ</a></li>
+                                <li><a href="javascript:void(0)">Contact us</a></li>
                             </ul>
                         </div>
                     </div>

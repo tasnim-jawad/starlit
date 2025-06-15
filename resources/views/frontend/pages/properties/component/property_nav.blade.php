@@ -4,7 +4,7 @@
         <div class="row">
             <div class="ltn__breadcrumb-list">
                 <ul>
-                    <li><a href="index.html"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
+                    <li><a href="{{ route('home') }}"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
                     <li>Properties</li>
                 </ul>
             </div>

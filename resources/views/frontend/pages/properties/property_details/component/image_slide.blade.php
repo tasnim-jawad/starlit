@@ -12,7 +12,7 @@
                     </div>
                 </div>
                 @endforeach
-                <div class="col-lg-12">
+                {{-- <div class="col-lg-12">
                     <div class="ltn__img-slide-item-4">
                         <a href="{{ asset('assets/frontend') }}/img/img-slide/31.jpg" data-rel="lightcase:myCollection">
                             <img src="{{ asset('assets/frontend') }}/img/img-slide/31.jpg" alt="Image">
@@ -46,7 +46,7 @@
                             <img src="{{ asset('assets/frontend') }}/img/img-slide/35.jpg" alt="Image">
                         </a>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>

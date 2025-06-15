@@ -7,8 +7,8 @@
                 <div class="col-md-7">
                     <div class="ltn__top-bar-menu">
                         <ul>
-                            <li><a href="javascript:void(0)" class="text-white"><i class="icon-mail"></i> starlithomesltd@gmail.com</a></li>
-                            <li><a href="javascript:void(0)" class="text-white"><i class="icon-placeholder"></i> House#413, Road#7, Avenue#3, Mirpur DOHS, Dhaka-1216</a></li>
+                            <li><a href="javascript:void(0)" class="text-white fw-normal"><i class="icon-mail"></i> starlithomesltd@gmail.com</a></li>
+                            <li><a href="javascript:void(0)" class="text-white fw-normal"><i class="icon-placeholder"></i> House#413, Road#7, Avenue#3, Mirpur DOHS, Dhaka-1216</a></li>
                         </ul>
                     </div>
                 </div>
@@ -84,7 +84,7 @@
                                     <li class=""><a href="{{ route('about') }}">About</a>
                                     </li>
                                     <li class="menu-icon"><a href="{{ route('properties') }}">Property</a>
-                                        <ul id="property_gategory">
+                                        <ul id="property_category">
                                             
                                             {{-- <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
                                             <li><a href="{{ route('properties.classic') }}">Classic</a></li>
@@ -101,7 +101,7 @@
                                             <li><a href="{{ route('gallery.video') }}">Video gallery</a></li>
                                         </ul>
                                     </li>
-                                    <li class=""><a href="{{ route('news') }}">News</a></li>
+                                    <li class=""><a href="{{ route('news') }}">Blog</a></li>
                                     <li><a href="{{ route('contact') }}">Contact</a></li>
                                 </ul>
                             </div>
@@ -211,7 +211,7 @@
                 <li class="active"><a  href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('about') }}">About</a></li>
                 <li><a href="{{ route('properties') }}">Property</a>
-                    <ul class="sub-menu" id="property_gategory_2nd">
+                    <ul class="sub-menu" id="property_category_2nd">
                         {{-- <li><a href="{{ route('properties.ongoing') }}">Ongoing</a></li>
                         <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
                         <li><a href="{{ route('properties.comercial') }}">Comercial</a></li>
@@ -219,7 +219,7 @@
                         <li><a href="{{ route('properties.classic') }}">Classic</a></li> --}}
                     </ul>
                 </li>
-                <li><a href="{{ route('news') }}">News</a></li>
+                <li><a href="{{ route('news') }}">Blog</a></li>
                 <li><a href="{{ route('contact') }}">Contact</a></li>
             </ul>
         </div>
@@ -241,16 +241,19 @@
         fetch('/properties/categories')
         .then(response => response.json())
         .then(data => {
-            const container = document.getElementById('property_gategory');
-            const container_2nd = document.getElementById('property_gategory_2nd');
+            const container = document.getElementById('property_category');
+            const container_2nd = document.getElementById('property_category_2nd');
             container.innerHTML = ''; // Clear existing content if any
             console.log(data);
             
             data?.data.forEach(category => {
-                const li = document.createElement('li');
-                li.innerHTML = `<a href="/properties/category-wise/${category.name}">${category.name}</a>`;
-                container.appendChild(li);
-                container_2nd.appendChild(li);
+                const li1 = document.createElement('li');
+                li1.innerHTML = `<a href="/properties/category-wise/${category.name}">${category.name}</a>`;
+                container.appendChild(li1);
+
+                const li2 = document.createElement('li');
+                li2.innerHTML = `<a href="/properties/category-wise/${category.name}">${category.name}</a>`;
+                container_2nd.appendChild(li2);
             });
         })
         .catch(error => {

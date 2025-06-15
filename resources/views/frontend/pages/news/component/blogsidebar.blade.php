@@ -35,7 +35,9 @@
             <input type="text" id="blog-search" placeholder="Search blog title...">
 
             <!-- Result area -->
-            <div id="search-results" class="search-results-box d-none"></div>
+            <div id="search-results" class="search-results-box d-none">
+
+            </div>
         </div>
 
 
@@ -64,7 +66,7 @@
                                 </a>
                             </div>
                             <div class="top-rated-product-info">
-                                <div class="product-ratting">
+                                {{-- <div class="product-ratting">
                                     <ul>
                                         @php
                                             // Generate a fixed order: full stars, then half, then empty
@@ -85,7 +87,7 @@
                                         @endphp
                                         {!! implode('', $stars) !!}
                                     </ul>
-                                </div>
+                                </div> --}}
                                 <h6><a href="{{ route('news_details', $blog->slug) }}">{{ $blog->title }}</a></h6>
                             </div>
                         </div>
@@ -254,7 +256,7 @@
                                 <ul>
                                     <li class="ltn__blog-date">
                                         <a href="#"><i class="far fa-calendar-alt"></i>
-                                            {{ \Carbon\Carbon::parse($blog->publish_date)->format('M d, Y') }}
+                                            {{ optional($blog?->publish_date ?? $blog?->created_at ? \Carbon\Carbon::parse($blog?->publish_date ?? $blog?->created_at) : null)?->format('M d, Y') ?? 'N/A' }}
                                         </a>
                                     </li>
                                 </ul>
@@ -381,3 +383,47 @@
         </div>
     </aside>
 </div>
+
+@push('js_start')
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const input = document.getElementById("blog-search");
+        const resultsBox = document.getElementById("search-results");
+
+        input.addEventListener("input", function () {
+            const query = input.value.trim();
+
+            if (query.length < 2) {
+                resultsBox.classList.add("d-none");
+                resultsBox.innerHTML = "";
+                return;
+            }
+
+            fetch(`/blog/search?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    resultsBox.innerHTML = "";
+                    if (data.length > 0) {
+                        data.forEach(blog => {
+                            const item = document.createElement("div");
+                            item.classList.add("search-result-item", "p-2", "border-bottom");
+                            item.innerHTML = `<a href="/news/details/${blog.slug}">${blog.title}</a>`;
+                            resultsBox.appendChild(item);
+                        });
+                        resultsBox.classList.remove("d-none");
+                    } else {
+                        resultsBox.innerHTML = "<div class='p-2'>No results found</div>";
+                        resultsBox.classList.remove("d-none");
+                    }
+                });
+        });
+
+        document.addEventListener("click", function (e) {
+            if (!resultsBox.contains(e.target) && e.target !== input) {
+                resultsBox.classList.add("d-none");
+            }
+        });
+    });
+</script>
+
+@endpush

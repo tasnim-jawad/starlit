@@ -163,7 +163,7 @@
                 <li><a class="active" href="{{ route('home') }}">Home</a></li>
                 <li><a href="{{ route('about') }}">About</a></li>
                 <li><a href="{{ route('properties') }}">Property</a>
-                    <ul id="property_gategory" class="sub-menu">
+                    <ul id="property_category" class="sub-menu">
                         {{-- <li><a href="{{ route('properties.luxury') }}">Luxury</a></li>
                         <li><a href="{{ route('properties.classic') }}">Classic</a></li>
                         <li><a href="{{ route('properties.wellness') }}">Welmess Communities</a></li>
@@ -199,7 +199,7 @@
         fetch('/properties/categories')
         .then(response => response.json())
         .then(data => {
-            const container = document.getElementById('property_gategory');
+            const container = document.getElementById('property_category');
             container.innerHTML = ''; // Clear existing content if any
 
             data?.data.forEach(category => {
