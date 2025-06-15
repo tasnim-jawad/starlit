@@ -103,6 +103,9 @@
                                     </li>
                                     <li class=""><a href="{{ route('news') }}">Blog</a></li>
                                     <li><a href="{{ route('contact') }}">Contact</a></li>
+                                    <li class="special-link">
+                                        <a href="/login">Login</a>
+                                    </li>
                                 </ul>
                             </div>
                         </nav>
@@ -221,6 +224,9 @@
                 </li>
                 <li><a href="{{ route('news') }}">Blog</a></li>
                 <li><a href="{{ route('contact') }}">Contact</a></li>
+                <li class="special-link mt-2 ms-0">
+                    <a href="/login">Login</a>
+                </li>
             </ul>
         </div>
        
