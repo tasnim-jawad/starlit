@@ -32,7 +32,7 @@
                     {{-- <p>To the left is the modern kitchen with central island, leading through to the unique breakfast family room which feature glass walls and doors out onto the garden and access to the separate utility room.</p> --}}
 
                     <h4 class="title-2">Property Detail</h4>  
-                    <div class="property-detail-info-list section-bg-1 clearfix mb-60">   
+                    <div class="property-detail-info-list section-bg-1 clearfix mb-60 p-3">   
                         <p>
                             {!! $property?->property_detail !!}
                         </p>

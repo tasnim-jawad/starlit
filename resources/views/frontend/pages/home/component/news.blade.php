@@ -21,10 +21,10 @@
                             <div class="ltn__blog-meta">
                                 <ul>
                                     <li class="ltn__blog-author">
-                                        <a href="#"><i class="far fa-user"></i>by: {{ $blog?->writer }}</a>
+                                        <a href="#"><i class="far fa-user"></i>by: {{ $blog?->writer ?? 'Admin'}}</a>
                                     </li>
                                     <li class="ltn__blog-tags">
-                                        <a href="#"><i class="fas fa-tags"></i>{{ $blog?->tags }}</a>
+                                        <a href="#"><i class="fas fa-tags"></i>{{ $blog?->tags ?? 'No Tag'}}</a>
                                     </li>
                                 </ul>
                             </div>

@@ -42,7 +42,7 @@
                         </div>
                         <div class="product-info">
                             <div class="product-price">
-                                <span>৳ {{ $property?->price ?? 00 }} <label>/Month</label></span>
+                                <span>৳ {{ $property?->price ?? 00 }}</span>
                             </div>
                             <h2 class="product-title"><a href="{{ route('properties_details', $property->id) }}"> {{ $property?->property_name }}</a></h2>
                             <div class="product-description">

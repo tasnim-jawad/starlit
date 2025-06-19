@@ -12,15 +12,8 @@ class PropertiesController extends Controller
 {
     public function index()
     {
-        $property_category_list = [
-            'Luxury',
-            'Classic',
-            'Welness Communities',
-            'Comercial',
-            'Ongoing',
-            'upcoming',
-            'Completed'
-        ];
+        $property_category_list = PropertyCategory::where('status', 'active')->orderBy('name', 'asc')->pluck('name')->toArray();
+        // dd($property_category_list);
         
         $properties_data = [];
         
