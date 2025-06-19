@@ -28,7 +28,6 @@ const setup: setup_type = {
     "slug",
     "creator",
     "created_at",
-    "deleted_at",
   ],
 
   sort_by_cols: ["id", "title", "amount", "status", "created_at"],

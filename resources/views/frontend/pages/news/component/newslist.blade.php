@@ -2,15 +2,16 @@
 <div class="ltn__blog-area pt-60 mb-120">
     <div class="container">
         <div class="row">
-            <div class="text-center pb-20">
-                @if (request()->routeIs('news_category'))
-                    <h2>{{ ucfirst($category->title ?? '') }} Blog</h2>
-                @else
-                    <h2>Starlite Blogs</h2>
-                @endif
-
-            </div>
+           
             <div class="col-lg-8">
+                <div class="text-center pb-20">
+                    @if (request()->routeIs('news_category'))
+                        <h2>{{ ucfirst($category->title ?? '') }} Blog</h2>
+                    @else
+                        <h2> Blogs</h2>
+                    @endif
+    
+                </div>
                 <div class="ltn__blog-list-wrap">
                     <!-- Blog Item -->
                     @foreach ($blogs as $blog)
@@ -52,7 +53,7 @@
                                         <ul>
                                             <li class="ltn__blog-author">
                                                 <a href="#"><img src="{{ asset('uploads/default_man.jpeg') }}"
-                                                        alt="#">By: {{ $blog?->writer ?? '' }}</a>
+                                                        alt="#">By: {{ $blog?->writer ?? 'Admin' }}</a>
                                             </li>
                                         </ul>
                                     </div>

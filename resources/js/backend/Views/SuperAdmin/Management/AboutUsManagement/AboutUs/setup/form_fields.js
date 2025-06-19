@@ -1,5 +1,30 @@
 export default [
 	{
+		name: "page_type",
+		label: "Enter your page type",
+		type: "select",
+		label: "Select page type",
+		multiple: false,
+		data_list: [
+			{
+				label: "About_us",
+				value: "about_us",
+			},
+			{
+				label: "Our_mission",
+				value: "our_mission",
+			},
+			{
+				label: "Our_vission",
+				value: "our_vission",
+			},
+			
+		],
+		value: "",
+		onchangeAction: "onSelectChange",
+	},
+	
+	{
 		name: "title",
 		label: "Enter your title",
 		type: "text",
@@ -43,26 +68,23 @@ export default [
 	},
 
 	{
-		name: "page_type",
-		label: "Enter your page type",
+		name: "status",
+		label: "select status",
 		type: "select",
-		label: "Select page type",
-		multiple: false,
+		value: "",
 		data_list: [
 			{
-				label: "About_us",
-				value: "about_us",
+				label: "Active",
+				value: "active",
 			},
 			{
-				label: "Our_mission",
-				value: "our_mission",
+				label: "Inactive",
+				value: "inactive",
 			},
-			{
-				label: "Our_vission",
-				value: "our_vission",
-			},
-			
 		],
-		value: "",
 	},
+
+
+
+	
 ];

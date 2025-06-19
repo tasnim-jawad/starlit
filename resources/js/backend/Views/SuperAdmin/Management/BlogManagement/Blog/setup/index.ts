@@ -21,7 +21,7 @@ const setup: setup_type = {
     "blog_category_id",
     "title",
     "tags",
-    "publish_date",
+
     "writer",
     "meta_description",
     "meta_keywords",
@@ -41,7 +41,7 @@ const setup: setup_type = {
     "title",
     "description",
     "tags",
-    "publish_date",
+
     "writer",
     "meta_description",
     "meta_keywords",
@@ -53,29 +53,15 @@ const setup: setup_type = {
     "status",
     "created_at",
   ],
-  table_header_data: [
-    "id",
-    "Category",
-    "title",
-    "publish_date",
-    "status",
-    "created_at",
-  ],
-  table_row_data: [
-    "id",
-    "blog_category",
-    "title",
-    "publish_date",
-    "status",
-    "created_at",
-  ],
+  table_header_data: ["id", "Category", "title", "status", "created_at"],
+  table_row_data: ["id", "blog_category", "title", "status", "created_at"],
 
   details_page_data: [
     "id",
     "blog_category",
     "title",
     "tags",
-    "publish_date",
+
     "writer",
     "meta_description",
     "meta_keywords",

@@ -22,7 +22,7 @@
                                 referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
                         </div>
                         <div class="product-info">
-                            <h2 class="product-title"><a href="{{ route('properties') }}">{{$video?->title}}</a></h2>
+                            <h2 class="product-title"><a href="javascript:void(0)">{{$video?->title}}</a></h2>
                         </div>
                     </div>
                 </div>

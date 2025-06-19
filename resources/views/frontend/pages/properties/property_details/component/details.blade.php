@@ -27,8 +27,9 @@
                     <h1>{{ $property?->property_name }}</h1>
                     <label><span class="ltn__secondary-color"><i class="flaticon-pin"></i></span> {{ $property?->property_address }}</label>
                     <h4 class="title-2">Description</h4>
-                    <p>{{ Str::limit(strip_tags($property?->property_description), 60) }}</p>
-                    <p>To the left is the modern kitchen with central island, leading through to the unique breakfast family room which feature glass walls and doors out onto the garden and access to the separate utility room.</p>
+                    {{-- <p>{{ \Illuminate\Support\Str::of(strip_tags($property?->property_description ?? ''))->trim() }}</p> --}}
+                    <p>{!! $property?->property_description !!}</p>
+                    {{-- <p>To the left is the modern kitchen with central island, leading through to the unique breakfast family room which feature glass walls and doors out onto the garden and access to the separate utility room.</p> --}}
 
                     <h4 class="title-2">Property Detail</h4>  
                     <div class="property-detail-info-list section-bg-1 clearfix mb-60">   
@@ -57,10 +58,10 @@
                             @foreach ($property?->facts_and_features as $item)
                                 <li>
                                     <div class="property-detail-feature-list-item">
-                                        <i class="{{$item['icon']}}"></i>
+                                        <i class="{{ $item['icon'] ?? '' }}"></i>
                                         <div>
-                                            <h6>{{$item['title']}}</h6>
-                                            <small>{{$item['description']}}</small>
+                                            <h6>{{ $item['title'] ?? '' }}</h6>
+                                            <small>{{ $item['description'] ?? '' }}</small>
                                         </div>
                                     </div>
                                 </li>
@@ -135,7 +136,6 @@
                     <div class="ltn__property-details-gallery mb-30">
                         <div class="row">
                             <div class="col-md-6">
-                                {{-- <p>{{$property->gallery[0]}}</p> --}}
                                 <a href="{{ asset($property->gallery[0] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
                                     <img class="mb-30" src="{{ asset($property->gallery[0] ?? 'uploads/default.jpg' ) }}" alt="Image">
                                 </a>
@@ -148,6 +148,32 @@
                                     <img class="mb-30" src="{{ asset($property->gallery[2] ?? 'uploads/default.jpg') }}" alt="Image">
                                 </a>
                             </div>
+                            {{-- <div class="col-lg-12 p-0">
+                                <div class="image_gallery_wrap h-100">
+                                    <div class="row h-100 g-4">
+                                        <div class="col-md-6 d-flex flex-column gap-4">
+                                            <div class="flex-fill">
+                                                
+                                                <a href="{{ asset($property->gallery[0] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                                    <img class="image_default_custom w-100 h-100" src="{{ asset($property->gallery[0] ?? 'uploads/default.jpg') }}" alt="Image">
+                                                </a>
+                                            </div>
+                                            <div class="flex-fill">
+                                                
+                                                <a href="{{ asset($property->gallery[1] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                                    <img class="image_default_custom w-100 h-100" src="{{ asset($property->gallery[1] ?? 'uploads/default.jpg') }}" alt="Image">
+                                                </a>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            
+                                            <a href="{{ asset($property->gallery[2] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                                <img class="image_default_custom w-100 h-100" src="{{ asset($property->gallery[2] ?? 'uploads/default.jpg' ) }}" alt="Image">
+                                            </a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div> --}}
                         </div>
                     </div>
 
@@ -164,8 +190,8 @@
                                         <ul>
                                             @foreach($chunk as $item)
                                                 <li>
-                                                    <label class="checkbox-item">{{ $item['title'] }}
-                                                        <input type="checkbox" {{ isset($item['available']) && $item['available'] ? 'checked' : '' }}>
+                                                    <label class="checkbox-item">{{ $item['title'] ?? ''}}
+                                                        <input type="checkbox" {{ isset($item['available']) && $item['available'] === 'true' ? 'checked' : '' }}>
                                                         <span class="checkmark"></span>
                                                     </label>
                                                 </li>
@@ -177,9 +203,28 @@
                         </div>
                     </div>
 
+                    @php
+                        function getGoogleMapEmbedUrl($url) {
+                            if (!$url) {
+                                return 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9334.271551495209!2d-73.97198251485975!3d40.668170674982946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b0456b5a2e7%3A0x68bdf865dda0b669!2sBrooklyn%20Botanic%20Garden%20Shop!5e0!3m2!1sen!2sbd!4v1590597267201!5m2!1sen!2sbd';
+                            }
+                            // If already an embed link, return as is
+                            if (Str::contains($url, '/maps/embed?')) {
+                                return $url;
+                            }
+                            // If it's a place or search link, convert to embed
+                            if (Str::contains($url, '/maps/place/') || Str::contains($url, '/maps/search/')) {
+                                return str_replace('/maps/', '/maps/embed/', $url);
+                            }
+                            // If it's a short link, just use as is (Google will redirect)
+                            return $url;
+                        }
+                        $mapUrl = getGoogleMapEmbedUrl($property?->map_location_url ?? '');
+                    @endphp
+
                     <h4 class="title-2">Location</h4>
                     <div class="property-details-google-map mb-60">
-                        <iframe src="{{ $property?->map_location_url ?? 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9334.271551495209!2d-73.97198251485975!3d40.668170674982946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b0456b5a2e7%3A0x68bdf865dda0b669!2sBrooklyn%20Botanic%20Garden%20Shop!5e0!3m2!1sen!2sbd!4v1590597267201!5m2!1sen!2sbd'}}" width="100%" height="100%" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        <iframe src="{{ $mapUrl }}" width="100%" height="100%" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                     </div>
 
                     <h4 class="title-2">Floor Plans</h4>
@@ -217,17 +262,15 @@
                                                     <p>{{ $floor['description'] }}</p>
                                                 </div>
                                             </div>
-                                            <div class="col-lg-12">
+                                            {{-- <div class="col-lg-12">
                                                 <div class="product-details-apartments-info-list  section-bg-1">
                                                     @php
-                                                        $floor_details = collect($property?->floor_plan_details ?? [])
-                                                            ->where('floor_number', $floor['floor_number'])
-                                                            ->values(); // reindex
+                                                        $floor_details = collect($property?->floor_plan_details ?? [])->values();
 
                                                         $chunks = [];
 
                                                         if ($floor_details->count() > 0) {
-                                                            $chunks = array_chunk($floor_details->all(), ceil($floor_details->count() / 2));
+                                                            $chunks = $floor_details->chunk(ceil($floor_details->count() / 2));
                                                         }
                                                     @endphp
                                                     <div class="row">
@@ -241,34 +284,52 @@
                                                                                     <span>{{ $floor_detail['description'] ?? 'N/A' }}</span>
                                                                                 </li>
                                                                             @endforeach
-                                                                            {{-- <li><label>{{ $floor_detail['title'] ?? 'N/A' }}</label> <span>{{ $floor_detail['description'] ?? 'N/A' }}</span></li> --}}
                                                                         </ul>
                                                                     </div>
                                                                 </div>
                                                         @endforeach
-                                                        {{-- <div class="col-lg-6">
-                                                            <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                                <ul>
-                                                                    <li><label>Total Area</label> <span>2800 Sq. Ft</span></li>
-                                                                    <li><label>Bedroom</label> <span>150 Sq. Ft</span></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div>
-                                                        <div class="col-lg-6">
-                                                            <div class="apartments-info-list apartments-info-list-color mt-40---">
-                                                                <ul>
-                                                                    <li><label>Belcony/Pets</label> <span>Allowed</span></li>
-                                                                    <li><label>Lounge</label> <span>650 Sq. Ft</span></li>
-                                                                </ul>
-                                                            </div>
-                                                        </div> --}}
                                                     </div>
                                                 </div>
-                                            </div>
+                                            </div> --}}
                                         </div>
                                     </div>
                                 </div>
                             @endforeach
+                            <div class="product-details">
+                                <div class="row">
+                                    <div class="col-lg-12">
+                                        <div class="product-details-apartments-info-list  section-bg-1">
+                                            @php
+                                                $floor_details = collect($property?->floor_plan_details ?? [])->values();
+
+                                                $chunks = [];
+
+                                                if ($floor_details->count() > 0) {
+                                                    $chunks = $floor_details->chunk(ceil($floor_details->count() / 2));
+                                                }
+                                            @endphp
+                                            <div class="row">
+                                                @foreach($chunks as $chunk)
+                                                        <div class="col-lg-6">
+                                                            <div class="apartments-info-list apartments-info-list-color mt-40---">
+                                                                <ul>
+                                                                    @foreach($chunk as $floor_detail)
+                                                                        <li>
+                                                                            <label>{{ $floor_detail['title'] ?? 'N/A' }}</label>
+                                                                            <span>{{ $floor_detail['description'] ?? 'N/A' }}</span>
+                                                                        </li>
+                                                                    @endforeach
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+
                             {{-- <div class="tab-pane fade active show" id="liton_tab_3_2">
                                 <div class="ltn__product-tab-content-inner">
                                     <div class="row">
@@ -398,10 +459,28 @@
                         </div>
                     </div>
                     <!-- APARTMENTS PLAN AREA END -->
+                    @php
+                        function getYoutubeEmbedUrl($url) {
+                            if (!$url) {
+                                return 'https://www.youtube.com/embed/x9gIy59kWw0?autoplay=1&showinfo=0';
+                            }
+                            // If already an embed link, return as is
+                            if (Str::contains($url, 'youtube.com/embed/')) {
+                                return $url;
+                            }
+                            // Handle normal YouTube links
+                            if (preg_match('/(?:youtube\\.com\\/watch\\?v=|youtu\\.be\\/)([\\w-]+)/', $url, $matches)) {
+                                return 'https://www.youtube.com/embed/' . $matches[1] . '?autoplay=1&showinfo=0';
+                            }
+                            // Fallback
+                            return $url;
+                        }
+                        $videoUrl = getYoutubeEmbedUrl($property?->property_video_url ?? '');
+                    @endphp
 
                     <h4 class="title-2">Property Video</h4>
                     <div class="ltn__video-bg-img ltn__video-popup-height-500 bg-overlay-black-50 bg-image mb-60" data-bs-bg="{{ asset($property->gallery[0] ?? 'uploads/default.jpg') }}">
-                        <a class="ltn__video-icon-2 ltn__video-icon-2-border---" href="{{ $property?->property_video_url ?? 'https://www.youtube.com/embed/x9gIy59kWw0?autoplay=1&amp;showinfo=0'}}" data-rel="lightcase:myCollection">
+                        <a class="ltn__video-icon-2 ltn__video-icon-2-border---" href="{{ $videoUrl }}" data-rel="lightcase:myCollection">
                             <i class="fa fa-play"></i>
                         </a>
                     </div>
@@ -443,20 +522,20 @@
                                                     <img src="{{ asset($review['image'] ?? 'uploads/default_man.jpeg') }}" alt="Image">
                                                 </div>
                                                 <div class="ltn__commenter-comment">
-                                                    <h6><a href="#">{{ $review['name'] }}</a></h6>
+                                                    <h6><a href="#">{{ $review['name'] ?? '' }}</a></h6>
                                                     <div class="product-ratting">
                                                         <ul>
                                                             @for ($i = 0; $i < 5; $i++)
                                                                 <li>
                                                                     <a href="#">
-                                                                        <i class="{{ $i < $review['rating'] ? 'fas fa-star' : 'far fa-star' }}"></i>
+                                                                        <i class="{{ $i < ($review['rating'] ?? 0) ? 'fas fa-star' : 'far fa-star' }}"></i>
                                                                     </a>
                                                                 </li>
                                                             @endfor
                                                         </ul>
                                                     </div>
-                                                    <p>{{ $review['comment'] }}</p>
-                                                    <span class="ltn__comment-reply-btn">{{ \Carbon\Carbon::parse($review['created_at'])->format('F j, Y') }}</span>
+                                                    <p>{{ $review['comment'] ?? '' }}</p>
+                                                    <span class="ltn__comment-reply-btn">{{ isset($review['created_at']) ? \Carbon\Carbon::parse($review['created_at'])->format('F j, Y') : '' }}</span>
                                                 </div>
                                             </div>
                                         </li>

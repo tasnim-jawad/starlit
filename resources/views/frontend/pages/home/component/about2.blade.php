@@ -36,14 +36,14 @@
                         </li> --}}
                     </ul>
                     <ul class="ltn__list-item-2 ltn__list-item-2-before--- ltn__list-item-2-img mb-50">
-                        {{-- @foreach ($today_sells?->image_gallery_left as $item)
+                        @foreach ($today_sells?->image_gallery_left as $item)
                             <li>
-                                <a href="{{ asset('assets/frontend') }}/img/img-slide/11.jpg" data-rel="lightcase:myCollection">
-                                    <img src="{{ asset('assets/frontend') }}/img/img-slide/11.jpg" alt="Image">
+                                <a href="{{ asset($item) }}" data-rel="lightcase:myCollection">
+                                    <img src="{{ asset($item) }}" alt="Image">
                                 </a>
                             </li>
-                        @endforeach --}}
-                        <li>
+                        @endforeach
+                        {{-- <li>
                             <a href="{{ asset('assets/frontend') }}/img/img-slide/11.jpg" data-rel="lightcase:myCollection">
                                 <img src="{{ asset('assets/frontend') }}/img/img-slide/11.jpg" alt="Image">
                             </a>
@@ -57,7 +57,7 @@
                             <a href="{{ asset('assets/frontend') }}/img/img-slide/13.jpg" data-rel="lightcase:myCollection">
                                 <img src="{{ asset('assets/frontend') }}/img/img-slide/13.jpg" alt="Image">
                             </a>
-                        </li>
+                        </li> --}}
                     </ul>
                 </div>
             </div>
@@ -65,14 +65,14 @@
                 <div class="image_gallery_wrap h-100">
                     <div class="row h-100 g-4">
                         <div class="col-md-6">
-                            <img class="image_default_custom w-100 h-100" src="{{ asset('/uploads/default.jpg') }}" alt="About Us Image">
+                            <img class="image_default_custom w-100 h-100" src="{{ asset($today_sells?->image_gallery_right[0]) }}" alt="About Us Image">
                         </div>
                         <div class="col-md-6 d-flex flex-column gap-4">
                             <div class="flex-fill">
-                                <img class="image_default_custom w-100 h-100" src="{{ asset('/uploads/default.jpg') }}" alt="About Us Image">
+                                <img class="image_default_custom w-100 h-100" src="{{ asset($today_sells?->image_gallery_right[1]) }}" alt="About Us Image">
                             </div>
                             <div class="flex-fill">
-                                <img class="image_default_custom w-100 h-100" src="{{ asset('/uploads/default.jpg') }}" alt="About Us Image">
+                                <img class="image_default_custom w-100 h-100" src="{{ asset($today_sells?->image_gallery_right[2]) }}" alt="About Us Image">
                             </div>
                         </div>
                     </div>

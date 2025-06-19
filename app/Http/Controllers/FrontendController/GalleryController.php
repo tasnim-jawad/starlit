@@ -12,8 +12,8 @@ class GalleryController extends Controller
 {
     public function index()
     {
-        $images = ImageGallery::inRandomOrder()->take(3)->get();
-        $videos = VideoGallery::inRandomOrder()->take(3)->get();
+        $images = ImageGallery::where('status', 'active')->inRandomOrder()->take(3)->get();
+        $videos = VideoGallery::where('status', 'active')->inRandomOrder()->take(3)->get();
 
         return view('frontend.pages.gallery.gallery',
             compact('images','videos')
@@ -21,7 +21,7 @@ class GalleryController extends Controller
     }
     public function image()
     {
-        $images = ImageGallery::with('category')->get();
+        $images = ImageGallery::with('category')->where('status', 'active')->get();
         // dd($images);
         return view('frontend.pages.gallery.image.image',
             compact('images')
@@ -29,7 +29,7 @@ class GalleryController extends Controller
     } 
     public function video()
     {
-        $videos = VideoGallery::with('category')->get();
+        $videos = VideoGallery::with('category')->where('status', 'active')->get();
         return view('frontend.pages.gallery.video.video',
             compact('videos')
         );

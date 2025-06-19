@@ -106,4 +106,21 @@ export default [
     value: "",
     row_col_class: "col-md-12",
   },
+
+	{
+		name: "status",
+		label: "select status",
+		type: "select",
+		value: "",
+		data_list: [
+			{
+				label: "Active",
+				value: "active",
+			},
+			{
+				label: "Inactive",
+				value: "inactive",
+			},
+		],
+	},
 ];

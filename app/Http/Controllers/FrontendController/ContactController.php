@@ -11,7 +11,7 @@ class ContactController extends Controller
 {
     public function index()
     {
-        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();
+        $property_category_list = PropertyCategory::where('status', 'active')->orderBy('name', 'asc')->get();
         return view('frontend.pages.contact.contact',compact('property_category_list'));
     }
 

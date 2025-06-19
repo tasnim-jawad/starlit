@@ -42,8 +42,14 @@ class DataStoreValidation extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => 'required | sometimes',
-            'type' => 'required | sometimes',
+            'name' => [
+                'required',
+                'sometimes',
+                Rule::unique('gallery_categories')->where(function ($query) {
+                    return $query->where('type', $this->type);
+                }),
+            ],
+            'type' => 'required|sometimes',
             'status' => ['sometimes', Rule::in(['active', 'inactive'])],
         ];
     }

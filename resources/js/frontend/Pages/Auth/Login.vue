@@ -84,19 +84,6 @@
                   </button>
                 </td>
               </tr>
-
-              <tr>
-                <td>Employee</td>
-                <!-- <td>@12345678</td> -->
-                <td>
-                  <button
-                    @click="setPassword('employee@gmail.com')"
-                    class="btn btn-outline-info"
-                  >
-                    Login
-                  </button>
-                </td>
-              </tr>
             </tbody>
           </table>
         </div>

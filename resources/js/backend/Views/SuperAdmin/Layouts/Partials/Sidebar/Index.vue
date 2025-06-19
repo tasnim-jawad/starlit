@@ -44,7 +44,7 @@
         </router-link>
       </li>
       <!-- Management start -->
-      <side-bar-drop-down-menus
+      <!-- <side-bar-drop-down-menus
         :icon="`fa fa-plus`"
         :menu_title="`User Management`"
         :menus="[
@@ -54,7 +54,7 @@
             icon: `zmdi zmdi-dot-circle-alt`,
           },
         ]"
-      />
+      /> -->
 
       <side-bar-drop-down-menus
         :icon="`fa fa-plus`"

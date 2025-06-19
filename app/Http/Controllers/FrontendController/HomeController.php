@@ -24,13 +24,13 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $banner = Banner::latest()->first();
-        $about_us = AboutUs::latest()->first();
-        $at_a_glance = AtaGlance::latest()->limit(4)->get();
-        $our_team = OurTeam::latest()->limit(4)->get();
-        $today_sells = TodaySells::latest()->first();
-        $our_services = OurService::latest()->limit(3)->get();
-        $testimonials = Testimonial::latest()->limit(3)->get();
+        $banner = Banner::where('status', 'active')->latest()->first();
+        $about_us = AboutUs::where('page_type','about_us')->where('status', 'active')->latest()->first();
+        $at_a_glance = AtaGlance::where('status', 'active')->latest()->limit(4)->get();
+        $our_team = OurTeam::where('status', 'active')->latest()->limit(4)->get();
+        $today_sells = TodaySells::where('status', 'active')->latest()->first();
+        $our_services = OurService::where('status', 'active')->latest()->limit(3)->get();
+        $testimonials = Testimonial::where('status', 'active')->latest()->limit(3)->get();
         $blogs = Blog::with('blog_category')
                 ->where('status', 'active')
                 ->inRandomOrder()
@@ -39,7 +39,7 @@ class HomeController extends Controller
                 ->where('status', 'active')
                 ->inRandomOrder()
                 ->latest()->limit(3)->get();
-        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();
+        $property_category_list = PropertyCategory::where('status', 'active')->orderBy('name', 'asc')->get();
         // dd($property_category_list->toArray());
         // dd($about_us?->video_url);
         return view('frontend.pages.home.home', 

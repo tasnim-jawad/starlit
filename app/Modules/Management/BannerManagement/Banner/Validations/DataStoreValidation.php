@@ -45,7 +45,7 @@ class DataStoreValidation extends FormRequest
             'short_title' => 'required | sometimes',
             'short_description' => 'required | sometimes',
             'video_url' => 'required | sometimes',
-            'video_file' => 'required | sometimes',
+            'video_file' => ' sometimes',
             'video_type' => 'required | sometimes',
             'status' => ['sometimes', Rule::in(['active', 'inactive'])],
         ];

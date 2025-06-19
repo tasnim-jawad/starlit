@@ -132,12 +132,12 @@
                                             >
                                             <div class="col-lg-9">
                                                 <input
-                                                    name="email"
+                                                    name="emails"
                                                     class="form-control"
                                                     type="email"
                                                     placeholder="Enter email address"
                                                     :value="`${get_setting_value(
-                                                        'email'
+                                                        'emails'
                                                     )}`"
                                                 />
                                             </div>
@@ -151,7 +151,7 @@
                                             >
                                             <div class="col-lg-9">
                                                 <input
-                                                    name="phone_number"
+                                                    name="phone_numbers"
                                                     class="form-control"
                                                     type="text"
                                                     placeholder="Enter phone number"

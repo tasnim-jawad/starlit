@@ -41,8 +41,8 @@
                             </div>
                             <ul class="ltn__list-item-2 ltn__list-item-2-before">
                                 @foreach ( array_slice($property?->facts_and_features, 0, 2) as $feature )
-                                    <li><span>{{ $feature['title'] }} <i class="{{ $feature['icon'] }}"></i></span>
-                                        {{ $feature['description'] }}
+                                    <li><span>{{ $feature['title'] ?? '' }} <i class="{{ $feature['icon'] ?? '' }}"></i></span>
+                                        {{ $feature['description'] ?? '' }}
                                     </li>
                                 @endforeach
                                 {{-- <li><span>3 <i class="flaticon-bed"></i></span>

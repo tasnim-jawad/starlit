@@ -23,7 +23,7 @@ return new class extends Migration
             $table->string('property_name', 100)->nullable();
             $table->string('property_address', 100)->nullable();
             $table->text('property_description')->nullable();
-            $table->string('property_detail', 100)->nullable();
+            $table->text('property_detail')->nullable();
             $table->json('facts_and_features')->nullable();
             $table->json('gallery')->nullable();
             $table->json('amenities')->nullable();
@@ -31,7 +31,7 @@ return new class extends Migration
             $table->json('floor_plan_details')->nullable();
             $table->string('property_video_url', 100)->nullable();
             $table->string('property_video_thmbnail', 100)->nullable();
-            $table->string('map_location_url', 100)->nullable();
+            $table->text('map_location_url')->nullable();
 
             $table->bigInteger('creator')->unsigned()->nullable();
             $table->string('slug', 50)->nullable();
