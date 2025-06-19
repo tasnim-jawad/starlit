@@ -5,7 +5,7 @@
             <div class="ltn__breadcrumb-list">
                 <ul>
                     <li><a href="{{ route('home') }}"><span class="ltn__secondary-color"><i class="fas fa-home"></i></span> Home</a></li>
-                    <li>News</li>
+                    <li>Blog</li>
                 </ul>
             </div>
         </div>

@@ -135,17 +135,23 @@
                     <h4 class="title-2">From Our Gallery</h4>
                     <div class="ltn__property-details-gallery mb-30">
                         <div class="row">
-                            <div class="col-md-6">
-                                <a href="{{ asset($property->gallery[0] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
-                                    <img class="mb-30" src="{{ asset($property->gallery[0] ?? 'uploads/default.jpg' ) }}" alt="Image">
-                                </a>
-                                <a href="{{ asset($property->gallery[1] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
-                                    <img class="mb-30" src="{{ asset($property->gallery[1] ?? 'uploads/default.jpg') }}" alt="Image">
-                                </a>
+                            <div class="col-md-6 mb-30">
+                                <div class="row">
+                                    <div class="col-12 mb-30">
+                                        <a href="{{ asset($property->gallery[0] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                            <img class="property_gallery_custom" src="{{ asset($property->gallery[0] ?? 'uploads/default.jpg' ) }}" alt="Image">
+                                        </a>
+                                    </div>
+                                    <div class="col-12">
+                                        <a href="{{ asset($property->gallery[1] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                            <img class="property_gallery_custom" src="{{ asset($property->gallery[1] ?? 'uploads/default.jpg') }}" alt="Image">
+                                        </a>
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col-md-6">
+                            <div class="col-md-6 mb-30">
                                 <a href="{{ asset($property->gallery[2] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
-                                    <img class="mb-30" src="{{ asset($property->gallery[2] ?? 'uploads/default.jpg') }}" alt="Image">
+                                    <img class="property_gallery_custom_right" src="{{ asset($property->gallery[2] ?? 'uploads/default.jpg') }}" alt="Image">
                                 </a>
                             </div>
                             {{-- <div class="col-lg-12 p-0">
@@ -253,13 +259,15 @@
                                         <div class="row">
                                             <div class="col-lg-7">
                                                 <div class="apartments-plan-img">
-                                                    <img src="{{ asset( $floor['image'] ?? '/img/others/10.png') }}" alt="#">
+                                                    <a href="{{ asset($floor['image'] ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                                        <img src="{{ asset( $floor['image'] ?? 'uploads/default.jpg') }}" alt="#">
+                                                    </a>
                                                 </div>
                                             </div>
                                             <div class="col-lg-5">
                                                 <div class="apartments-plan-info ltn__secondary-bg--- text-color-white---">
-                                                    <h2>{{ $floor['floor_number'] }}</h2>
-                                                    <p>{{ $floor['description'] }}</p>
+                                                    <h2>{{ $floor['floor_number'] ?? 'Default' }}</h2>
+                                                    <p>{{ $floor['description'] ?? 'no description'}}</p>
                                                 </div>
                                             </div>
                                             {{-- <div class="col-lg-12">

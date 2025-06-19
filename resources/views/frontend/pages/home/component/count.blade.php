@@ -7,10 +7,13 @@
                     <div class="ltn__counterup-item text-color-white---">
                         <div class="counter-icon">
                             {{-- <i class="flaticon-select"></i> --}}
-                            <img class="at_aglance_image" src="{{ asset($item->icon) }}" alt="icon">
+                            <a href="{{ asset($item?->icon ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                <img class="at_aglance_image" src="{{ asset($item?->icon ?? 'uploads/default.jpg') }}" alt="icon">
+
+                            </a>
                         </div>
-                        <h1><span class="counter">{{$item->number}}</span><span class="counterUp-icon">+</span> </h1>
-                        <h6>{{$item->title}}</h6>
+                        <h1><span class="counter">{{$item?->number}}</span><span class="counterUp-icon">+</span> </h1>
+                        <h6>{{$item?->title}}</h6>
                     </div>
                 </div>
             @endforeach

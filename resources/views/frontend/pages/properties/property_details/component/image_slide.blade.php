@@ -7,7 +7,7 @@
                 <div class="col-lg-12">
                     <div class="ltn__img-slide-item-4">
                         <a href="{{ asset($item) }}" data-rel="lightcase:myCollection">
-                            <img src="{{ asset($item) }}" alt="Image">
+                            <img class="slider_img_custom" src="{{ asset($item) }}" alt="Image">
                         </a>
                     </div>
                 </div>

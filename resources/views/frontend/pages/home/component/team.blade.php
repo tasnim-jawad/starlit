@@ -14,15 +14,16 @@
             <div class="col-lg-3 col-md-6 col-sm-6">
                 <div class="ltn__team-item ltn__team-item-3---">
                     <div class="team-img">
-                        <img src="{{ asset($item->image) }}" alt="team_image">
+                        <a href="{{ asset($item?->image ?? 'uploads/default.jpg')  }}" data-rel="lightcase:myCollection">
+                        <img class="team_img_custom" src="{{ asset($item?->image ?? 'uploads/default.jpg') }}" alt="team_image">
                     </div>
                     <div class="team-info">
-                        <h4><a href="#">{{$item->name}}</a></h4>
-                        <h6 class="ltn__secondary-color"></h6>
+                        <h4><a href="#">{{$item?->name}}</a></h4>
+                        <h5 class="ltn__primary-color-2">{{$item?->designation}}</h5>
                         <div class="ltn__social-media">
                             <ul>
                                 @foreach ($item->social_link as $socil_item)
-                                    <li><a href="{{$socil_item['title']}}"><i class="{{$socil_item['icon']}}"></i></a></li>
+                                    <li><a href="{{$socil_item['title'] ?? ''}}"><i class="{{$socil_item['icon'] ?? ''}}"></i></a></li>
                                 @endforeach
                             </ul>
                         </div>

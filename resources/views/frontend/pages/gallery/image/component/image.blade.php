@@ -16,7 +16,9 @@
             <div class="col-lg-4 image_container" data-category="{{ $image?->category?->name ?? 'all' }}">
                     <div class="ltn__product-item ltn__product-item-4 text-center---">
                         <div class="product-img">
-                            <img src="{{ asset($image?->image ?? 'uploads/default.jpg') }}" alt="image gallery">
+                            <a href="{{ asset($image?->image ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                <img class="gallery_img_custom" src="{{ asset($image?->image ?? 'uploads/default.jpg') }}" alt="image gallery">
+                            </a>
                         </div>
                         <div class="product-info">
                             <h2 class="product-title"><a href="javascript:void(0)">{{$image?->title}}</a></h2>

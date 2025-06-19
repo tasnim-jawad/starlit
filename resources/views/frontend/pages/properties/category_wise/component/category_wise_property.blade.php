@@ -11,10 +11,10 @@
         </div>
         <div class="row">
             @foreach ( $properties as $property )
-                <div class="col-lg-4">
+                <div class="col-lg-4 col-md-6">
                     <div class="ltn__product-item ltn__product-item-4 text-center---">
-                        <div class="product-img">
-                            <a href="product-details.html"><img src="{{ isset($property?->banner_image[0]) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>
+                        <div class="product-img ">
+                            <a href="{{ route('properties_details', $property->id) }}"><img class="property_img_custom" src="{{  is_countable($property?->banner_image) && count($property?->banner_image) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>
                             <div class="product-badge">
                                 <ul>
                                     <li class="sale-badge bg-green">{{ $property?->property_status }}</li>
@@ -31,11 +31,11 @@
                                 <div class="product-img-gallery">
                                     <ul>
                                         <li>
-                                            <a href="{{ route('properties_details', $property->id) }}"><i class="fas fa-camera"></i> {{ count($property?->gallery ?? []) }}</a>
+                                            <a href="{{ route('properties_details', $property->id) }}"><i class="fas fa-camera"></i> {{ count($property?->banner_image ?? []) }}</a>
                                         </li>
-                                        <li>
+                                        {{-- <li>
                                             <a href="{{ route('properties_details', $property->id) }}"><i class="fas fa-film"></i> {{ count($property?->banner_image ?? []) }}</a>
-                                        </li>
+                                        </li> --}}
                                     </ul>
                                 </div>
                             </div>
@@ -46,12 +46,12 @@
                             </div>
                             <h2 class="product-title"><a href="{{ route('properties_details', $property->id) }}"> {{ $property?->property_name }}</a></h2>
                             <div class="product-description">
-                                <p>{{ Str::limit(strip_tags($property?->property_description), 60) }}</p>
+                                <p>{{ Str::limit(strip_tags($property?->property_description), 90) }}</p>
                             </div>
                             <ul class="ltn__list-item-2 ltn__list-item-2-before">
                                 @foreach ( array_slice($property?->facts_and_features, 0, 2) as $feature )
-                                    <li><span>{{ $feature['title'] }} <i class="{{ $feature['icon'] }}"></i></span>
-                                        {{ $feature['description'] }}
+                                    <li><span>{{ $feature['title'] ?? "" }} <i class="{{ $feature['icon'] ?? "" }}"></i></span>
+                                        {{ $feature['description'] ?? "" }}
                                     </li>
                                 @endforeach
                                 {{-- <li><span>3 <i class="flaticon-bed"></i></span>
@@ -87,7 +87,7 @@
                                             <i class="flaticon-heart-1"></i></a>
                                     </li>
                                     <li>
-                                        <a href="product-details.html" title="Product Details">
+                                        <a href="{{ route('properties_details', $property->id) }}" title="Product Details">
                                             <i class="flaticon-add"></i>
                                         </a>
                                     </li>

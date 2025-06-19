@@ -37,7 +37,7 @@
                                 </li>
                                 <li>
                                     <!-- ltn__social-media -->
-                                    <div class="ltn__social-media">
+                                    <div class="ltn__social-media-header">
                                         <ul>
                                             <li><a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                                             </li>

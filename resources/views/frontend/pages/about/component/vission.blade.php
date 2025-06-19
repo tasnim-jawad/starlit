@@ -12,7 +12,9 @@
         <div class="row">
             <div class="col-lg-6 align-self-center">
                 <div class=" about-img-left">
-                    <img class="equal-box fixed_h_w mx-auto" src="{{ asset($our_vission?->primary_image) }}" alt="Our Vission Image">
+                    <a href="{{ asset($our_vission?->primary_image	?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                        <img class="equal-box fixed_h_w mx-auto" src="{{ asset($our_vission?->primary_image ?? 'uploads/default.jpg') }}" alt="Our Vission Image">
+                    </a>
                 </div>
             </div>
             <div class="col-lg-6">

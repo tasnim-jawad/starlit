@@ -17,7 +17,7 @@
                     @foreach ($blogs as $blog)
                         <div class="ltn__blog-item ltn__blog-item-5">
                             <div class="ltn__blog-img">
-                                <a href="blog-details.html">
+                                <a href="{{ route('news_details', $blog->slug) }}">
                                     <img src="{{ asset($blog->thumbnail_image ?? 'assets/frontend/img/blog/31.jpg') }}"
                                         alt="Image">
                                 </a>

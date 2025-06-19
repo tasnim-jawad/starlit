@@ -15,7 +15,9 @@
                     <div class="ltn__feature-item ltn__feature-item-6 text-center bg-white  box-shadow-1">
                         <div class="ltn__feature-icon">
                             <!-- <span><i class="flaticon-house"></i></span> -->
-                            <img src="{{ asset($item->image) }}" alt="#">
+                            <a href="{{ asset($item?->image ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                                <img class="service_img_custom" src="{{ asset($item?->image ?? 'uploads/default.jpg') }}" alt="#">
+                            </a>
                         </div>
                         <div class="ltn__feature-info">
                             <h3><a href="/properties">{{ $item?->title}}</a></h3>

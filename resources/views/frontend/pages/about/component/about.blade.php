@@ -5,16 +5,32 @@
             <div class="col-lg-6 align-self-center">
                 <div class="about-us-img-wrap about-img-left">
                     {{-- <img src="{{ asset('assets/frontend') }}/img/others/7.png" alt="About Us Image"> --}}
-                    <img src="{{ asset($about_us?->primary_image	 ?? '/img/others/7.png') }}" alt="About Us Image">
+                    <a href="{{ asset($about_us?->primary_image	?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                        <img class="about_us_custom" src="{{ asset($about_us?->primary_image ?? 'uploads/default.jpg') }}" alt="About Us Image">
+
+                    </a>
+                    
                     <div class="about-us-img-info about-us-img-info-2 about-us-img-info-3">
                         
                         <div class="ltn__video-img ltn__animation-pulse1">
-                            {{-- @php
-                                dd($about_us);
-                            @endphp --}}
+                            
                             {{-- <img src="{{ asset('assets/frontend') }}/img/others/8.png" alt="video popup bg image"> --}}
-                            <img src="{{ asset($about_us?->secondery_image	 ?? '/img/others/8.png') }}" alt="video popup bg image">
-                            <a class="ltn__video-icon-2 ltn__video-icon-2-border---" href="{{$about_us?->video_url}}"  data-rel="lightcase:myCollection">
+                            <img src="{{ asset($about_us?->secondery_image	?? 'uploads/default.jpg') }}" alt="video popup bg image">
+                            
+                            
+                            @php
+                                $videoUrl = $about_us?->video_url;
+                                $videoId = null;
+
+                                if ($videoUrl) {
+                                    preg_match('/(?:youtube\.com\/(?:watch\?v=|embed\/)|youtu\.be\/)([^\s&]+)/', $videoUrl, $matches);
+                                    $videoId = $matches[1] ?? null;
+                                }
+                                // dd($videoId);
+                                // Set default if no video ID found
+                                $videoId = $videoId ?: '4jnzf1yj48M'; // Default video ID
+                            @endphp
+                            <a class="ltn__video-icon-2 ltn__video-icon-2-border---" href="https://www.youtube.com/embed/{{ $videoId }}"  data-rel="lightcase:myCollection">
                                 <i class="fa fa-play"></i>
                             </a>
                         </div>

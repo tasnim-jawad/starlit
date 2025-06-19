@@ -16,7 +16,7 @@
                         <div class="ltn__blog-meta">
                             <ul>
                                 <li class="ltn__blog-author">
-                                    <a href="#"><img src="{{ asset('uploads/default_man.jpeg') }}"
+                                    <a href="javascript:void(0)"><img src="{{ asset('uploads/default_man.jpeg') }}"
                                             alt="#">By: {{ $blog->writer ?? 'Admin' }}</a>
                                 </li>
                                 <li class="ltn__blog-date">
@@ -28,8 +28,10 @@
                                 </li>
                             </ul>
                         </div>
-                        <img src="{{ asset($blog->thumbnail_image ?? 'assets/frontend/img/blog/31.jpg') }}" alt="Image">
-                          {!! ($blog->description ?? '')!!}
+                        <a href="{{ asset($blog?->thumbnail_image ?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                            <img src="{{ asset($blog?->thumbnail_image ?? 'uploads/default.jpg') }}" alt="Image">
+                        </a>
+                          {!! ($blog?->description ?? '')!!}
                         
                     </div>
                     <hr>

@@ -20,7 +20,10 @@
             </div>
             <div class="col-lg-6 align-self-center">
                 <div class="about-img-right">
-                    <img class="equal-box fixed_h_w mx-auto" src="{{ asset($our_mission?->primary_image ?? '/uploads/default.jpg') }}" alt="Our Mission Image">
+                    <a href="{{ asset($our_mission?->primary_image	?? 'uploads/default.jpg') }}" data-rel="lightcase:myCollection">
+                        <img class="equal-box fixed_h_w mx-auto" src="{{ asset($our_mission?->primary_image ?? '/uploads/default.jpg') }}" alt="Our Mission Image">
+
+                    </a>
                 </div>
             </div>
             <!--  -->

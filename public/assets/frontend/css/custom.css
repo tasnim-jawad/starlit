@@ -67,3 +67,78 @@ a{
     object-fit: cover;
     display: block;
 }
+/* -------------------today_sell--------------------- */
+.today_sell_custom_big,
+.today_sell_custom {
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+}
+@media (max-width: 991px) {
+    .today_sell_custom{
+        height: 300px;
+    }
+
+}
+@media (max-width: 767px) {
+    .today_sell_custom_big{
+        height: 300px;
+    }
+
+}
+/* -------------------our property--------------------- */
+.gallery_img_custom,
+.blog_img_custom,
+.property_img_custom{
+    height: 275px;
+    object-fit: cover;
+    display: block;
+    min-width: 100%;
+}
+
+/* -------------------about us--------------------- */
+.about_us_custom{
+    height: 650px;
+    /* max-width: 520px; */
+    object-fit: cover;
+    display: block;
+    /* margin: auto; */
+}
+/* small mobile :320px. */
+@media (max-width: 767px) {
+    .about_us_custom{
+        height: 450px;
+    }
+
+}
+/* -------------------service--------------------- */
+.service_img_custom{
+    width: 185px;
+    height: 140px;
+    object-fit: cover;
+}
+/* -------------------property slider--------------------- */
+.slider_img_custom{
+    height: 400px;
+    width: 100%;
+    object-fit: cover;
+}
+.property_gallery_custom{
+    max-height: 300px;
+    width: 100%;
+    object-fit: cover;
+}
+.property_gallery_custom_right{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    display: block;
+    /* min-height: 300px; */
+}
+@media (max-width: 767px) {
+    .property_gallery_custom_right{
+        height: 300px;
+    }
+
+}

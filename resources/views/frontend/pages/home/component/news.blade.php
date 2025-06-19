@@ -15,7 +15,7 @@
                 <div class="col-lg-4">
                     <div class="ltn__blog-item ltn__blog-item-3">
                         <div class="ltn__blog-img">
-                            <a href="{{ route('news_details', $blog->slug) }}"><img src="{{ asset($blog?->thumbnail_image) }}" alt="#"></a>
+                            <a href="{{ route('news_details', $blog->slug) }}"><img class="blog_img_custom" src="{{ asset($blog?->thumbnail_image) }}" alt="#"></a>
                         </div>
                         <div class="ltn__blog-brief">
                             <div class="ltn__blog-meta">

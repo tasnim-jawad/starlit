@@ -16,8 +16,8 @@
                     @foreach ( $properties as $property )
                         <div class="col-lg-4 col-md-6">
                             <div class="ltn__product-item ltn__product-item-4 text-center---">
-                                <div class="product-img">
-                                    <a href="{{ route('properties_details', $property->id) }}"><img src="{{  is_countable($property?->banner_image) && count($property?->banner_image) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>
+                                <div class="product-img ">
+                                    <a href="{{ route('properties_details', $property->id) }}"><img class="property_img_custom" src="{{  is_countable($property?->banner_image) && count($property?->banner_image) ? asset($property->banner_image[0]) : asset('default-image.jpg') }}" alt="#"></a>
                                     <div class="product-badge">
                                         <ul>
                                             <li class="sale-badge bg-green">{{ $property?->property_status }}</li>
@@ -49,7 +49,7 @@
                                     </div>
                                     <h2 class="product-title"><a href="{{ route('properties_details', $property->id) }}"> {{ $property?->property_name }}</a></h2>
                                     <div class="product-description">
-                                        <p>{{ Str::limit(strip_tags($property?->property_description), 60) }}</p>
+                                        <p>{{ Str::limit(strip_tags($property?->property_description), 90) }}</p>
                                     </div>
                                     <ul class="ltn__list-item-2 ltn__list-item-2-before">
                                         @foreach ( array_slice($property?->facts_and_features, 0, 2) as $feature )
