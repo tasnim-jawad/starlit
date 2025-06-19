@@ -321,9 +321,22 @@
               >
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label for="">floor_number</label>
+                    <label for="">floor number</label>
                     <div class="mt-1 mb-3">
-                      <select
+                      <input
+                        class="form-control form-control-square mb-2"
+                        type="text"
+                        :name="`floor_plan[${index}][floor_number]`"
+                        v-model="floor_plan.floor_number"
+                        id="floor_number"
+                        :class="{
+                          custom_error:
+                            errors['floor_plan'] &&
+                            errors['floor_plan'][index] &&
+                            errors['floor_plan'][index].floor_number,
+                        }"
+                      />
+                      <!-- <select
                         class="form-control form-control-square mb-2"
                         :name="`floor_plan[${index}][floor_number]`"
                         v-model="floor_plan.floor_number"
@@ -342,7 +355,7 @@
                         >
                           {{ number_of_floor.text }}
                         </option>
-                      </select>
+                      </select> -->
                     </div>
                     <div
                       v-if="
@@ -430,11 +443,9 @@
                     </div>
                   </div>
                 </div>
-                <div
-                  class="col-md-1 d-flex align-items-center justify-content-center"
-                >
+                <div class="col-md-1">
                   <button
-                    class="btn btn-sm btn-outline-danger"
+                    class="btn btn-sm btn-outline-danger d-flex align-items-center justify-content-center"
                     :style="{
                       width: '50%',
                       marginTop: !errors['floor_plan']?.[index]?.title
@@ -467,7 +478,7 @@
                 v-for="(floor_plan_details, index) in floor_plan_details_data"
                 :key="index"
               >
-              <div class="col-md-2">
+                <!-- <div class="col-md-2">
                   <div class="form-group">
                     <label for="">floor_number</label>
                     <div class="mt-1 mb-3">
@@ -503,7 +514,7 @@
                       {{ errors["floor_plan_details"][index].floor_number }}
                     </div>
                   </div>
-                </div>
+                </div> -->
                 <div class="col-md-4">
                   <div class="form-group">
                     <label for="">title</label>
@@ -613,12 +624,12 @@ export default {
     form_fields,
     param_id: null,
     errors: [],
-    number_of_floors: [
-      { text: "First Floor", number: 1 },
-      { text: "Second Floor", number: 2 },
-      { text: "Third Floor", number: 3 },
-      { text: "Fourth Floor", number: 4 },
-    ],
+    // number_of_floors: [
+    //   { text: "First Floor", number: 1 },
+    //   { text: "Second Floor", number: 2 },
+    //   { text: "Third Floor", number: 3 },
+    //   { text: "Fourth Floor", number: 4 },
+    // ],
     icons: [
       { class: "fa-solid fa-thumbs-down", title: "Bad" }, // bad
       { class: "fa-solid fa-bath", title: "Bath" }, // bath
@@ -685,13 +696,11 @@ export default {
 
     //----------- for floor_plan_details list input ----------
     floor_plan_details_data_object: {
-      floor_number: "",
       title: "",
       description: "",
     },
     floor_plan_details_data: [
       {
-        floor_number: "",
         title: "",
         description: "",
       },
@@ -746,12 +755,7 @@ export default {
             }
 
             // Set summernote content for property_description
-            if (
-              field.name == "property_description" &&
-              value[0] == "property_description"
-            ) {
-              $("#property_description").summernote("code", value[1]);
-            }
+           
           });
         });
         if (this.item.facts_and_features) {
@@ -779,7 +783,7 @@ export default {
         if (this.item.floor_plan_details) {
           this.floor_plan_details_data = this.item.floor_plan_details.map(
             (floor_plan_details) => ({
-              floor_number: floor_plan_details.floor_number,
+              // floor_number: floor_plan_details.floor_number,
               title: floor_plan_details.title,
               description: floor_plan_details.description,
             })
@@ -789,6 +793,11 @@ export default {
     },
 
     submitHandler: async function ($event) {
+      
+      if (!this.validate_data()) {
+        return; // Stop submission if validation fails
+      }
+
       this.set_only_latest_data(true);
       if (this.param_id) {
         this.setSummerEditor();
@@ -816,12 +825,7 @@ export default {
       target.value = markupStr;
       document.getElementById("property_detail").appendChild(target);
 
-      // Set property_description summernote content
-      var markupStr = $("#property_description").summernote("code");
-      var target = document.createElement("input");
-      target.setAttribute("name", "property_description");
-      target.value = markupStr;
-      document.getElementById("property_description").appendChild(target);
+     
     },
 
     //add row for json data
@@ -885,17 +889,26 @@ export default {
         let facts_and_featuresErrors = {};
 
         // Validate icon field
-        if (!facts_and_features.icon) {
+        if (
+          !facts_and_features.icon ||
+          String(facts_and_features.icon).trim() === ""
+        ) {
           facts_and_featuresErrors.icon = "icon is required";
           valid = false;
         }
         // Validate title field
-        if (!facts_and_features.title) {
+        if (
+          !facts_and_features.title ||
+          String(facts_and_features.title).trim() === ""
+        ) {
           facts_and_featuresErrors.title = "Title is required";
           valid = false;
         }
         // Validate description field
-        if (!facts_and_features.description) {
+        if (
+          !facts_and_features.description ||
+          String(facts_and_features.description).trim() === ""
+        ) {
           facts_and_featuresErrors.description = "description is required";
           valid = false;
         }
@@ -914,7 +927,7 @@ export default {
           valid = false;
         }
         // Validate available field
-        if (!amenities.available) {
+        if (amenities.available === null || amenities.available === undefined) {
           amenitiesErrors.available = "available is required";
           valid = false;
         }

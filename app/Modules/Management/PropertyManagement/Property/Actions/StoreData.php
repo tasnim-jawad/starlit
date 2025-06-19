@@ -18,6 +18,12 @@ class StoreData
 
             // dd($requestData);
 
+            if ($request->hasFile('property_video_thmbnail')) {
+                $property_video_thmbnail = $request->file('property_video_thmbnail');
+                $currentDate = now()->format('Y/m');
+                $requestData['property_video_thmbnail'] = uploader($property_video_thmbnail, 'uploads/property/property_video_thmbnail/' . $currentDate);
+            }
+
             if ($request->hasFile('banner_image')) {
                 foreach ($request->file('banner_image') as $key => $banner_image) {
                     $currentDate = now()->format('Y/m');
@@ -25,7 +31,7 @@ class StoreData
                 }
             }
 
-            
+
             if ($request->hasFile('gallery')) {
                 foreach ($request->file('gallery') as $key => $gallery) {
                     $currentDate = now()->format('Y/m');

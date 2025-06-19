@@ -45,7 +45,7 @@ class PropertiesController extends Controller
     public function categories()
     
     {   
-        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();
+        $property_category_list = PropertyCategory::where('status', 'active')->orderBy('name', 'asc')->get();
         return response()->json([
             'status' => 'success',
             'data' => $property_category_list,
@@ -56,7 +56,7 @@ class PropertiesController extends Controller
     
     {   
         $category_name = $category;
-        $category_data = PropertyCategory::where('name', $category)->firstOrFail();
+        $category_data = PropertyCategory::where('name', $category)->where('status', 'active')->firstOrFail();
         // dd($category_data);
         $properties = Property::with('category')
             ->where('status', 'active')

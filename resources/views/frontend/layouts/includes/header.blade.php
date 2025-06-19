@@ -111,10 +111,10 @@
                                             <li><a href="{{ route('gallery.video') }}">Video gallery</a></li>
                                         </ul>
                                     </li>
-                                    <li class=""><a href="{{ route('news') }}">News</a></li>
+                                    <li class=""><a href="{{ route('news') }}">Blogs</a></li>
                                     <li><a href="{{ route('contact') }}">Contact</a></li>
                                     <li class="special-link">
-                                        <a href="/login">Login</a>
+                                        <a target="_blank" href="/login">Login</a>
                                     </li>
                                 </ul>
                             </div>

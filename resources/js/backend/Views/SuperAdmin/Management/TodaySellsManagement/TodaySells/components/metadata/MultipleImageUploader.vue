@@ -108,7 +108,7 @@ export default {
       const parsedData = { field: this.name, index: data.index };
       if (this.item.slug) {
         const response = await axios.post(
-          `properties/proprerty-image-delete/${
+          `today-sells/gallery-image-delete/${
             this.item.slug
           }?data=${JSON.stringify(parsedData)}`
         );

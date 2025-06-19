@@ -37,7 +37,7 @@
                             <div class="product-img">
                                 <iframe width="560" height="315" src="{{ $embedUrl }}" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>                    </div>
                             <div class="product-info">
-                                <h2 class="product-title"><a href="product-details.html">{{ $video?->title }}</a></h2>
+                                <h2 class="product-title"><a href="javascript:void(0)">{{ $video?->title }}</a></h2>
                             </div>
                         </div>
                     </div>

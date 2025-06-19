@@ -9,6 +9,7 @@ class StoreData
     public static function execute($request)
     {
         try {
+
             $requestData = $request->validated();
 
             // Handle YouTube URL embedding
@@ -43,6 +44,7 @@ class StoreData
                 }
                 $currentDate = now()->format('Y/m');
                 $videoPath = self::uploadVideoFile($video, $currentDate);
+                // dd($videoPath);
                 $requestData['video_file'] = $videoPath;
             }
 
@@ -50,7 +52,7 @@ class StoreData
                 return messageResponse('Item added successfully', $data, 201);
             }
         } catch (\Exception $e) {
-            return messageResponse($e->getMessage(),[], 500, 'server_error');
+            return messageResponse($e->getMessage(), [], 500, 'server_error');
         }
     }
 

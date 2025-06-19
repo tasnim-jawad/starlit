@@ -14,7 +14,7 @@ class StoreData
         try {
             $requestData = request()->all(); // Get all request data
             $responseData = [];
-
+            
             foreach ($requestData as $title => $value) {
                 if (is_null($value) && !request()->hasFile('image')) {
                     continue; // Skip if no value or image exists
@@ -22,7 +22,7 @@ class StoreData
 
                 DB::transaction(function () use ($title, $value, &$responseData) {
                     $finalValue = $value; // Default to the provided value
-
+                    
                     // Handle image upload only if the title is for an image
                     if (request()->hasFile('image') && $title === 'image') {
                         $image = request()->file('image');

@@ -1,12 +1,22 @@
 <template>
   <!-- {{ item }} -->
 
-  <template v-for="(row_item, index) in setup.table_row_data" :key="index">
+  <template v-for="(row_item, index) in setup.select_fields" :key="index">
     <tr>
       <th>{{ row_item }}</th>
       <th class="text-center">:</th>
       <th class="text-trim">
-        {{ trim_content(item[row_item], row_item) }}
+        <template
+          v-if="
+            typeof item[row_item] === 'string' &&
+            item[row_item].trim().startsWith('<')
+          "
+        >
+          <span v-html="item[row_item]"></span>
+        </template>
+        <template v-else>
+          {{ trim_content(item[row_item], row_item) }}
+        </template>
       </th>
     </tr>
   </template>
@@ -32,7 +42,14 @@ export default {
     trim_content(content, row_item = null) {
       if (typeof content == "string") {
         if (row_item == "created_at" || row_item == "updated_at") {
-          return new Date(content).toLocaleTimeString();
+          return new Intl.DateTimeFormat("en-US", {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+            second: "2-digit",
+          }).format(new Date(content));
         }
         return content.length > 50 ? content.substring(0, 50) + "..." : content;
       }

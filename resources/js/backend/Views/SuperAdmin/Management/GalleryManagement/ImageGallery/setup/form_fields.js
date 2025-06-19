@@ -21,6 +21,23 @@ export default [
     value: "",
   },
 
+	{
+		name: "status",
+		label: "select status",
+		type: "select",
+		value: "",
+		data_list: [
+			{
+				label: "Active",
+				value: "active",
+			},
+			{
+				label: "Inactive",
+				value: "inactive",
+			},
+		],
+	},
+
   // {
   //   name: "type",
   //   label: "Enter your type",

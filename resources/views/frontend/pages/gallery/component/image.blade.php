@@ -18,7 +18,7 @@
                             <img src="{{ asset($image?->image ?? 'uploads/default.jpg') }}" alt="image gallery">
                         </div>
                         <div class="product-info">
-                            <h2 class="product-title"><a href="{{ route('properties') }}">{{$image?->title}}</a></h2>
+                            <h2 class="product-title"><a href="javascript:void(0)">{{$image?->title}}</a></h2>
                         </div>
                     </div>
                 </div>

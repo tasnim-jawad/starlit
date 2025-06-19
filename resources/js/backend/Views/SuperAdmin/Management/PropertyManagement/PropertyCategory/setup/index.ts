@@ -16,19 +16,11 @@ const setup: setup_type = {
   route_prefix: "PropertyCategory",
   route_path: "property-category",
 
-  select_fields: [
-    "id",
-    "name",
-    "property_group_id",
-    "status",
-    "slug",
-    "created_at",
-    "deleted_at",
-  ],
+  select_fields: ["id", "name", "status", "slug", "created_at", "deleted_at"],
 
-  sort_by_cols: ["id", "name", "property_group_id", "status", "created_at"],
-  table_header_data: ["id", "name", "property_group", "status", "created_at"],
-  table_row_data: ["id", "name", "property_group", "status", "created_at"],
+  sort_by_cols: ["id", "name", "status", "created_at"],
+  table_header_data: ["id", "name", "status", "created_at"],
+  table_row_data: ["id", "name", "status", "created_at"],
 
   layout_title: prefix + " Management",
   page_title: `${prefix} Management`,

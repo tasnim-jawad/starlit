@@ -45,3 +45,15 @@
 
 ---------------- new problem ----------------
 ** image and video gallery te property slug nite hobe . <h2 class="product-title"><a href="product-details.html">{{$image?->title}}</a></h2>
+
+
+---------------- data upload facing inconvenient / problem ----------------
+** banner -e video upload hote shomoy lage . kintu eta bujha jay na . submit holeo bujha jay na , na holeo jay na.
+** 6 second 4mb er video upload hocche na .
+
+** About us - e "Select page type" bujhiye dite hobe . na hoy bujhbe na. 
+** About us - our mission and our vission just need description and image , but there is taking all thet is included about us.
+** About us - our mission and our vission description need textarea just but here input type text unsing.
+
+** property - map er link ki embade korte hoy?
+** property - From Our Gallery - te design thik korte hobe.

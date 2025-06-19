@@ -5,6 +5,7 @@ namespace App\Modules\Management\TodaySellsManagement\TodaySells\Models;
 use Illuminate\Database\Eloquent\Model as EloquentModel;
 use Illuminate\Support\Str;
 use Illuminate\Database\Eloquent\SoftDeletes;
+
 class Model extends EloquentModel
 {
     use SoftDeletes;
@@ -14,6 +15,7 @@ class Model extends EloquentModel
         'features' => 'array',
         'key_features' => 'array',
         'image_gallery_left' => 'array',
+        'image_gallery_right' => 'array',
     ];
 
     protected static function booted()
@@ -37,11 +39,11 @@ class Model extends EloquentModel
         return $q->where('status', 'active');
     }
 
-     public function scopeInactive($q)
+    public function scopeInactive($q)
     {
         return $q->where('status', 'inactive');
     }
-     public function scopeTrased($q)
+    public function scopeTrased($q)
     {
         return $q->onlyTrashed();
     }

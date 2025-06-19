@@ -11,6 +11,7 @@
                 $phone = $settingTitles->where('title', 'phone_numbers')->first();
                 $email = $settingTitles->where('title', 'emails')->first();
                 $address = $settingTitles->where('title', 'address')->first();
+                // dd($phone);
             @endphp
 
             <div class="col-lg-4">

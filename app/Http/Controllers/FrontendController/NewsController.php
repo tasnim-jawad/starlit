@@ -14,7 +14,10 @@ class NewsController extends Controller
     public function index()
     {
         $blog_category = DB::table('blog_categories')
-            ->leftJoin('blogs', 'blog_categories.id', '=', 'blogs.blog_category_id')
+            ->leftJoin('blogs', function($join) {
+                $join->on('blog_categories.id', '=', 'blogs.blog_category_id')
+                    ->where('blogs.status', 'active');
+            })
             ->select('blog_categories.*', DB::raw('COUNT(blogs.id) as blog_count'))
             ->groupBy('blog_categories.id')
             ->orderBy('blog_count', 'desc')
@@ -25,9 +28,10 @@ class NewsController extends Controller
         //     ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
         //     ->select('blogs.*', 'blog_categories.title as category_name')
         //     ->paginate(10);
-        $blogs = Blog::with('comments')->paginate(4);
+        $blogs = Blog::with('comments')->where('status', 'active')->paginate(4);
         $top_rated_blogs_query = DB::table("blogs")
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+            ->where('blogs.status', 'active')
             ->select('blogs.*', 'blog_categories.title as category_name');
 
         $total_blogs = $top_rated_blogs_query->count();
@@ -44,12 +48,13 @@ class NewsController extends Controller
 
         $latest_blogs = DB::table("blogs")
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+            ->where('blogs.status', 'active')
             ->select('blogs.*', 'blog_categories.title as category_name')
             ->orderBy('blogs.created_at', 'desc')
             ->limit(5)
             ->get();
 
-        $property_category_list = PropertyCategory::orderBy('name', 'asc')->get();
+        $property_category_list = PropertyCategory::where('status', 'active')->orderBy('name', 'asc')->get();
         return view(
             'frontend.pages.news.news',
             compact('blogs', 'blog_category', 'top_rated_blogs', 'latest_blogs')
@@ -74,7 +79,10 @@ class NewsController extends Controller
         $blog = Blog::with('comments')->where('slug', $slug)->first();
         // dd($blog);
         $blog_category = DB::table('blog_categories')
-            ->leftJoin('blogs', 'blog_categories.id', '=', 'blogs.blog_category_id')
+            ->leftJoin('blogs', function($join) {
+                $join->on('blog_categories.id', '=', 'blogs.blog_category_id')
+                    ->where('blogs.status', 'active');
+            })
             ->select('blog_categories.*', DB::raw('COUNT(blogs.id) as blog_count'))
             ->groupBy('blog_categories.id')
             ->orderBy('blog_count', 'desc')
@@ -82,6 +90,7 @@ class NewsController extends Controller
 
         $top_rated_blogs_query = DB::table("blogs")
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+            ->where('blogs.status', 'active')
             ->select('blogs.*', 'blog_categories.title as category_name');
 
         $total_blogs = $top_rated_blogs_query->count();
@@ -98,6 +107,7 @@ class NewsController extends Controller
 
         $latest_blogs = DB::table("blogs")
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
+            ->where('blogs.status', 'active')
             ->select('blogs.*', 'blog_categories.title as category_name')
             ->orderBy('blogs.created_at', 'desc')
             ->limit(5)
@@ -116,7 +126,10 @@ class NewsController extends Controller
             ->first();
 
         $blog_category = DB::table('blog_categories')
-            ->leftJoin('blogs', 'blog_categories.id', '=', 'blogs.blog_category_id')
+            ->leftJoin('blogs', function($join) {
+                $join->on('blog_categories.id', '=', 'blogs.blog_category_id')
+                    ->where('blogs.status', 'active');
+            })
             ->select('blog_categories.*', DB::raw('COUNT(blogs.id) as blog_count'))
             ->groupBy('blog_categories.id')
             ->orderBy('blog_count', 'desc')
@@ -127,6 +140,7 @@ class NewsController extends Controller
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
             ->select('blogs.*', 'blog_categories.title as category_name')
             ->where('blog_categories.slug', $slug)
+            ->where('blogs.status', 'active')
             ->paginate(10);
 
         $top_rated_blogs_query = DB::table("blogs")
@@ -148,6 +162,7 @@ class NewsController extends Controller
         $latest_blogs = DB::table("blogs")
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
             ->select('blogs.*', 'blog_categories.title as category_name')
+            ->where('blogs.status', 'active')
             ->orderBy('blogs.created_at', 'desc')
             ->limit(5)
             ->get();
@@ -164,6 +179,7 @@ class NewsController extends Controller
 
         $blogs = DB::table("blogs")
             ->where('title', 'like', "%{$query}%")
+            ->where('status', 'active')
             ->limit(10)
             ->get();
 

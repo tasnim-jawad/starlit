@@ -32,7 +32,7 @@
         <div class="card-body card_body_fixed_height">
           <div class="row">
             <template
-              v-for="(form_field, index) in form_fields"
+              v-for="(form_field, index) in filtered_form_fields"
               v-bind:key="index"
             >
               <common-input
@@ -44,10 +44,16 @@
                 :data_list="form_field.data_list"
                 :is_visible="form_field.is_visible"
                 :row_col_class="form_field.row_col_class"
+                :onchange="changeAction"
+                :onchangeAction="form_field.onchangeAction"
               />
             </template>
 
-            <div class="col-md-12 pt-3">
+            <div
+              class="col-md-12 pt-3"
+              id="features_section"
+              v-if="!['our_mission', 'our_vission'].includes(page_type)"
+            >
               <div
                 class="d-flex justify-content-between align-items-center border-bottom pb-2"
               >
@@ -159,7 +165,9 @@ import form_fields from "../setup/form_fields";
 export default {
   data: () => ({
     setup,
-    form_fields,
+    form_fields: JSON.parse(JSON.stringify(form_fields)), // Make reactive
+    page_type: "", // Add this for tracking selected page type
+
     param_id: null,
 
     features_data_object: {
@@ -215,6 +223,7 @@ export default {
       this.set_fields(id);
     }
   },
+
   methods: {
     ...mapActions(store, {
       create: "create",
@@ -242,6 +251,11 @@ export default {
           });
         });
 
+        // Set page_type for filtering and features section
+        if (this.item.page_type) {
+          this.page_type = this.item.page_type;
+        }
+
         this.features_data = [];
         let features = this.item.features;
         // Parse if it's a JSON string
@@ -262,7 +276,7 @@ export default {
     },
 
     submitHandler: async function ($event) {
-      console.log("this.validate_data()", this.validate_data());
+      // console.log("this.validate_data()", this.validate_data());
       if (!this.validate_data()) {
         return; // Stop submission if validation fails
       }
@@ -303,28 +317,25 @@ export default {
     validate_data: function () {
       this.errors = [];
       let valid = true;
+      if (!["our_mission", "our_vission"].includes(this.page_type)) {
+        this.features_data.forEach((features, index) => {
+          let featuresErrors = {};
 
-      this.features_data.forEach((features, index) => {
-        let featuresErrors = {};
+          // Validate icon field
+          if (!features.icon) {
+            featuresErrors.icon = "Icon is required";
+            valid = false;
+          }
 
-        // Validate icon field
-        console.log("features", features);
-        console.log("features.icon out", features.icon);
-        if (!features.icon) {
-          console.log("features.icon in", features.icon);
+          // Validate title field
+          if (!features.title) {
+            featuresErrors.title = "Title is required";
+            valid = false;
+          }
 
-          featuresErrors.icon = "Icon is required";
-          valid = false;
-        }
-
-        // Validate title field
-        if (!features.title) {
-          featuresErrors.title = "Title is required";
-          valid = false;
-        }
-
-        this.errors[index] = featuresErrors;
-      });
+          this.errors[index] = featuresErrors;
+        });
+      }
 
       // Log errors for debugging
       console.log(this.errors);
@@ -336,12 +347,35 @@ export default {
 
       return true;
     },
+
+    changeAction: function (actionTitle, event, ref) {
+      this[actionTitle](actionTitle, event, ref);
+    },
+
+    onSelectChange(actionTitle, event, ref) {
+      console.log("onSelectChange event:", event.target.value);
+      this.page_type = event.target.value;
+    },
   },
 
   computed: {
     ...mapState(store, {
       item: "item",
     }),
+
+    filtered_form_fields() {
+      const pageType = this.page_type;
+      if (pageType === "our_mission" || pageType === "our_vission") {
+        const fieldsToRemove = [
+          "title",
+          "quotation",
+          "video_url",
+          "secondery_image",
+        ];
+        return this.form_fields.filter((f) => !fieldsToRemove.includes(f.name));
+      }
+      return this.form_fields;
+    },
   },
 };
 </script>

@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Modules\Management\TodaySellsManagement\TodaySells\Controller;
+
 use App\Modules\Management\TodaySellsManagement\TodaySells\Actions\GetAllData;
 use App\Modules\Management\TodaySellsManagement\TodaySells\Actions\DestroyData;
 use App\Modules\Management\TodaySellsManagement\TodaySells\Actions\GetSingleData;
@@ -10,6 +11,7 @@ use App\Modules\Management\TodaySellsManagement\TodaySells\Actions\UpdateStatus;
 use App\Modules\Management\TodaySellsManagement\TodaySells\Actions\SoftDelete;
 use App\Modules\Management\TodaySellsManagement\TodaySells\Actions\RestoreData;
 use App\Modules\Management\TodaySellsManagement\TodaySells\Actions\ImportData;
+use App\Modules\Management\TodaySellsManagement\TodaySells\Actions\DeleteGalleryImage;
 use App\Modules\Management\TodaySellsManagement\TodaySells\Validations\BulkActionsValidation;
 use App\Modules\Management\TodaySellsManagement\TodaySells\Validations\DataStoreValidation;
 use App\Modules\Management\TodaySellsManagement\TodaySells\Actions\BulkActions;
@@ -19,7 +21,8 @@ use App\Http\Controllers\Controller as ControllersController;
 class Controller extends ControllersController
 {
 
-    public function index( ){
+    public function index()
+    {
 
         $data = GetAllData::execute();
         return $data;
@@ -42,7 +45,7 @@ class Controller extends ControllersController
         $data = UpdateData::execute($request, $slug);
         return $data;
     }
-         public function updateStatus()
+    public function updateStatus()
     {
         $data = UpdateStatus::execute();
         return $data;
@@ -74,4 +77,9 @@ class Controller extends ControllersController
         return $data;
     }
 
+    public function DeleteGalleryImage($slug)
+    {
+        $data = DeleteGalleryImage::execute($slug);
+        return $data;
+    }
 }

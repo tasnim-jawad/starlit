@@ -67,7 +67,6 @@ export default [
     label: "Upload  property video thmbnail",
     type: "file",
     value: "",
-    multiple: false,
   },
 
   {
@@ -95,8 +94,25 @@ export default [
   {
     name: "property_detail",
     label: "Enter your property detail",
-    type: "textarea",
+    type: "texteditor",
     value: "",
     row_col_class: "col-md-12",
   },
+
+	{
+		name: "status",
+		label: "select status",
+		type: "select",
+		value: "",
+		data_list: [
+			{
+				label: "Active",
+				value: "active",
+			},
+			{
+				label: "Inactive",
+				value: "inactive",
+			},
+		],
+	},
 ];

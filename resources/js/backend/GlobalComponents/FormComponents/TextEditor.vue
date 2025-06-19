@@ -35,6 +35,8 @@ export default {
             }, 1000)
         },
         summerNoteTooltip(style, classname) {
+            console.log(style, classname);
+            
             setTimeout(function () {
                 let target = document.querySelector(`[data-bs-original-title="${style}"]`);
                 let targetClass = document.querySelector(`.${classname}`);

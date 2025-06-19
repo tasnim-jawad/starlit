@@ -16,8 +16,8 @@
                         <div class="ltn__blog-meta">
                             <ul>
                                 <li class="ltn__blog-author">
-                                    <a href="#"><img src="{{ asset('assets/frontend') }}/img/blog/author.jpg"
-                                            alt="#">By: {{ $blog->writer ?? '' }}</a>
+                                    <a href="#"><img src="{{ asset('uploads/default_man.jpeg') }}"
+                                            alt="#">By: {{ $blog->writer ?? 'Admin' }}</a>
                                 </li>
                                 <li class="ltn__blog-date">
                                     <i class="far fa-calendar-alt"></i>
@@ -191,7 +191,7 @@
                             </div>
                             {{-- <label class="mb-0"><input type="checkbox" name="agree"> Save my name, email, and website in this browser for the next time I comment.</label> --}}
                             <div class="btn-wrapper">
-                                <button class="btn theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
+                                <button class="btn border theme-btn-1 btn-effect-1 text-uppercase" type="submit">Submit</button>
                             </div>
                         </form>
                     </div>

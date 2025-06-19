@@ -12,6 +12,7 @@ export default [
     type: "text",
     value: "",
   },
+  
   // {
   //   name: "type",
   //   label: "Enter your type",
@@ -38,4 +39,21 @@ export default [
     value: "",
     placeholder: "https://www.youtube.com/watch?v=example",
   },
+
+	{
+		name: "status",
+		label: "select status",
+		type: "select",
+		value: "",
+		data_list: [
+			{
+				label: "Active",
+				value: "active",
+			},
+			{
+				label: "Inactive",
+				value: "inactive",
+			},
+		],
+	},
 ];

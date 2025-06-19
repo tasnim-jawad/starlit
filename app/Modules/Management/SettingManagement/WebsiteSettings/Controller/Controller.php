@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Modules\Management\SettingManagement\WebsiteSettings\Controller;
+
 use App\Modules\Management\SettingManagement\WebsiteSettings\Actions\GetAllData;
 use App\Modules\Management\SettingManagement\WebsiteSettings\Actions\DestroyData;
 use App\Modules\Management\SettingManagement\WebsiteSettings\Actions\GetSingleData;
@@ -9,6 +10,7 @@ use App\Modules\Management\SettingManagement\WebsiteSettings\Actions\UpdateData;
 use App\Modules\Management\SettingManagement\WebsiteSettings\Actions\SoftDelete;
 use App\Modules\Management\SettingManagement\WebsiteSettings\Actions\RestoreData;
 use App\Modules\Management\SettingManagement\WebsiteSettings\Actions\ImportData;
+use App\Modules\Management\SettingManagement\WebsiteSettings\Actions\GetAllDashboardData;
 use App\Modules\Management\SettingManagement\WebsiteSettings\Validations\BulkActionsValidation;
 use App\Modules\Management\SettingManagement\WebsiteSettings\Validations\DataStoreValidation;
 use App\Modules\Management\SettingManagement\WebsiteSettings\Actions\BulkActions;
@@ -18,13 +20,20 @@ use App\Http\Controllers\Controller as ControllersController;
 class Controller extends ControllersController
 {
 
-    public function index( ){
+    public function index()
+    {
 
         $data = GetAllData::execute();
         return $data;
     }
+    public function GetAllDashboardData()
+    {
 
-    public function store(  )
+        $data = GetAllDashboardData::execute();
+        return $data;
+    }
+
+    public function store()
     {
         $data = StoreData::execute();
         return $data;
@@ -67,5 +76,4 @@ class Controller extends ControllersController
         $data = BulkActions::execute($request);
         return $data;
     }
-
 }

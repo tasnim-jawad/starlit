@@ -252,7 +252,7 @@
         </div>
         <!-- Popular Post Widget -->
         <div class="widget ltn__popular-post-widget">
-            <h4 class="ltn__widget-title ltn__widget-title-border-2">Leatest Blogs</h4>
+            <h4 class="ltn__widget-title ltn__widget-title-border-2">Latest Blogs</h4>
             <ul>
                 <li>
                     <div class="popular-post-widget-item clearfix">

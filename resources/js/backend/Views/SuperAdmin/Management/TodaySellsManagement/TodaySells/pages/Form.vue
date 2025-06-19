@@ -36,6 +36,7 @@
               v-bind:key="index"
             >
               <common-input
+                v-if="form_field.type !== 'file'"
                 :label="form_field.label"
                 :type="form_field.type"
                 :name="form_field.name"
@@ -44,6 +45,23 @@
                 :data_list="form_field.data_list"
                 :is_visible="form_field.is_visible"
                 :row_col_class="form_field.row_col_class"
+              />
+              <common-input
+                v-else-if="form_field.type === 'file' && !form_field.multiple"
+                :label="form_field.label"
+                :type="form_field.type"
+                :name="form_field.name"
+                :multiple="form_field.multiple"
+                :value="form_field.value"
+                :data_list="form_field.data_list"
+                :is_visible="form_field.is_visible"
+                :row_col_class="form_field.row_col_class"
+              />
+              <multiple-image-uploader
+                v-else-if="form_field.type === 'file' && form_field.multiple"
+                :name="form_field.name"
+                :accept="form_field.accept"
+                :images="form_field.images_list"
               />
             </template>
 
@@ -268,10 +286,12 @@ import { mapActions, mapState } from "pinia";
 import { store } from "../store";
 import setup from "../setup";
 import form_fields from "../setup/form_fields";
-import ImageComponent from "../../../../../../GlobalComponents/FormComponents/ImageComponent.vue";
+import MultipleImageUploader from "../components/metadata/MultipleImageUploader.vue";
 
 export default {
-  components:{ImageComponent },
+  components: {
+    MultipleImageUploader,
+  },
   data: () => ({
     setup,
     form_fields,
@@ -369,6 +389,19 @@ export default {
             if (field.name == value[0]) {
               this.form_fields[index].value = value[1];
             }
+            // Set summernote content for property_detail
+            if (
+              field.name == "image_gallery_left" &&
+              value[0] == "image_gallery_left"
+            ) {
+              this.form_fields[index].images_list = value[1];
+            }
+            if (
+              field.name == "image_gallery_right" &&
+              value[0] == "image_gallery_right"
+            ) {
+              this.form_fields[index].images_list = value[1];
+            }
           });
         });
 
@@ -387,7 +420,6 @@ export default {
             title: element.title,
           });
         });
-        
 
         this.key_features_data = [];
         let key_features = this.item.key_features;

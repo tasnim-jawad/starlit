@@ -50,11 +50,17 @@
         <!-- </template> -->
       </div>
 
-      <div v-if="type === 'textarea'" class="mt-1 mb-3">
-        <!-- <textarea class="form-control form-control-square" rows="10"  type="text" :name="name" :value="value"
-                @change="errorReset"></textarea> -->
-        <!-- <div :id="name"></div> -->
+      
+
+      <div v-if="type === 'texteditor'" class="mt-1 mb-3">
+     
         <text-editor :name="name" />
+      </div>
+      <div v-if="type === 'textarea'" class="mt-1 mb-3">
+        <textarea class="form-control form-control-square" rows="10"  type="text" :name="name" :value="value"
+                @change="errorReset"></textarea>
+        <div :id="name"></div>
+
       </div>
 
       <div v-if="type === 'select'" class="mt-1 mb-3">
@@ -79,7 +85,7 @@
         <image-component
           :name="name"
           :accept="`.jpg,.jpeg,.png,.mp4`"
-          :value="value"
+          :images="value"
         ></image-component>
       </div>
     </div>
