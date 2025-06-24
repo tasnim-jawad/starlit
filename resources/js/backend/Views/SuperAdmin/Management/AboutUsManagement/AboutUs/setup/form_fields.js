@@ -30,15 +30,6 @@ export default [
 		type: "text",
 		value: "",
 	},
-
-	{
-		name: "description",
-		label: "Enter your description",
-		type: "text",
-		value: "",
-	},
-
-
 	{
 		name: "quotation",
 		label: "Enter your quotation",
@@ -82,6 +73,15 @@ export default [
 				value: "inactive",
 			},
 		],
+	},
+	
+	{
+		name: "description",
+		label: "Enter your description",
+		type: "texteditor",
+		value: "",
+		row_col_class: "col-md-12",
+
 	},
 
 

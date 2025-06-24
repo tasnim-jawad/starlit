@@ -389,7 +389,11 @@ export default {
             if (field.name == value[0]) {
               this.form_fields[index].value = value[1];
             }
-            // Set summernote content for property_detail
+            // Set summernote content for description
+            if (field.name == "description" && value[0] == "description") {
+              $("#description").summernote("code", value[1]);
+            }
+
             if (
               field.name == "image_gallery_left" &&
               value[0] == "image_gallery_left"
@@ -448,6 +452,7 @@ export default {
 
       this.set_only_latest_data(true);
       if (this.param_id) {
+        this.setSummerEditor();
         let response = await this.update($event);
         // await this.get_all();
         if ([200, 201].includes(response.status)) {
@@ -455,6 +460,7 @@ export default {
           this.$router.push({ name: `Details${this.setup.route_prefix}` });
         }
       } else {
+        this.setSummerEditor();
         let response = await this.create($event);
         // await this.get_all();
         if ([200, 201].includes(response.status)) {
@@ -462,6 +468,14 @@ export default {
           this.$router.push({ name: `All${this.setup.route_prefix}` });
         }
       }
+    },
+    setSummerEditor() {
+      // Set description summernote content
+      var markupStr = $("#description").summernote("code");
+      var target = document.createElement("input");
+      target.setAttribute("name", "description");
+      target.value = markupStr;
+      document.getElementById("description").appendChild(target);
     },
 
     //add row for social links

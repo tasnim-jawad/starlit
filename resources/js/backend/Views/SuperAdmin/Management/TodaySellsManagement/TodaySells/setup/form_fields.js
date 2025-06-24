@@ -7,13 +7,6 @@ export default [
   },
 
   {
-    name: "description",
-    label: "Enter your description",
-    type: "text",
-    value: "",
-  },
-
-  {
     name: "video_url",
     label: "Enter your video url",
     type: "text",
@@ -36,20 +29,28 @@ export default [
     value: "",
   },
 
-	{
-		name: "status",
-		label: "select status",
-		type: "select",
-		value: "",
-		data_list: [
-			{
-				label: "Active",
-				value: "active",
-			},
-			{
-				label: "Inactive",
-				value: "inactive",
-			},
-		],
-	},
+  {
+    name: "status",
+    label: "select status",
+    type: "select",
+    value: "",
+    data_list: [
+      {
+        label: "Active",
+        value: "active",
+      },
+      {
+        label: "Inactive",
+        value: "inactive",
+      },
+    ],
+  },
+
+  {
+    name: "description",
+    label: "Enter your description",
+    type: "texteditor",
+    value: "",
+    row_col_class: "col-md-12",
+  },
 ];

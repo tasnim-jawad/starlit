@@ -217,25 +217,30 @@
                     @php
                         function getGoogleMapEmbedUrl($url) {
                             if (!$url) {
-                                return 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d9334.271551495209!2d-73.97198251485975!3d40.668170674982946!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25b0456b5a2e7%3A0x68bdf865dda0b669!2sBrooklyn%20Botanic%20Garden%20Shop!5e0!3m2!1sen!2sbd!4v1590597267201!5m2!1sen!2sbd';
+                                return null;
                             }
-                            // If already an embed link, return as is
                             if (Str::contains($url, '/maps/embed?')) {
                                 return $url;
                             }
-                            // If it's a place or search link, convert to embed
                             if (Str::contains($url, '/maps/place/') || Str::contains($url, '/maps/search/')) {
                                 return str_replace('/maps/', '/maps/embed/', $url);
                             }
-                            // If it's a short link, just use as is (Google will redirect)
-                            return $url;
+                            return null; // Not a valid Google Maps location URL
                         }
                         $mapUrl = getGoogleMapEmbedUrl($property?->map_location_url ?? '');
                     @endphp
 
                     <h4 class="title-2">Location</h4>
                     <div class="property-details-google-map mb-60">
-                        <iframe src="{{ $mapUrl }}" width="100%" height="100%" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        @if($mapUrl)
+                            <iframe src="{{ $mapUrl }}" width="100%" height="100%" frameborder="0" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                        @else
+                            <div class="alert alert-warning">
+                                Location map is not available for this property.
+                            </div>
+                            {{-- Or show a placeholder image --}}
+                            {{-- <img src="{{ asset('uploads/default.jpg') }}" alt="No location available" style="width:100%;max-width:400px;"> --}}
+                        @endif
                     </div>
 
                     <h4 class="title-2">Floor Plans</h4>
@@ -474,8 +479,9 @@
                     <!-- APARTMENTS PLAN AREA END -->
                     @php
                         function getYoutubeEmbedUrl($url) {
+                            $default = 'https://www.youtube.com/embed/x9gIy59kWw0?autoplay=1&showinfo=0';
                             if (!$url) {
-                                return 'https://www.youtube.com/embed/x9gIy59kWw0?autoplay=1&showinfo=0';
+                                return $default;
                             }
                             // If already an embed link, return as is
                             if (Str::contains($url, 'youtube.com/embed/')) {
@@ -486,7 +492,7 @@
                                 return 'https://www.youtube.com/embed/' . $matches[1] . '?autoplay=1&showinfo=0';
                             }
                             // Fallback
-                            return $url;
+                            return $default;
                         }
                         $videoUrl = getYoutubeEmbedUrl($property?->property_video_url ?? '');
                     @endphp
