@@ -6,9 +6,12 @@
                 <div class="ltn__blog-details-wrap">
                     <div class="ltn__page-details-inner ltn__blog-details-inner">
                         <div class="ltn__blog-meta">
+                            {{-- @dd($blog->blog_category) --}}
                             <ul>
                                 <li class="ltn__blog-category">
-                                    <a href="{{ route('home') }}">Starlite</a>
+                                    <a href="{{ $blog?->blog_category?->slug ? route('news_category', $blog?->blog_category?->slug) : route('home') }}">
+                                        {{$blog?->blog_category?->title ?? 'Starlite'}}
+                                    </a>
                                 </li>
                             </ul>
                         </div>

@@ -28,7 +28,7 @@ class NewsController extends Controller
         //     ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
         //     ->select('blogs.*', 'blog_categories.title as category_name')
         //     ->paginate(10);
-        $blogs = Blog::with('comments')->where('status', 'active')->paginate(4);
+        $blogs = Blog::with('comments')->with('blog_category')->where('status', 'active')->paginate(4);
         $top_rated_blogs_query = DB::table("blogs")
             ->join('blog_categories', 'blogs.blog_category_id', '=', 'blog_categories.id')
             ->where('blogs.status', 'active')
@@ -76,7 +76,7 @@ class NewsController extends Controller
     
     public function news_details($slug)
     {
-        $blog = Blog::with('comments')->where('slug', $slug)->first();
+        $blog = Blog::with('comments')->with('blog_category')->where('slug', $slug)->first();
         // dd($blog);
         $blog_category = DB::table('blog_categories')
             ->leftJoin('blogs', function($join) {

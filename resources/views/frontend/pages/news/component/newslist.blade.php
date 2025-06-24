@@ -4,11 +4,11 @@
         <div class="row">
            
             <div class="col-lg-8">
-                <div class="text-center pb-20">
+                <div class="text-center ">
                     @if (request()->routeIs('news_category'))
-                        <h2>{{ ucfirst($category->title ?? '') }} Blog</h2>
+                        <h2 class="pb-20">{{ ucfirst($category->title ?? '') }} Blog</h2>
                     @else
-                        <h2> Blogs</h2>
+                        {{-- <h2>Blogs</h2> --}}
                     @endif
     
                 </div>
@@ -24,9 +24,15 @@
                             </div>
                             <div class="ltn__blog-brief">
                                 <div class="ltn__blog-meta">
+                                    {{-- @dd($blog?->blog_category?->slug) --}}
+                                    @php
+                                        $category = $blog->blog_category ?? null;
+                                    @endphp
                                     <ul>
                                         <li class="ltn__blog-category">
-                                            <a href="#">{{ $blog?->category_name ?? 'Starlit' }}</a>
+                                            <a href="{{ $category ? route('news_category', $category->slug) : '#' }}">
+                                                {{ request()->routeIs('news_category') ? $blog->category_name : ($category->title ?? 'Starlit') }}
+                                            </a>
                                         </li>
                                     </ul>
                                 </div>
@@ -41,7 +47,9 @@
                                         </li>
                                         <li class="ltn__blog-date">
                                             <i class="far fa-calendar-alt"></i>
-                                            {{ \Carbon\Carbon::parse($blog?->publish_date)->format('M d, Y') }}
+                                            {{ optional($blog?->publish_date ?? $blog?->created_at)
+                                                ? \Carbon\Carbon::parse($blog?->publish_date ?? $blog?->created_at)->format('M d, Y')
+                                                : 'N/A' }}
                                         </li>
                                     </ul>
                                 </div>

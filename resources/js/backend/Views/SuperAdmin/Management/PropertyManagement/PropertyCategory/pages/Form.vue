@@ -110,21 +110,7 @@ export default {
             }
         },
 
-        get_all_property_groups: async function () {
-            let response = await axios.get(
-                "property-groups?get_all=1"
-            );
-            if (response.data.status == "success") {
-                response = response.data.data;
-                this.form_fields[1].data_list = [];
-                response.forEach((item) => {
-                let dataList = {};
-                dataList.label = item.name;
-                dataList.value = item.id;
-                this.form_fields[1].data_list.push(dataList);
-                });
-            }
-        },
+       
     },
 
     computed: {

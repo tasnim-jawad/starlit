@@ -196,7 +196,7 @@
                         <li><a href="{{ route('gallery.video') }}">Video gallery</a></li>
                     </ul>
                 </li>
-                <li><a href="{{ route('news') }}">News</a></li>
+                <li><a href="{{ route('news') }}">Blog</a></li>
                 <li><a href="{{ route('contact') }}">Contact</a></li>
                 <li class="special-link mt-2 ms-0">
                     <a href="/login">Login</a>
