@@ -89,7 +89,7 @@ let execute = async () => {
   }
 
   state.cached.set(response.totalStorage);
-
+  
   state.all.set(response.data);
   state.all_data_count.set(response.data.total);
   state.active_data_count.set(response.data.active_data_count);
