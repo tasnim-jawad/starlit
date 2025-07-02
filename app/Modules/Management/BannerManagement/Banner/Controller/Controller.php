@@ -14,7 +14,7 @@ use App\Modules\Management\BannerManagement\Banner\Validations\BulkActionsValida
 use App\Modules\Management\BannerManagement\Banner\Validations\DataStoreValidation;
 use App\Modules\Management\BannerManagement\Banner\Actions\BulkActions;
 use App\Http\Controllers\Controller as ControllersController;
-
+use App\Modules\Management\BannerManagement\Banner\Actions\UpdateDisplayStatus;
 
 class Controller extends ControllersController
 {
@@ -42,9 +42,15 @@ class Controller extends ControllersController
         $data = UpdateData::execute($request, $slug);
         return $data;
     }
-         public function updateStatus()
+    public function updateStatus()
     {
         $data = UpdateStatus::execute();
+        return $data;
+    }
+
+    public function updateDisplayStatus()
+    {
+        $data = UpdateDisplayStatus::execute();
         return $data;
     }
 

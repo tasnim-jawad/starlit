@@ -31,6 +31,23 @@ export default [
 		],
 	},
 
+	{
+		name: "display_status",
+		label: "select display status",
+		type: "select",
+		value: "",
+		data_list: [
+			{
+				label: "Show",
+				value: 1,
+			},
+			{
+				label: "hide",
+				value: 0,
+			},
+		],
+	},
+
   // {
   // 	name: "video_url",
   // 	label: "Enter your video url",

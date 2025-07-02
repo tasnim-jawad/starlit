@@ -12,6 +12,8 @@ import restore from "./async_actions/restore";
 import destroy from "./async_actions/destroy";
 import bulk_action from "./async_actions/bulk_action";
 import import_data from "./async_actions/import_data";
+// new function update display status
+import update_display_status from "./async_actions/update_display_status";
 
 /** actions */
 import set_filter_criteria from "./actions/set_filter_criteria";
@@ -40,6 +42,8 @@ export const store = defineStore(setup.store_prefix, {
         destroy: destroy,
         bulk_action: bulk_action,
         import_data: import_data,
+        // new function update display status
+        update_display_status: update_display_status,
 
         /* actions */
         set_page,

@@ -24,6 +24,7 @@ const setup: setup_type = {
     "video_file",
     "video_type",
     "status",
+    "display_status",
     "slug",
     "created_at",
   ],
@@ -40,6 +41,7 @@ const setup: setup_type = {
     "id",
     "short_title",
     "short_description",
+    "display_status",
 
     "status",
     "created_at",
@@ -48,6 +50,7 @@ const setup: setup_type = {
     "id",
     "short_title",
     "short_description",
+    "display_status",
 
     "status",
     "created_at",

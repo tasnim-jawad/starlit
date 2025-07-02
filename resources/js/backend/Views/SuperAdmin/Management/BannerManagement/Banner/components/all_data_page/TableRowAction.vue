@@ -17,6 +17,9 @@
             <li>
                 <destroy :item="item"/>
             </li>
+            <li>
+                <display-status-button :item="item"/>
+            </li>
 
             <slot />
         </ul>
@@ -29,6 +32,7 @@ import Edit from './action_buttons/Edit.vue';
 import StatusButton from './action_buttons/StatusButton.vue';
 import DeleteRestore    from './action_buttons/DeleteRestore.vue';
 import Destroy from './action_buttons/Destroy.vue';
+import displayStatusButton from './action_buttons/DisplayStatusButton.vue';
 export default {
     props: {
         item: {
@@ -42,6 +46,7 @@ export default {
         StatusButton,
         Destroy,
         DeleteRestore,
+        displayStatusButton,
     },
     methods: {
         active_row,

@@ -49,6 +49,14 @@ class StoreData
             }
 
             if ($data = self::$model::query()->create($requestData)) {
+
+                if (isset($requestData['display_status']) && $requestData['display_status'] == 1) {
+                    // Set all other records to display_status = 0
+                    self::$model::query()
+                        ->where('id', '!=', $data->id)
+                        ->update(['display_status' => 0]);
+                }
+                
                 return messageResponse('Item added successfully', $data, 201);
             }
         } catch (\Exception $e) {

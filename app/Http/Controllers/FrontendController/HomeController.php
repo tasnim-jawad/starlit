@@ -24,7 +24,8 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $banner = Banner::where('status', 'active')->latest()->first();
+        $banner = Banner::where('status', 'active')->where('display_status',1)->latest()->first();
+        // dd($banner);
         // dd($banner);
         $about_us = AboutUs::where('page_type','about_us')->where('status', 'active')->latest()->first();
         $at_a_glance = AtaGlance::where('status', 'active')->latest()->limit(4)->get();

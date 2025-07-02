@@ -7,8 +7,8 @@
             {{
               param_id
                 ? `${setup.edit_page_title}`
-                : `${setup.create_page_title}`
-                + "s" }}
+                : `${setup.create_page_title}` + "s"
+            }}
           </h5>
           <div>
             <router-link
@@ -249,12 +249,11 @@ export default {
               this.form_fields[index].value = value[1];
             }
             // Set summernote content for description
-            if (
-              field.name == "description" &&
-              value[0] == "description"
-            ) {
-              $("#description").summernote("code", value[1]);
-            }
+            // if (field.name == "description" && value[0] == "description") {
+            //   setTimeout(function () {
+            //     $("#description").summernote("code", value[1]);
+            //   }, 1000);
+            // }
           });
         });
 
@@ -290,7 +289,7 @@ export default {
 
       this.set_only_latest_data(true);
       if (this.param_id) {
-        this.setSummerEditor();
+        // this.setSummerEditor();
         let response = await this.update($event);
         // await this.get_all();
         if ([200, 201].includes(response.status)) {
@@ -298,7 +297,7 @@ export default {
           this.$router.push({ name: `Details${this.setup.route_prefix}` });
         }
       } else {
-        this.setSummerEditor();
+        // this.setSummerEditor();
         let response = await this.create($event);
         // await this.get_all();
         if ([200, 201].includes(response.status)) {
@@ -307,17 +306,15 @@ export default {
         }
       }
     },
-    
-    setSummerEditor() {
-      // Set description summernote content
-      var markupStr = $("#description").summernote("code");
-      var target = document.createElement("input");
-      target.setAttribute("name", "description");
-      target.value = markupStr;
-      document.getElementById("description").appendChild(target);
 
-     
-    },
+    // setSummerEditor() {
+    //   // Set description summernote content
+    //   var markupStr = $("#description").summernote("code");
+    //   var target = document.createElement("input");
+    //   target.setAttribute("name", "description");
+    //   target.value = markupStr;
+    //   document.getElementById("description").appendChild(target);
+    // },
     add_features_row: function () {
       console.log("features_data", this.features_data.length);
       if (this.features_data.length >= 4) {
@@ -385,16 +382,18 @@ export default {
 
     filtered_form_fields() {
       const pageType = this.page_type;
-      if (pageType === "our_mission" || pageType === "our_vission") {
-        const fieldsToRemove = [
-          "title",
-          "quotation",
-          "video_url",
-          "secondery_image",
-        ];
-        return this.form_fields.filter((f) => !fieldsToRemove.includes(f.name));
-      }
-      return this.form_fields;
+      const fieldsToRemove = [
+        "title",
+        "quotation",
+        "video_url",
+        "secondery_image",
+      ];
+      return this.form_fields.filter((f) => {
+        if (pageType === "our_mission" || pageType === "our_vission") {
+          return !fieldsToRemove.includes(f.name);
+        }
+        return true;
+      });
     },
   },
 };
