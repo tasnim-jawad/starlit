@@ -7,6 +7,7 @@ use App\Modules\Controllers\Frontend\Auth\AuthController;
 
 
 Route::get('/', [FrontendController::class, 'HomePage'])->name('HomePage');
+Route::get('/about-us', [FrontendController::class, 'AboutUsPage'])->name('AboutUsPage');
 
 /*
 |--------------------------------------------------------------------------

@@ -11,7 +11,9 @@ class AuthController extends Controller
 
     public function LoginPage()
     {
+        
         return Inertia::render('Auth/Login', [
+
             'event' => [
                 'title' => 'Login Page',
             ]
